@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+
+const { Schema } = mongoose
 
 const DishSchema = new Schema({
   cuisineType: String,
@@ -10,7 +11,7 @@ const DishSchema = new Schema({
   allergies: [String],
   cashDonation: Number,
   isActive: Boolean,
-  quantity: Number //Amt of a dish a chef has left in their inventory
-});
+  quantity: Number, // Amt of a dish a chef has left in their inventory
+})
 
-module.exports = DishSchema;
+module.exports = DishSchema

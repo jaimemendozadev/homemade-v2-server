@@ -1,0 +1,24 @@
+{
+    "env": {
+      "node": true,
+      "es6": true
+
+    },
+    "extends": ["airbnb-base", "plugin:prettier/recommended"], 
+    "rules": {
+        "no-use-before-define": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": false
+      }
+     ]
+    },
+    "globals": {
+      "fetch": false
+    }
+}

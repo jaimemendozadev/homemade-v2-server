@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+
+const { Schema } = mongoose
 
 const PhoneSchema = new Schema({
   number: Number,
-  inUse: Boolean
-});
+  inUse: Boolean,
+})
 
-module.exports = PhoneSchema;
+module.exports = PhoneSchema

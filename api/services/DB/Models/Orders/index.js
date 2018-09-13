@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+
+const { Schema } = mongoose
 
 const OrderSchema = new Schema({
   chefId: String,
@@ -8,7 +9,7 @@ const OrderSchema = new Schema({
   status: Number,
   date: { type: Date, default: Date.now },
   cashTotal: Number,
-  orderInstructions: String
-});
+  orderInstructions: String,
+})
 
-module.exports = OrderSchema;
+module.exports = OrderSchema

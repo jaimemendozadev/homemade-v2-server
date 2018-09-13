@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev:start": "nodemon index.js",
-    "dev:format": "prettier --write './api/**/*.{js, graphql}'"
+    "lint": "./node_modules/.bin/eslint --fix api",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"]
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -14,6 +18,13 @@
     "mongoose": "^5.2.14"
   },
   "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "nodemon": "^1.18.4",
     "prettier": "^1.14.2"
   }

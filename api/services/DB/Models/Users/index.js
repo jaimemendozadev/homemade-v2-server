@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+
+const { Schema } = mongoose
 
 const UserSchema = new Schema({
   authId: String,
@@ -17,7 +18,7 @@ const UserSchema = new Schema({
   address: String,
   rating: Number,
   signatureURL: String,
-  email: String
-});
+  email: String,
+})
 
-module.exports = UserSchema;
+module.exports = UserSchema

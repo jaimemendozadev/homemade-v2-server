@@ -1,4 +1,5 @@
-const middleware = require('./middleware');
+require('./services/DB');
+const middleware = require("./middleware");
 const express = require("express");
 
 const app = express();

@@ -1,0 +1,28 @@
+type Dish {
+  chefId: String!
+  cuisineType: String!
+  name: String!
+  description: String!
+  dishImages: [String]
+  allergies: [String]
+  cashDonation: Int!
+  isActive: Boolean!
+  # quantity is remaining number of a dish a chef has in their inventory
+  quantity: Int!
+}
+
+type ServerResponse {
+  hasError: Boolean
+  message: String
+}
+
+
+extend type Query {
+  getActiveDishes(chefID: String!): [Dish]!
+  getInactiveDishes(chefID: String!): [Dish]!
+}
+
+extend type Mutation {
+  updateDish(dishID: String!): [Dish]!
+  deleteDish(dishID: String!): ServerResponse!
+}

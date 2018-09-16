@@ -1,3 +1,5 @@
+// parent, args, context, info
+
 const updateDish = () => {}
 const deleteDish = () => {}
 

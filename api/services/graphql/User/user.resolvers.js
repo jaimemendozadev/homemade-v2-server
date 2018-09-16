@@ -1,7 +1,23 @@
-const { createUser, updateUser, addSignature } = require('./mutations')
-const { getUser } = require('./queries')
+const {
+  createUser,
+  updateUser,
+  addSignature,
+  postUserReview,
+  postChefReview,
+} = require('./mutations')
+const { getUser, getChefReviews, getUserReviews } = require('./queries')
 
 module.exports = {
-  Query: { getUser },
-  Mutation: { createUser, updateUser, addSignature },
+  Query: {
+    getUser,
+    getChefReviews,
+    getUserReviews,
+  },
+  Mutation: {
+    createUser,
+    updateUser,
+    addSignature,
+    postUserReview,
+    postChefReview,
+  },
 }

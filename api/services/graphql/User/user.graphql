@@ -43,11 +43,15 @@ type Location {
 
 
 type Query {
-  getUser(userID: String!): [User]!
+  getUser(authID: String!): [User]!
+  getChefReviews(authID: String!): [String]!
+  getUserReviews(authID: String!): [String]!
 }
 
 type Mutation {
   createUser(input: UserPayload!): [User]!
   updateUser(authID: String!): [User]!
   addSignature(authID: String!):
+  postUserReview(authID: String!): [String]!
+  postChefReview(authID: String!): [String]!
 }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const { Schema } = mongoose
-
+const { Schema, model } = mongoose
+// { type: Schema.Types.ObjectId, ref: 'user' }
 const UserSchema = new Schema({
   authId: String,
   firstName: String,
@@ -14,6 +14,7 @@ const UserSchema = new Schema({
   customerReviews: [],
   chefReviews: [],
   isChef: Boolean,
+  chefDishes: [{ type: Schema.Types.ObjectId, ref: 'dish' }],
   location: { geo_lat: Number, geo_lng: Number },
   address: String,
   rating: Number,
@@ -21,4 +22,6 @@ const UserSchema = new Schema({
   email: String,
 })
 
-module.exports = UserSchema
+const UserModel = model('user', UserSchema)
+
+module.exports = UserModel

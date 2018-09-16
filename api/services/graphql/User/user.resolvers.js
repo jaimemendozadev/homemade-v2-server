@@ -5,13 +5,25 @@ const {
   postUserReview,
   postChefReview,
 } = require('./mutations')
-const { getUser, getChefReviews, getUserReviews } = require('./queries')
+const {
+  getUser,
+  getChefReviews,
+  getUserReviews,
+  getChefDetails,
+  findChefsInRange,
+  findChefsByStyle,
+  chefDishes,
+} = require('./queries')
 
 module.exports = {
   Query: {
     getUser,
     getChefReviews,
     getUserReviews,
+
+    getChefDetails,
+    findChefsInRange,
+    findChefsByStyle,
   },
   Mutation: {
     createUser,
@@ -19,5 +31,8 @@ module.exports = {
     addSignature,
     postUserReview,
     postChefReview,
+  },
+  User: {
+    chefDishes,
   },
 }

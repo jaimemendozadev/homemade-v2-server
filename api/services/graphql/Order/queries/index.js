@@ -6,6 +6,9 @@ const getCustomerOrders = () => {}
 const getAcceptedOrders = () => {}
 const getCompletedOrders = () => {}
 const getCancelledOrders = () => {}
+const chefId = () => {}
+const customerId = () => {}
+const cart = () => {}
 
 module.exports = {
   getPendingOrders,
@@ -14,4 +17,7 @@ module.exports = {
   getAcceptedOrders,
   getCompletedOrders,
   getCancelledOrders,
+  chefId,
+  customerId,
+  cart,
 }

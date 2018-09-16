@@ -1,9 +1,9 @@
 type Dish {
-  chefId: String!
   cuisineType: String!
   name: String!
   description: String!
   dishImages: [String]
+  chefId: User!
   allergies: [String]
   cashDonation: Int!
   isActive: Boolean!

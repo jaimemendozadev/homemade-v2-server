@@ -38,4 +38,3 @@ extend type Mutation {
 # Todo: Implement Socket.io
 # socket.io: alertChef
 # socket.io: alertCustomer
-

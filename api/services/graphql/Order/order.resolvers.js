@@ -5,6 +5,9 @@ const {
   getAcceptedOrders,
   getCompletedOrders,
   getCancelledOrders,
+  chefId,
+  customerId,
+  cart,
 } = require('./queries')
 
 const { updateOrder, postNewOrder } = require('./mutations')
@@ -21,5 +24,10 @@ module.exports = {
   Mutation: {
     updateOrder,
     postNewOrder,
+  },
+  Order: {
+    chefId,
+    customerId,
+    cart,
   },
 }

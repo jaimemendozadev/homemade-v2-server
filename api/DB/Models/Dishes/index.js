@@ -7,7 +7,7 @@ const DishSchema = new Schema({
   name: String,
   description: String,
   dishImages: [String],
-  chefId: String,
+  chefId: { type: Schema.Types.ObjectId, ref: 'user' },
   allergies: [String],
   cashDonation: Number,
   isActive: Boolean,

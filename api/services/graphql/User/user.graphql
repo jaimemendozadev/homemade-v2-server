@@ -10,6 +10,7 @@ type User {
   customerReviews: []
   chefReviews: []
   isChef: Boolean
+  chefDishes: [Dish]
   location: Location
   address: String!
   rating: Int
@@ -41,11 +42,21 @@ type Location {
   geo_lng: Int,
 }
 
+input LocationInput {
+  geo_lat: Int,
+  geo_lng: Int,
+}
+
 
 type Query {
   getUser(authID: String!): [User]!
   getChefReviews(authID: String!): [String]!
   getUserReviews(authID: String!): [String]!
+  # getChefDetails is similiar to getUser, might delete
+  getChefDetails(authID: String!): [User]!
+  findChefsInRange(input: LocationInput): [User]!
+  # findChefsByStyle filters by both location and cuisineType
+  findChefsByStyle(input: LocationInput, cuisineType: String!): [User]!
 }
 
 type Mutation {
@@ -55,3 +66,6 @@ type Mutation {
   postUserReview(authID: String!): [String]!
   postChefReview(authID: String!): [String]!
 }
+
+# ToDo: Possibly Implement Twilio
+# Twilio: textChef

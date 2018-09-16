@@ -1,0 +1,53 @@
+type User {
+  authId: String
+  firstName: String!
+  lastName: String!
+  bio: String
+  status: String
+  phoneNumber: String!
+  likes: [Int]
+  profileUrl: String
+  customerReviews: []
+  chefReviews: []
+  isChef: Boolean
+  location: Location
+  address: String!
+  rating: Int
+  signatureURL: String
+  email: String!
+}
+
+input UserPayload {
+  authId: String
+  firstName: String!
+  lastName: String!
+  bio: String
+  status: String
+  phoneNumber: String!
+  likes: [Int]
+  profileUrl: String
+  customerReviews: []
+  chefReviews: []
+  isChef: Boolean
+  location: Location
+  address: String!
+  rating: Int
+  signatureURL: String
+  email: String!
+}
+
+type Location {
+  geo_lat: Int,
+  geo_lng: Int,
+}
+
+
+type Query {
+  getUser(userID: String!): [User]!
+}
+
+type Mutation {
+  createUser(input: UserPayload!): [User]!
+  updateUser(authID: String!): [User]!
+  addSignature(authID: String!):
+}

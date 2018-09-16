@@ -1,0 +1,41 @@
+type Order {
+  chefId: String!
+  customerId: String!
+  # Note: cart was originally an {} object 
+  cart: [Dish!]!
+  status: Int!
+  date: Date!
+  cashTotal: Int!
+
+  # orderInstructions Status Codes
+  # 0: pending
+  # 1: accepted
+  # 2: completed
+  # 3: canceled
+  # 4: reviewed
+
+  orderInstructions: String!
+}
+
+
+extend type Query{
+  getPendingOrders(chefID: String!): [Order]!
+  getUserCurrentOrder(userID: String!): [Order]!
+  # callerType determines whether to use callerID to query chefId or customerId in DB schema
+  getCustomerOrders(callerID: String, callerType: String!):[Order]!
+  getAcceptedOrders(callerID: String, callerType: String!):[Order]!
+  getCompletedOrders(callerID: String, callerType: String!):[Order]!
+  getCancelledOrders(callerID: String, callerType: String!):[Order]!
+  
+}
+
+extend type Mutation {
+  # status corresponds to orderInstructions in DB schema
+  updateOrder(orderID: String!, status: String!): Order!
+  postNewOrder(input: IncomingOrder!): [Order]!
+}
+
+# Todo: Implement Socket.io
+# socket.io: alertChef
+# socket.io: alertCustomer
+

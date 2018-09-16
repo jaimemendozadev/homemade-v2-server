@@ -1,6 +1,6 @@
-require('./services/DB')
+require('./DB')
 const express = require('express')
-const middleware = require('./middleware')
+const middleware = require('./services/middleware')
 
 const app = express()
 

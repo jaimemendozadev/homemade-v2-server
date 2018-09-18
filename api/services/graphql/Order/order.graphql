@@ -4,7 +4,7 @@ type Order {
   # Note: cart was originally an {} object 
   cart: [Dish!]!
   status: Int!
-  date: Date!
+  date: String!
   cashTotal: Int!
 
   # orderInstructions Status Codes
@@ -23,7 +23,7 @@ input IncomingOrder {
   # Note: cart was originally an {} object 
   cart: [Dish!]!
   status: Int!
-  date: Date!
+  date: String!
   cashTotal: Int!
 
   # orderInstructions Status Codes

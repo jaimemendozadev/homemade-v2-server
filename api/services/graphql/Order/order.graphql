@@ -17,8 +17,27 @@ type Order {
   orderInstructions: String!
 }
 
+input IncomingOrder {
+  chefId: String!
+  customerId: String!
+  # Note: cart was originally an {} object 
+  cart: [Dish!]!
+  status: Int!
+  date: Date!
+  cashTotal: Int!
 
-extend type Query{
+  # orderInstructions Status Codes
+  # 0: pending
+  # 1: accepted
+  # 2: completed
+  # 3: canceled
+  # 4: reviewed
+
+  orderInstructions: String!
+
+}
+
+extend type Query {
   getPendingOrders(chefID: String!): [Order]!
   getUserCurrentOrder(userID: String!): [Order]!
   # callerType determines whether to use callerID to query chefId or customerId in DB schema

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { Schema, model } = mongoose
+const { Schema } = mongoose
 
 const DishSchema = new Schema({
   cuisineType: String,
@@ -14,6 +14,6 @@ const DishSchema = new Schema({
   quantity: Number, // Amt of a dish a chef has left in their inventory
 })
 
-const DishModel = model('dish', DishSchema)
+const DishModel = mongoose.model('dish', DishSchema)
 
 module.exports = DishModel

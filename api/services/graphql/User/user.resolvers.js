@@ -1,7 +1,7 @@
 const {
   createUser,
   updateUser,
-  addSignature,
+  // addSignature,
   postUserReview,
   postChefReview,
 } = require('./mutations')
@@ -28,7 +28,7 @@ module.exports = {
   Mutation: {
     createUser,
     updateUser,
-    addSignature,
+    // addSignature,
     postUserReview,
     postChefReview,
   },

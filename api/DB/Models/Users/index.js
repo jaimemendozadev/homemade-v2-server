@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const { Schema, model } = mongoose
-// { type: Schema.Types.ObjectId, ref: 'user' }
+const { Schema } = mongoose
+
 const UserSchema = new Schema({
   authId: String,
   firstName: String,
@@ -22,6 +22,6 @@ const UserSchema = new Schema({
   email: String,
 })
 
-const UserModel = model('user', UserSchema)
+const UserModel = mongoose.model('user', UserSchema)
 
 module.exports = UserModel

@@ -7,8 +7,8 @@ type User {
   phoneNumber: String!
   likes: [Int]
   profileUrl: String
-  customerReviews: []
-  chefReviews: []
+  # customerReviews: []
+  # chefReviews: []
   isChef: Boolean
   chefDishes: [Dish]
   location: Location
@@ -27,8 +27,8 @@ input UserPayload {
   phoneNumber: String!
   likes: [Int]
   profileUrl: String
-  customerReviews: []
-  chefReviews: []
+  # customerReviews: []
+  # chefReviews: []
   isChef: Boolean
   location: Location
   address: String!
@@ -62,7 +62,7 @@ type Query {
 type Mutation {
   createUser(input: UserPayload!): [User]!
   updateUser(authID: String!): [User]!
-  addSignature(authID: String!):
+  # addSignature(authID: String!):
   postUserReview(authID: String!): [String]!
   postChefReview(authID: String!): [String]!
 }

@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser')
-
 const server = require('../graphql')
 
 module.exports = app => {
@@ -7,5 +6,5 @@ module.exports = app => {
   app.use(bodyParser.urlencoded({ extended: true }))
 
   // connect GraphQL to Express app
-  server.applyMiddleware({ app })
+  server.applyMiddleware({ app, path: '/graphql' })
 }

@@ -1,11 +1,11 @@
-const Dishes = require('./Dishes')
-const Orders = require('./Orders')
-const Phones = require('./Phones')
-const Users = require('./Users')
+const Dish = require('./Dishes')
+const Order = require('./Orders')
+const Phone = require('./Phones')
+const User = require('./Users')
 
 module.exports = {
-  Dishes,
-  Orders,
-  Phones,
-  Users,
+  Dish,
+  Order,
+  Phone,
+  User,
 }

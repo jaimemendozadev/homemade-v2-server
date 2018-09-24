@@ -1,5 +1,16 @@
 // parent, args, context, info
-const getUser = () => {}
+const getUser = async (_parent, { authID }, { models }) => {
+  console.log('inside getUser')
+
+  const { User } = models
+
+  const foundUser = await User.findById(authID)
+
+  console.log(`foundUser is `, foundUser)
+
+  return foundUser
+}
+
 const getChefReviews = () => {}
 const getUserReviews = () => {}
 const getChefDetails = () => {}

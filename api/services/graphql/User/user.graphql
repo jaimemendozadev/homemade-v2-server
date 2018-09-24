@@ -18,6 +18,8 @@ type User {
   email: String!
 }
 
+
+
 input UserPayload {
   authId: String
   firstName: String!
@@ -30,7 +32,7 @@ input UserPayload {
   # customerReviews: []
   # chefReviews: []
   isChef: Boolean
-  location: Location
+  # location: LocationInput
   address: String!
   rating: Int
   signatureURL: String
@@ -49,9 +51,10 @@ input LocationInput {
 
 
 type Query {
-  getUser(authID: String!): [User]!
+  getUser(authID: String!): User!
   getChefReviews(authID: String!): [String]!
   getUserReviews(authID: String!): [String]!
+  
   # getChefDetails is similiar to getUser, might delete
   getChefDetails(authID: String!): [User]!
   findChefsInRange(input: LocationInput): [User]!
@@ -62,7 +65,7 @@ type Query {
 type Mutation {
   createUser(input: UserPayload!): [User]!
   updateUser(authID: String!): [User]!
-  # addSignature(authID: String!):
+  addSignature(authID: String!): String!
   postUserReview(authID: String!): [String]!
   postChefReview(authID: String!): [String]!
 }

@@ -6,6 +6,9 @@
   "scripts": {
     "dev:start": "nodemon index.js",
     "lint": "./node_modules/.bin/eslint --fix api",
+    "format": "yarn run prettier -- --write api",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|ts|tsx|md|graphql)\"",
+    "validate": "yarn run lint && yarn run prettier -- --list-different",
     "precommit": "lint-staged",
     "seed:db": "node ./seeds/index.js"
   },

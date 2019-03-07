@@ -1,11 +1,11 @@
-require('./DB')
-const express = require('express')
-const middleware = require('./services/middleware')
+require('./DB');
+const express = require('express');
+const middleware = require('./services/middleware');
 
-const app = express()
+const app = express();
 
-middleware(app)
+middleware(app);
 
-app.get('/', (req, res) => res.send('<h1>Hit the API!</h1>'))
+app.get('/', (req, res) => res.send('<h1>Hit the API!</h1>'));
 
-module.exports = app
+module.exports = app;

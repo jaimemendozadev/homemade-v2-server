@@ -8,9 +8,9 @@ const {
   chefId,
   customerId,
   cart,
-} = require('./queries')
+} = require('./queries');
 
-const { updateOrder, postNewOrder } = require('./mutations')
+const {updateOrder, postNewOrder} = require('./mutations');
 
 module.exports = {
   Query: {
@@ -30,4 +30,4 @@ module.exports = {
     customerId,
     cart,
   },
-}
+};

@@ -1,14 +1,14 @@
 // parent, args, context, info
 
-const createUser = () => {}
+const createUser = () => {};
 
-const updateUser = () => {}
+const updateUser = () => {};
 
-const addSignature = () => {}
+const addSignature = () => {};
 
-const postUserReview = () => {}
+const postUserReview = () => {};
 
-const postChefReview = () => {}
+const postChefReview = () => {};
 
 module.exports = {
   createUser,
@@ -16,4 +16,4 @@ module.exports = {
   addSignature,
   postUserReview,
   postChefReview,
-}
+};

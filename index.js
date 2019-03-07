@@ -1,10 +1,10 @@
-require('dotenv').config()
-const app = require('./api')
-const server = require('./api/services/graphql')
+require('dotenv').config();
+const app = require('./api');
+const server = require('./api/services/graphql');
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`)
-  console.log(`GraphQL Server Listening at ${server.graphqlPath}`)
-})
+  console.log(`Listening at http://localhost:${port}`);
+  console.log(`GraphQL Server Listening at ${server.graphqlPath}`);
+});

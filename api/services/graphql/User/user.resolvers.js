@@ -4,7 +4,7 @@ const {
   addSignature,
   postUserReview,
   postChefReview,
-} = require('./mutations')
+} = require('./mutations');
 const {
   getUser,
   getChefReviews,
@@ -13,7 +13,7 @@ const {
   findChefsInRange,
   findChefsByStyle,
   chefDishes,
-} = require('./queries')
+} = require('./queries');
 
 module.exports = {
   Query: {
@@ -34,4 +34,4 @@ module.exports = {
   User: {
     chefDishes,
   },
-}
+};

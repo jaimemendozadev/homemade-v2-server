@@ -1,5 +1,5 @@
-const { getActiveDishes, getInactiveDishes, chefId } = require('./queries')
-const { updateDish, deleteDish } = require('./mutations')
+const {getActiveDishes, getInactiveDishes, chefId} = require('./queries');
+const {updateDish, deleteDish} = require('./mutations');
 
 module.exports = {
   Query: {
@@ -13,4 +13,4 @@ module.exports = {
   Dish: {
     chefId,
   },
-}
+};

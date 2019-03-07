@@ -1,22 +1,22 @@
 // parent, args, context, info
-const getUser = async (_parent, { authID }, { models }) => {
-  console.log('inside getUser')
+const getUser = async (_parent, {authID}, {models}) => {
+  console.log('inside getUser');
 
-  const { User } = models
+  const {User} = models;
 
-  const foundUser = await User.findById(authID)
+  const foundUser = await User.findById(authID);
 
-  console.log(`foundUser is `, foundUser)
+  console.log(`foundUser is `, foundUser);
 
-  return foundUser
-}
+  return foundUser;
+};
 
-const getChefReviews = () => {}
-const getUserReviews = () => {}
-const getChefDetails = () => {}
-const findChefsInRange = () => {}
-const findChefsByStyle = () => {}
-const chefDishes = () => {}
+const getChefReviews = () => {};
+const getUserReviews = () => {};
+const getChefDetails = () => {};
+const findChefsInRange = () => {};
+const findChefsByStyle = () => {};
+const chefDishes = () => {};
 
 module.exports = {
   getUser,
@@ -26,4 +26,4 @@ module.exports = {
   findChefsInRange,
   findChefsByStyle,
   chefDishes,
-}
+};

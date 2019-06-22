@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const writeFileToDisk = async (filePath, payloadArray) => {
+module.exports = async (filePath, payloadArray) => {
   const file = fs.createWriteStream(filePath, {
     encoding: 'utf8',
   });
@@ -33,8 +33,4 @@ const writeFileToDisk = async (filePath, payloadArray) => {
       reject(console.log('There was an error writing the file.'));
     });
   });
-};
-
-module.exports = {
-  writeFileToDisk,
 };

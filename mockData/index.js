@@ -1,15 +1,45 @@
 require('dotenv').load();
-const mongoose = require('mongoose');
-const {Dishes, Orders, Users} = require('../api/DB/Models');
-const DishData = require('./Dish.json');
-const OrderData = require('./Order.json');
-const UserData = require('./User_Smaller.json');
+// const {db, clearDatabase} = require('./database');
 
-mongoose.Promise = global.Promise;
-const {DB_URL} = process.env;
+// const writeFileToDisk = require("./generateFiles.js");
+// const {generateSingleUser} = require('./Users');
+// const {generateSingleDish} = require('./Dishes');
 
-mongoose.connect(DB_URL, {useNewUrlParser: true});
-const db = mongoose.connection;
+// const {Dishes, Orders, Users} = require('../api/DB/Models');
+// const DishData = require('./Dish.json');
+// const OrderData = require('./Order.json');
+
+
+
+
+/*
+
+
+// Create Users File and Seed DB
+const createUsersPayload = async() => {
+
+  const filePath = path.join(__dirname, "../mockJSON/Users.json");
+  const payloadArray = [];
+
+  for (let i = 0; i < 30; i++) {
+    payloadArray.push(generateSingleUser());
+  }
+
+  await writeFileToDisk(filePath, payloadArray);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const populateChefDishes = async (users, dishes) => {
   let index = 0;
@@ -33,11 +63,17 @@ const closeDB = () => {
 };
 
 const initiateDBSeeding = async () => {
+
+  // Create Users JSON
+  await createUsersPayload();
+
+  const UserData = require('../mockJSON/Users.json');
+
+
   // Create dummy documents in DB
   const Users_DB_Result = await Users.insertMany(UserData);
 
-
-  // const filteredChefIDs = 
+  // const filteredChefIDs =
   const Dishes_DB_Result = await Dishes.insertMany(DishData);
   await Orders.insertMany(OrderData);
 
@@ -51,21 +87,4 @@ const initiateDBSeeding = async () => {
 
   closeDB();
 };
-
-const runSeedDBFunc = () => {
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-  db.on('connected', async () => {
-    console.log('Successfully connected to DB!');
-
-    // Remove all documents from each Model
-    // .remove() deprecated
-    await Dishes.deleteMany();
-    await Orders.deleteMany();
-    await Users.deleteMany();
-
-    initiateDBSeeding();
-  });
-};
-
-runSeedDBFunc();
+*/

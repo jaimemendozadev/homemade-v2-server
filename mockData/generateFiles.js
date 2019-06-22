@@ -1,6 +1,4 @@
 const fs = require('fs');
-const path = require('path');
-const {generateSingleUser} = require('./Users/generateUsers.js');
 
 const writeFileToDisk = async (filePath, payloadArray) => {
   const file = fs.createWriteStream(filePath, {
@@ -37,12 +35,6 @@ const writeFileToDisk = async (filePath, payloadArray) => {
   });
 };
 
-const payload = [];
-
-for (let i = 0; i < 10; i++) {
-  payload.push(generateSingleUser());
-}
-
-const filePath = path.join(__dirname, '../mockJSON/mock-data.json');
-
-writeFileToDisk(filePath, payload);
+module.exports = {
+  writeFileToDisk,
+};

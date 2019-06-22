@@ -35,6 +35,9 @@ const closeDB = () => {
 const initiateDBSeeding = async () => {
   // Create dummy documents in DB
   const Users_DB_Result = await Users.insertMany(UserData);
+
+
+  // const filteredChefIDs = 
   const Dishes_DB_Result = await Dishes.insertMany(DishData);
   await Orders.insertMany(OrderData);
 

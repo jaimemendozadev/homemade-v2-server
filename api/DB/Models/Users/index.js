@@ -16,7 +16,12 @@ const UserSchema = new Schema({
   isChef: Boolean,
   chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],
   location: {geo_lat: Number, geo_lng: Number},
-  address: String,
+  address: {
+    streetNumber: String,
+    city: String,
+    state: String,
+    postalCode: String,
+  },
   rating: Number,
   signatureURL: String,
   email: String,

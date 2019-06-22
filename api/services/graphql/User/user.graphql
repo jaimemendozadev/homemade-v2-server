@@ -33,7 +33,7 @@ input UserPayload {
   # chefReviews: []
   isChef: Boolean
   # location: LocationInput
-  address: String!
+  address: Address
   rating: Int
   signatureURL: String
   email: String!
@@ -49,6 +49,12 @@ input LocationInput {
   geo_lng: Int,
 }
 
+type Address {
+  streetNumber: String,
+  city: String,
+  state: String,
+  postalCode: String
+}
 
 type Query {
   getUser(authID: String!): User!

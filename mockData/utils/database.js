@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
-const {Dish, Order, User} = require('../api/DB/Models');
+const {Dish, Order, User} = require('../../api/DB/Models');
 
 mongoose.Promise = global.Promise;
 const {DB_URL} = process.env;
 
 mongoose.connect(DB_URL, {useNewUrlParser: true});
 const db = mongoose.connection;
+
+const closeDB = () => {
+  db.close(() => {
+    console.log('The connection to the database has been terminated.');
+  });
+};
 
 const clearDatabase = callback => {
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -18,11 +24,11 @@ const clearDatabase = callback => {
     await Dish.deleteMany();
     await Order.deleteMany();
     await User.deleteMany();
-    
-    callback();
 
+    await callback();
+
+    closeDB();
   });
-
 };
 
 module.exports = {

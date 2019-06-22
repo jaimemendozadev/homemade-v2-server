@@ -23,7 +23,7 @@ const generateSingleUser = () => {
   const randomChef = Math.floor(Math.random() * 10);
   const rating = Math.floor(Math.random() * 100);
   const address = {
-    streetNumer: faker.address.streetAddress(),
+    streetNumber: faker.address.streetAddress(),
     city: faker.address.city(),
     state: faker.address.state(),
     postalCode: faker.address.zipCode(),

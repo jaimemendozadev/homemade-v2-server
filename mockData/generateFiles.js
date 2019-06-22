@@ -1,10 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
-const { generateShipmentObject } = require('./generateMockData.js');
-
-const pathToWrite = path.resolve(__dirname, '../mock-data.json');
-
+const {generateSingleUser} = require('./Users/generateUsers.js');
 
 const writeFileToDisk = async (filePath, payloadArray) => {
   const file = fs.createWriteStream(filePath, {
@@ -28,7 +24,7 @@ const writeFileToDisk = async (filePath, payloadArray) => {
       );
     });
 
-    payloadLen === idx ? file.write('  }') : file.write('  }, \n');
+    idx === payloadLen ? file.write('   }\n') : file.write('  }, \n');
   });
 
   file.write(']');
@@ -40,3 +36,13 @@ const writeFileToDisk = async (filePath, payloadArray) => {
     });
   });
 };
+
+const payload = [];
+
+for (let i = 0; i < 10; i++) {
+  payload.push(generateSingleUser());
+}
+
+const filePath = path.join(__dirname, '../mockJSON/mock-data.json');
+
+writeFileToDisk(filePath, payload);

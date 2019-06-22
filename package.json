@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev:start": "nodemon index.js",
-    "lint": "eslint --fix api",
+    "generate:mock": "rm -rfv mockJSON/** && node mockData/generateFiles.js",
+    "lint": "eslint --fix api && eslint --fix mockData",
     "format": "yarn run prettier --write api",
-    "prettier": "prettier \"api/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\"",
+    "nu:clear": "rm -rfv node_modules && rm -rfv package-lock.json && rm -rfv yarn.lock && rm -rfv yarn-error.log",
+    "prettier": "prettier \"api/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\" && prettier \"mockData/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\"",
     "validate": "yarn run lint && yarn run prettier --list-different",
     "seed:db": "node ./seeds/index.js"
   },
@@ -30,7 +32,8 @@
     "graphql-yoga": "^1.18.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.6.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "random-location": "^1.0.12"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

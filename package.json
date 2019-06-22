@@ -5,13 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev:start": "nodemon index.js",
-    "generate:mock": "rm -rfv mockJSON/** && node mockData/generateFiles.js",
+    "generate:mock": "rm -rfv mockJSON/** && node mockData/utils/generateMockUsers.js && node mockData/index.js",
     "lint": "eslint --fix api && eslint --fix mockData",
     "format": "yarn run prettier --write api",
     "nu:clear": "rm -rfv node_modules && rm -rfv package-lock.json && rm -rfv yarn.lock && rm -rfv yarn-error.log",
     "prettier": "prettier \"api/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\" && prettier \"mockData/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\"",
     "validate": "yarn run lint && yarn run prettier --list-different",
-    "seed:db": "node ./seeds/index.js"
+    "seed:db": "node mockData/index.js"
   },
   "lint-staged": {
     "*.js": [

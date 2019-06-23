@@ -39,6 +39,7 @@ const generateSingleOrder = (chefId, customerId, menuOptions) => {
   Order.customerId = customerId;
   Order.cart = cart;
   Order.status = orderStatus;
+  Order.date = new Date(faker.date.past());
   Order.cashTotal = cashTotal;
   Order.Instructions = faker.lorem.sentence();
 

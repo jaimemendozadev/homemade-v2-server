@@ -3,7 +3,7 @@ const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
 const generateMockDishes = require('./utils/generateMockDishes');
 const generateMockOrders = require('./utils/generateMockOrders');
-const {User, Dish} = require('../api/DB/Models');
+const {User, Dish, Order} = require('../api/DB/Models');
 
 const initiateDBSeeding = async () => {
   // Insert the Users in the DB
@@ -21,9 +21,10 @@ const initiateDBSeeding = async () => {
   // Insert Dishes in the DB
   const Dishes_DB_Result = await Dish.insertMany(DishPayload);
 
+  // Create Payload of Orders with linked chef/user info and tabulated totals
   const OrderPayload = generateMockOrders(Dishes_DB_Result, filteredUsers, 30);
 
-  console.log("OrderPayload ", OrderPayload)
+  await Order.insertMany(OrderPayload);
 };
 
 clearDatabase(initiateDBSeeding);

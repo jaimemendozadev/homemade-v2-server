@@ -1,12 +1,12 @@
 const {generateSingleDish} = require('../Dishes');
 
 // Create Users File and Seed DB
-const generateMockDishes = (numOfDishes = 30, chefIDsArray) => {
+const generateMockDishes = (numOfDishes = 50, chefsArray) => {
   const dishesPayload = [];
 
   for (let i = 0; i < numOfDishes; i++) {
-    const randomID = Math.floor(Math.random() * chefIDsArray.length);
-    const chefID = chefIDsArray[randomID];
+    const randomID = Math.floor(Math.random() * chefsArray.length);
+    const chefID = chefsArray[randomID]._id;
 
     dishesPayload.push(generateSingleDish(chefID));
   }

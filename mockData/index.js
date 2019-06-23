@@ -3,7 +3,8 @@ const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
 const generateMockDishes = require('./utils/generateMockDishes');
 const generateMockOrders = require('./utils/generateMockOrders');
-const {User, Dish, Order} = require('../api/DB/Models');
+const generateMockReviews = require('./utils/generateMockReviews');
+const {User, Dish, Order, Review} = require('../api/DB/Models');
 
 const initiateDBSeeding = async () => {
   // Insert the Users in the DB
@@ -22,9 +23,26 @@ const initiateDBSeeding = async () => {
   const Dishes_DB_Result = await Dish.insertMany(DishPayload);
 
   // Create Payload of Orders with linked chef/user info and tabulated totals
-  const OrderPayload = generateMockOrders(Dishes_DB_Result, filteredUsers, 30);
+  const PastOrders = generateMockOrders(Dishes_DB_Result, filteredUsers, 30, false);
 
-  await Order.insertMany(OrderPayload);
+  const PastOrders_DB_Result = await Order.insertMany(PastOrders);
+
+  // Generate reviews for past orders
+  const PastReviwesPayload = generateMockReviews(PastOrders_DB_Result);
+
+
+  await Review.insertMany(PastReviwesPayload);
+
+
+  // Generate Orders and Reviews with current date timestamp
+  const CurrentOrders = generateMockOrders(Dishes_DB_Result, filteredUsers, 30, true);
+
+  const CurrOrders_DB_Result = await Order.insertMany(CurrentOrders);
+
+  const CurrReviewsPayload = generateMockReviews(CurrOrders_DB_Result);
+
+  await Review.insertMany(CurrReviewsPayload);
+
 };
 
 clearDatabase(initiateDBSeeding);

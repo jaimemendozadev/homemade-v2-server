@@ -69,7 +69,7 @@ input AddressInput {
 type Query {
   getUser(authID: String!): User!
   getChefReviews(authID: String!): [String]!
-  getUserReviews(authID: String!): [String]!
+  # getUserReviews(authID: String!): [String]!
   
   # getChefDetails is similiar to getUser, might delete
   getChefDetails(authID: String!): [User]!

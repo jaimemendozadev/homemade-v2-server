@@ -12,7 +12,7 @@ const getUser = async (_parent, {authID}, {models}) => {
 };
 
 const getChefReviews = () => {};
-const getUserReviews = () => {};
+// const getUserReviews = () => {};
 const getChefDetails = () => {};
 const findChefsInRange = () => {};
 const findChefsByStyle = () => {};
@@ -21,7 +21,7 @@ const chefDishes = () => {};
 module.exports = {
   getUser,
   getChefReviews,
-  getUserReviews,
+  // getUserReviews,
   getChefDetails,
   findChefsInRange,
   findChefsByStyle,

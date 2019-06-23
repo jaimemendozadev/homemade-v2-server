@@ -22,7 +22,7 @@ const _generateChefMenu = dishes => {
 
 const _generateRandomIdx = len => Math.floor(Math.random() * len);
 
-const generateMockOrders = (dishes, users, numOfOrders = 30) => {
+const generateMockOrders = (dishes, users, numOfOrders = 30, currentOrder = false) => {
   // Create a menu from saved dishes in DB
   const menu = _generateChefMenu(dishes);
 
@@ -42,6 +42,7 @@ const generateMockOrders = (dishes, users, numOfOrders = 30) => {
       chosenChefID,
       chosenUserID,
       menuOptions,
+      currentOrder
     );
 
     OrdersPayload.push(newOrder);

@@ -10,6 +10,6 @@ const ReviewSchema = new Schema({
   date: {type: Date, default: Date.now},
 });
 
-const DishModel = mongoose.model('review', ReviewSchema);
+const ReviewModel = mongoose.model('review', ReviewSchema);
 
-module.exports = DishModel;
+module.exports = ReviewModel;

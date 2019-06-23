@@ -3,6 +3,7 @@ const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
 const generateMockDishes = require('./utils/generateMockDishes');
 
+
 const {User, Dish} = require('../api/DB/Models');
 
 const initiateDBSeeding = async () => {

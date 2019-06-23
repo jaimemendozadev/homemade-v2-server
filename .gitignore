@@ -74,3 +74,6 @@ typings/
 
 # Seed Data
 seeds/
+
+# Mock Data
+mockJSON/

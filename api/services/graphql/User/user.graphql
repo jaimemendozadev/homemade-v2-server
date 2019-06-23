@@ -41,13 +41,13 @@ input UserPayload {
 }
 
 type Location {
-  geo_lat: Int,
-  geo_lng: Int,
+  geo_lat: Float,
+  geo_lng: Float,
 }
 
 input LocationInput {
-  geo_lat: Int,
-  geo_lng: Int,
+  geo_lat: Float,
+  geo_lng: Float,
 }
 
 type Address {

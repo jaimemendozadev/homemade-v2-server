@@ -10,11 +10,10 @@ const getUser = async (_parent, {userID}, {models}) => {
     console.log(`foundUser is `, foundUser);
 
     return foundUser;
-
-  } catch(error) {
+  } catch (error) {
     console.log('Error getting a user ', error);
 
-    throw new Error("There was an error finding the User.");
+    throw new Error('There was an error finding the User.');
   }
 };
 
@@ -27,6 +26,25 @@ const getChefReviews = (_parent, {chefID}, {models}) => {
 
   return foundChefReviews;
 };
+
+const chefReviews = async (parent, _args, {models}) => {
+
+  const {User} = models;
+  const userID = parent._id;
+
+  try {
+    const result = await User.findOne(userID).populate("chefReviews");
+
+    return result.chefReviews;
+
+  } catch(error) {
+    throw new Error("There was a problem getting the chef's reviews.");
+  }
+
+}
+
+
+
 // const getUserReviews = () => {};
 const getChefDetails = () => {};
 const findChefsInRange = () => {};
@@ -40,4 +58,5 @@ module.exports = {
   findChefsInRange,
   findChefsByStyle,
   chefDishes,
+  chefReviews
 };

@@ -13,9 +13,11 @@ const {
   findChefsInRange,
   findChefsByStyle,
   chefDishes,
+  chefReviews
 } = require('./queries');
 
 module.exports = {
+  
   Query: {
     getUser,
     getChefReviews,
@@ -32,5 +34,7 @@ module.exports = {
   },
   User: {
     chefDishes,
+    chefReviews,
   },
+  
 };

@@ -9,7 +9,7 @@ type User {
   profileUrl: String
   # Can't specify an empty array in GraphQL type
   # reviews will be an array of strings for now
-  chefReviews: [ID]
+  chefReviews: [Review]
   isChef: Boolean
   chefDishes: [Dish]
   location: Location
@@ -65,7 +65,7 @@ input AddressInput {
 }
 
 type Query {
-  getUser(userID: String!): [User]!
+  getUser(userID: String!): User!
   getChefReviews(chefID: String!): [String]!
   # getChefDetails is similiar to getUser, might delete
   getChefDetails(authID: String!): [User]!

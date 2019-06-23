@@ -53,15 +53,16 @@ const initiateDBSeeding = async dbConnectCallback => {
 
   const CurrReviews_DB_Result = await Review.insertMany(CurrReviewsPayload);
 
-
   // Gather all the reviews and chef dishes for updating chefs in DB
   const allReviews = [...PastReviews_DB_Result, ...CurrReviews_DB_Result];
 
-  const updatesPayload = generateChefUpdates(allReviews, Dishes_DB_Result, filteredChefs);
-
+  const updatesPayload = generateChefUpdates(
+    allReviews,
+    Dishes_DB_Result,
+    filteredChefs,
+  );
 
   updateChefs(updatesPayload, dbConnectCallback);
-
 };
 
 clearDatabase(initiateDBSeeding);

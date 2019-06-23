@@ -32,56 +32,53 @@
   */
 
 const _organizeData = dataArray => {
-    const payload = {};
+  const payload = {};
 
-    dataArray.forEach(obj => {
-      const ID = obj.chefId;
-      const targetID = obj._id;
+  dataArray.forEach(obj => {
+    const ID = obj.chefId;
+    const targetID = obj._id;
 
-      if(!payload[ID]) {
-        payload[ID] = [];    
-      }
-
-      payload[ID].push(targetID);
-    });
-
-    return payload;
-}
-
-const generateChefUpdates = (reviews, dishes, chefs) => {
-
-    const results = [];
-
-    const chefArray = chefs.map(chef => chef._id);
-
-    const organizedReviews = _organizeData(reviews);
-    const organizedDishes = _organizeData(dishes);
-
-    for (let i = 0; i < chefArray.length; i++) {
-      const currentID = chefArray[i];
-      const haveReviews = organizedReviews[currentID];  
-      const haveDishes = organizedDishes[currentID];
-
-
-      if(!haveReviews && !haveDishes) {
-        continue;
-      } else {
-        const updateObj = {_id: currentID, payload: {} };
-
-        if(haveDishes) {
-          updateObj["payload"]["chefDishes"] = haveDishes;
-        }
-    
-        if(haveReviews) {
-          updateObj["payload"]["chefReviews"] = haveReviews;
-        }
-
-        results.push(updateObj);
-      }
+    if (!payload[ID]) {
+      payload[ID] = [];
     }
 
-    return results;
-}
+    payload[ID].push(targetID);
+  });
 
+  return payload;
+};
+
+const generateChefUpdates = (reviews, dishes, chefs) => {
+  const results = [];
+
+  const chefArray = chefs.map(chef => chef._id);
+
+  const organizedReviews = _organizeData(reviews);
+  const organizedDishes = _organizeData(dishes);
+
+  for (let i = 0; i < chefArray.length; i++) {
+    const currentID = chefArray[i];
+    const haveReviews = organizedReviews[currentID];
+    const haveDishes = organizedDishes[currentID];
+
+    if (!haveReviews && !haveDishes) {
+      continue;
+    } else {
+      const updateObj = {_id: currentID, payload: {}};
+
+      if (haveDishes) {
+        updateObj['payload']['chefDishes'] = haveDishes;
+      }
+
+      if (haveReviews) {
+        updateObj['payload']['chefReviews'] = haveReviews;
+      }
+
+      results.push(updateObj);
+    }
+  }
+
+  return results;
+};
 
 module.exports = generateChefUpdates;

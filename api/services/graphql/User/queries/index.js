@@ -4,11 +4,18 @@ const getUser = async (_parent, {userID}, {models}) => {
 
   const {User} = models;
 
-  const foundUser = await User.findById(userID);
+  try {
+    const foundUser = await User.findById(userID);
 
-  console.log(`foundUser is `, foundUser);
+    console.log(`foundUser is `, foundUser);
 
-  return foundUser;
+    return foundUser;
+
+  } catch(error) {
+    console.log('Error getting a user ', error);
+
+    throw new Error("There was an error finding the User.");
+  }
 };
 
 const getChefReviews = (_parent, {chefID}, {models}) => {

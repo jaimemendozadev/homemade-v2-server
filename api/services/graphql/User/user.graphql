@@ -65,10 +65,8 @@ input AddressInput {
 }
 
 type Query {
-  getUser(userID: String!): User!
+  getUser(userID: String!): [User]!
   getChefReviews(chefID: String!): [String]!
-
-  
   # getChefDetails is similiar to getUser, might delete
   getChefDetails(authID: String!): [User]!
   findChefsInRange(input: LocationInput): [User]!
@@ -77,7 +75,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(input: UserPayload!): [User]!
+  createUser(input: UserPayload!): User!
   updateUser(authID: String!): [User]!
   addSignature(authID: String!): String!
   postUserReview(authID: String!): [String]!

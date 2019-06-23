@@ -1,0 +1,10 @@
+type Review {
+  _id: ID
+  reviewText: String
+  rating: Int
+  chefId: ID
+  orderId: ID
+  date: String
+}
+
+

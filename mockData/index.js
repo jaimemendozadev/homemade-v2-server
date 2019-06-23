@@ -4,9 +4,11 @@ const UserData = require('../mockJSON/Users.json');
 const generateMockDishes = require('./utils/generateMockDishes');
 const generateMockOrders = require('./utils/generateMockOrders');
 const generateMockReviews = require('./utils/generateMockReviews');
+const generateChefUpdates = require('./utils/generateChefUpdates');
+const updateChefs = require('./utils/updateChefs');
 const {User, Dish, Order, Review} = require('../api/DB/Models');
 
-const initiateDBSeeding = async () => {
+const initiateDBSeeding = async dbConnectCallback => {
   // Insert the Users in the DB
   const Users_DB_Result = await User.insertMany(UserData);
 
@@ -35,7 +37,7 @@ const initiateDBSeeding = async () => {
   // Generate reviews for past orders
   const PastReviwesPayload = generateMockReviews(PastOrders_DB_Result);
 
-  await Review.insertMany(PastReviwesPayload);
+  const PastReviews_DB_Result = await Review.insertMany(PastReviwesPayload);
 
   // Generate Orders and Reviews with current date timestamp
   const CurrentOrders = generateMockOrders(
@@ -49,7 +51,17 @@ const initiateDBSeeding = async () => {
 
   const CurrReviewsPayload = generateMockReviews(CurrOrders_DB_Result);
 
-  await Review.insertMany(CurrReviewsPayload);
+  const CurrReviews_DB_Result = await Review.insertMany(CurrReviewsPayload);
+
+
+  // Gather all the reviews and chef dishes for updating chefs in DB
+  const allReviews = [...PastReviews_DB_Result, ...CurrReviews_DB_Result];
+
+  const updatesPayload = generateChefUpdates(allReviews, Dishes_DB_Result, filteredChefs);
+
+
+  updateChefs(updatesPayload, dbConnectCallback);
+
 };
 
 clearDatabase(initiateDBSeeding);

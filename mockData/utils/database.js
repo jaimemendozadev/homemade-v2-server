@@ -26,9 +26,7 @@ const clearDatabase = callback => {
     await Order.deleteMany();
     await User.deleteMany();
 
-    await callback();
-
-    closeDB('Successfully seeded DB!');
+    await callback(closeDB);
   });
 };
 

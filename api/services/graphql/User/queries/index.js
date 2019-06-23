@@ -19,7 +19,6 @@ const getChefReviews = (_parent, {chefID}, {models}) => {
   console.log('foundChefReviews are ', foundChefReviews);
 
   return foundChefReviews;
-
 };
 // const getUserReviews = () => {};
 const getChefDetails = () => {};

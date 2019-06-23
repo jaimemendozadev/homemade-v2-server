@@ -10,7 +10,7 @@ const UserSchema = new Schema({
   phoneNumber: String,
   likes: [Number],
   profileUrl: String,
-  chefReviews: [],
+  chefReviews: [{type: Schema.Types.ObjectId, ref: 'review'}],
   isChef: Boolean,
   chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],
   location: {geo_lat: Number, geo_lng: Number},

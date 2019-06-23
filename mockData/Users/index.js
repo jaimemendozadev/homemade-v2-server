@@ -1,7 +1,7 @@
 const faker = require('faker');
 const randomLocation = require('random-location');
 
-const generateGeoCoords = () => {
+const _generateGeoCoords = () => {
   //Coordinates for Koreatown, Los Angeles
   const P = {
     latitude: 34.06508,
@@ -36,11 +36,10 @@ const generateSingleUser = () => {
   newUser.phoneNumber = faker.phone.phoneNumber();
   newUser.likes = [];
   newUser.profileUrl = 'https://via.placeholder.com/300.png';
-  newUser.customerReviews = [];
   newUser.chefReviews = [];
   newUser.isChef = randomChef <= 4 ? false : true;
   newUser.chefDishes = [];
-  newUser.location = generateGeoCoords();
+  newUser.location = _generateGeoCoords();
   newUser.address = address;
   newUser.rating = rating;
   newUser.signatureURL = faker.internet.url();

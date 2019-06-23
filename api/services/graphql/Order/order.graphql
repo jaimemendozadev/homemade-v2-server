@@ -21,7 +21,6 @@ type Order {
 
 
 input CookingChef {
-  authId: String
   firstName: String!
   lastName: String!
   bio: String

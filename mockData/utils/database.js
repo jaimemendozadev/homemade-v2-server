@@ -7,7 +7,7 @@ const {DB_URL} = process.env;
 mongoose.connect(DB_URL, {useNewUrlParser: true});
 const db = mongoose.connection;
 
-const closeDB = (msg = "") => {
+const closeDB = (msg = '') => {
   db.close(() => {
     console.log(msg);
     console.log('The connection to the database has been terminated.');
@@ -28,7 +28,7 @@ const clearDatabase = callback => {
 
     await callback();
 
-    closeDB("Successfully seeded DB!");
+    closeDB('Successfully seeded DB!');
   });
 };
 

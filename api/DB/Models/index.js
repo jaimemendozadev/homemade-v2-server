@@ -9,5 +9,5 @@ module.exports = {
   Order,
   Phone,
   User,
-  Review
+  Review,
 };

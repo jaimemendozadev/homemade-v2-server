@@ -5,10 +5,10 @@ const {
   postUserReview,
   postChefReview,
 } = require('./mutations');
+
 const {
   getUser,
   getChefReviews,
-  getUserReviews,
   getChefDetails,
   findChefsInRange,
   findChefsByStyle,
@@ -19,7 +19,6 @@ module.exports = {
   Query: {
     getUser,
     getChefReviews,
-    getUserReviews,
     getChefDetails,
     findChefsInRange,
     findChefsByStyle,

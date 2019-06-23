@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const UserSchema = new Schema({
-  authId: String,
   firstName: String,
   lastName: String,
   bio: String,
@@ -11,7 +10,6 @@ const UserSchema = new Schema({
   phoneNumber: String,
   likes: [Number],
   profileUrl: String,
-  customerReviews: [],
   chefReviews: [],
   isChef: Boolean,
   chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],

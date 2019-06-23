@@ -1,16 +1,15 @@
 const generateSingleReview = require('../Reviews');
 
 const generateMockReviews = orders => {
-    const ReviewsPayload = [];
+  const ReviewsPayload = [];
 
-    for (let i = 0; i < orders.length; i++) {
-      const currentOrder = orders[i];
+  for (let i = 0; i < orders.length; i++) {
+    const currentOrder = orders[i];
 
-      ReviewsPayload.push(generateSingleReview(currentOrder));
-    }
+    ReviewsPayload.push(generateSingleReview(currentOrder));
+  }
 
-    return ReviewsPayload;
-}
-
+  return ReviewsPayload;
+};
 
 module.exports = generateMockReviews;

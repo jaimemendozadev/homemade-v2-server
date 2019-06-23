@@ -23,26 +23,33 @@ const initiateDBSeeding = async () => {
   const Dishes_DB_Result = await Dish.insertMany(DishPayload);
 
   // Create Payload of Orders with linked chef/user info and tabulated totals
-  const PastOrders = generateMockOrders(Dishes_DB_Result, filteredUsers, 30, false);
+  const PastOrders = generateMockOrders(
+    Dishes_DB_Result,
+    filteredUsers,
+    30,
+    false,
+  );
 
   const PastOrders_DB_Result = await Order.insertMany(PastOrders);
 
   // Generate reviews for past orders
   const PastReviwesPayload = generateMockReviews(PastOrders_DB_Result);
 
-
   await Review.insertMany(PastReviwesPayload);
 
-
   // Generate Orders and Reviews with current date timestamp
-  const CurrentOrders = generateMockOrders(Dishes_DB_Result, filteredUsers, 30, true);
+  const CurrentOrders = generateMockOrders(
+    Dishes_DB_Result,
+    filteredUsers,
+    30,
+    true,
+  );
 
   const CurrOrders_DB_Result = await Order.insertMany(CurrentOrders);
 
   const CurrReviewsPayload = generateMockReviews(CurrOrders_DB_Result);
 
   await Review.insertMany(CurrReviewsPayload);
-
 };
 
 clearDatabase(initiateDBSeeding);

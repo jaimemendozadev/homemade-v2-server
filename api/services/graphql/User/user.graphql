@@ -12,7 +12,7 @@ type User {
   isChef: Boolean
   chefDishes: [Dish]
   location: Location
-  address: String!
+  address: Address!
   rating: Int
   signatureURL: String
   email: String!
@@ -33,7 +33,7 @@ input UserPayload {
   # chefReviews: []
   isChef: Boolean
   # location: LocationInput
-  address: Address
+  address: AddressInput
   rating: Int
   signatureURL: String
   email: String!
@@ -50,6 +50,13 @@ input LocationInput {
 }
 
 type Address {
+  streetNumber: String,
+  city: String,
+  state: String,
+  postalCode: String
+}
+
+input AddressInput {
   streetNumber: String,
   city: String,
   state: String,

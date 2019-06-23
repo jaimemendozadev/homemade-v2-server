@@ -43,13 +43,28 @@ const chefReviews = async (parent, _args, {models}) => {
 
 }
 
+const chefDishes = async (parent, _args, {models}) => {
+  const {User} = models;
+  const userID = parent._id;
+
+  try {
+    const result = await User.findOne(userID).populate("chefDishes");
+
+    console.log('chef dishes are ', result)
+
+    return result.chefDishes;
+
+  } catch(error) {
+    throw new Error("There was a problem getting the chef's dishes.");
+  }
+};
 
 
 // const getUserReviews = () => {};
 const getChefDetails = () => {};
 const findChefsInRange = () => {};
 const findChefsByStyle = () => {};
-const chefDishes = () => {};
+
 
 module.exports = {
   getUser,

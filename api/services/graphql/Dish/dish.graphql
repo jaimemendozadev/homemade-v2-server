@@ -3,7 +3,7 @@ type Dish {
   name: String!
   description: String!
   dishImages: [String]
-  chefId: User!
+  chefId: ID!
   allergies: [String]
   cashDonation: Int!
   isActive: Boolean!

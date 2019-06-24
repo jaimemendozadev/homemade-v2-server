@@ -12,7 +12,6 @@ const UserSchema = new Schema({
   signatureURL: String,
   email: String,
   chefProfile: {type: Schema.Types.ObjectId, ref: 'chef'},
-  
 });
 
 const UserModel = mongoose.model('user', UserSchema);

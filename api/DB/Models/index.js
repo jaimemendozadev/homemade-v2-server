@@ -11,5 +11,5 @@ module.exports = {
   Phone,
   User,
   Review,
-  Chef
+  Chef,
 };

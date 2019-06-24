@@ -1,0 +1,11 @@
+type Chef {
+  userProfile: User!
+  likes: [Int]
+  # Can't specify an empty array in GraphQL type
+  # reviews will be an array of strings for now
+  chefReviews: [Review]
+  chefDishes: [Dish]
+  location: Location
+  address: Address!
+  rating: Int
+}

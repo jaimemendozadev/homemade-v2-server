@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const ChefSchema = new Schema({
+
+
   userProfile: {type: Schema.Types.ObjectId, ref: 'user'},
   likes: [Number],
   chefReviews: [{type: Schema.Types.ObjectId, ref: 'review'}],
-  isChef: Boolean,
   chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],
   location: {geo_lat: Number, geo_lng: Number},
   address: {
@@ -16,7 +17,6 @@ const ChefSchema = new Schema({
   },
   rating: Number,
 });
-
 
 const ChefModel = mongoose.model('chef', ChefSchema);
 

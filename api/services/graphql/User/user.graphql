@@ -8,21 +8,7 @@ type User {
   profileUrl: String
   signatureURL: String
   email: String!
-
-
-
-
-  likes: [Int]
-  
-  # Can't specify an empty array in GraphQL type
-  # reviews will be an array of strings for now
-  chefReviews: [Review]
-  isChef: Boolean
-  chefDishes: [Dish]
-  location: Location
-  address: Address!
-  rating: Int
-  
+  chefProfile: Chef
 }
 
 
@@ -36,14 +22,6 @@ input UserPayload {
   profileUrl: String
   signatureURL: String
   email: String!
-
-
-
-  likes: [Int]
-  isChef: Boolean
-  location: LocationInput
-  address: AddressInput
-  rating: Int
 }
 
 type Location {

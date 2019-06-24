@@ -5,7 +5,6 @@ const chefDishes = require('./chefDishes');
 const findChefsInRange = require('./findChefsInRange');
 const findChefsByStyle = require('./findChefsByStyle');
 
-
 module.exports = {
   getUser,
   getChefReviews,

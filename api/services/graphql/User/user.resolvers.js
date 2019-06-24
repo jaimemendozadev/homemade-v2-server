@@ -9,19 +9,16 @@ const {
 const {
   getUser,
   getChefReviews,
-  getChefDetails,
   findChefsInRange,
   findChefsByStyle,
   chefDishes,
-  chefReviews
+  chefReviews,
 } = require('./queries');
 
 module.exports = {
-  
   Query: {
     getUser,
     getChefReviews,
-    getChefDetails,
     findChefsInRange,
     findChefsByStyle,
   },
@@ -36,5 +33,4 @@ module.exports = {
     chefDishes,
     chefReviews,
   },
-  
 };

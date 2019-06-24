@@ -65,9 +65,7 @@ input AddressInput {
 type Query {
   getUser(userID: String!): User!
   getChefReviews(chefID: String!): [Review]!
-  # getChefDetails is similiar to getUser, might delete
-  getChefDetails(authID: String!): [User]!
-  findChefsInRange(input: LocationInput): [User]!
+  findChefsInRange(geoCoords: LocationInput): [User]!
   # findChefsByStyle filters by both location and cuisineType
   findChefsByStyle(input: LocationInput, cuisineType: String!): [User]!
 }

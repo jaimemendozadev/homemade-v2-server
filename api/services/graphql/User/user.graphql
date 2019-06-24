@@ -67,7 +67,7 @@ type Query {
   getChefReviews(chefID: String!): [Review]!
   findChefsInRange(geoCoords: LocationInput): [User]!
   # findChefsByStyle filters by both location and cuisineType
-  findChefsByStyle(input: LocationInput, cuisineType: String!): [User]!
+  findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [User]!
 }
 
 type Mutation {

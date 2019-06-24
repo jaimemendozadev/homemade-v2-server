@@ -22,4 +22,19 @@ OrderSchema Status Codes
 3: canceled
 4: reviewed
 
+
+const cuisineOptions = [
+  'Italian',
+  'Indian',
+  'American',
+  'Chinese',
+  'Korean',
+  'Barbecue',
+  'Burgers',
+  'Japanese',
+  'Mediterranean',
+  'Mexican',
+  'Ethiopian',
+];
+
 */

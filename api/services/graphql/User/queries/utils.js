@@ -24,7 +24,25 @@ const isChefInBounds = (user, boundingBox) => {
   );
 };
 
+
+const filterChefByCuisine = (chef, targetCuisine) => {
+    const {chefDishes} = chef;
+
+    for (let i = 0; i < chefDishes.length; i++) {
+        const currentDish = chefDishes[i];
+
+        const {cuisineType} = currentDish;
+
+        if(cuisineType === targetCuisine) {
+          return true;
+        }
+    }
+
+    return false;
+}
+
 module.exports = {
   createBoundingBox,
   isChefInBounds,
+  filterChefByCuisine
 };

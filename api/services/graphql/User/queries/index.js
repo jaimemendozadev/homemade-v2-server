@@ -1,13 +1,10 @@
 // parent, args, context, info
 const getUser = async (_parent, {userID}, {models}) => {
-  console.log('inside getUser');
 
   const {User} = models;
 
   try {
     const foundUser = await User.findById(userID);
-
-    console.log(`foundUser is `, foundUser);
 
     return foundUser;
   } catch (error) {
@@ -17,14 +14,17 @@ const getUser = async (_parent, {userID}, {models}) => {
   }
 };
 
-const getChefReviews = (_parent, {chefID}, {models}) => {
-  const {Review} = models;
+const getChefReviews = async(_parent, {chefID}, {models}) => {
+  const {User} = models;
 
-  const foundChefReviews = Review.findById(chefID);
+  try {
+    const result = await User.findOne({_id: chefID}).populate("chefReviews");
 
-  console.log('foundChefReviews are ', foundChefReviews);
+    return result.chefReviews;
 
-  return foundChefReviews;
+  } catch(error) {
+    throw new Error("There was a problem getting the chef's reviews.");
+  }
 };
 
 const chefReviews = async (parent, _args, {models}) => {
@@ -33,7 +33,7 @@ const chefReviews = async (parent, _args, {models}) => {
   const userID = parent._id;
 
   try {
-    const result = await User.findOne(userID).populate("chefReviews");
+    const result = await User.findOne({_id: userID}).populate("chefReviews");
 
     return result.chefReviews;
 

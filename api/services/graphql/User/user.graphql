@@ -30,8 +30,6 @@ input UserPayload {
   phoneNumber: String!
   likes: [Int]
   profileUrl: String
-  customerReviews: [String]
-  chefReviews: [String]
   isChef: Boolean
   location: LocationInput
   address: AddressInput
@@ -66,7 +64,7 @@ input AddressInput {
 
 type Query {
   getUser(userID: String!): User!
-  getChefReviews(chefID: String!): [String]!
+  getChefReviews(chefID: String!): [Review]!
   # getChefDetails is similiar to getUser, might delete
   getChefDetails(authID: String!): [User]!
   findChefsInRange(input: LocationInput): [User]!

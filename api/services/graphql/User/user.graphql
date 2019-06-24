@@ -5,8 +5,15 @@ type User {
   bio: String
   status: String
   phoneNumber: String!
-  likes: [Int]
   profileUrl: String
+  signatureURL: String
+  email: String!
+
+
+
+
+  likes: [Int]
+  
   # Can't specify an empty array in GraphQL type
   # reviews will be an array of strings for now
   chefReviews: [Review]
@@ -15,27 +22,28 @@ type User {
   location: Location
   address: Address!
   rating: Int
-  signatureURL: String
-  email: String!
+  
 }
 
 
 
 input UserPayload {
-  authId: String
   firstName: String!
   lastName: String!
   bio: String
   status: String
   phoneNumber: String!
-  likes: [Int]
   profileUrl: String
+  signatureURL: String
+  email: String!
+
+
+
+  likes: [Int]
   isChef: Boolean
   location: LocationInput
   address: AddressInput
   rating: Int
-  signatureURL: String
-  email: String!
 }
 
 type Location {

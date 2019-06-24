@@ -4,7 +4,7 @@ const DishSchema = path.resolve(__dirname, '../Dish/dish.graphql');
 const OrderSchema = path.resolve(__dirname, '../Order/order.graphql');
 const UserSchema = path.resolve(__dirname, '../User/user.graphql');
 const ReviewSchema = path.resolve(__dirname, '../Review/review.graphql');
-const ChefSchema = path.resolve(__dirname, "../Chef/chef.graphql");
+const ChefSchema = path.resolve(__dirname, '../Chef/chef.graphql');
 
 const baseSchema = `
 schema {

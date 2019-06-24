@@ -24,43 +24,14 @@ input UserPayload {
   email: String!
 }
 
-type Location {
-  geo_lat: Float,
-  geo_lng: Float,
-}
-
-input LocationInput {
-  geo_lat: Float,
-  geo_lng: Float,
-}
-
-type Address {
-  streetNumber: String,
-  city: String,
-  state: String,
-  postalCode: String
-}
-
-input AddressInput {
-  streetNumber: String,
-  city: String,
-  state: String,
-  postalCode: String
-}
-
 type Query {
   getUser(userID: String!): User!
-  getChefReviews(chefID: String!): [Review]!
-  findChefsInRange(geoCoords: LocationInput): [User]!
-  findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [User]!
 }
 
 type Mutation {
   createUser(input: UserPayload!): User!
   updateUser(authID: String!): [User]!
   addSignature(authID: String!): String!
-  postUserReview(authID: String!): [String]!
-  postChefReview(authID: String!): [String]!
 }
 
 # ToDo: Possibly Implement Twilio

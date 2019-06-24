@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const ChefSchema = new Schema({
-
-
   userProfile: {type: Schema.Types.ObjectId, ref: 'user'},
   likes: [Number],
   chefReviews: [{type: Schema.Types.ObjectId, ref: 'review'}],

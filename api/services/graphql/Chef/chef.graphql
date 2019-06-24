@@ -1,4 +1,5 @@
 type Chef {
+  _id: ID!
   userProfile: User!
   likes: [Int]
   # Can't specify an empty array in GraphQL type
@@ -8,4 +9,41 @@ type Chef {
   location: Location
   address: Address!
   rating: Int
+}
+
+
+type Location {
+  geo_lat: Float,
+  geo_lng: Float,
+}
+
+input LocationInput {
+  geo_lat: Float,
+  geo_lng: Float,
+}
+
+type Address {
+  streetNumber: String,
+  city: String,
+  state: String,
+  postalCode: String
+}
+
+input AddressInput {
+  streetNumber: String,
+  city: String,
+  state: String,
+  postalCode: String
+}
+
+
+extend type Query {
+  getChefReviews(chefID: String!): [Review]!
+  findChefsInRange(geoCoords: LocationInput): [User]!
+  findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [User]!
+}
+
+
+extend type Mutation {
+  postChefReview(authID: String!): [String]!
 }

@@ -5,21 +5,29 @@ const generateMockDishes = require('./utils/generateMockDishes');
 const generateMockOrders = require('./utils/generateMockOrders');
 const generateMockReviews = require('./utils/generateMockReviews');
 const generateChefUpdates = require('./utils/generateChefUpdates');
+const generateMockChefs = require('./utils/generateMockChefs');
 const updateChefs = require('./utils/updateChefs');
-const {User, Dish, Order, Review} = require('../api/DB/Models');
+const {User, Dish, Order, Review, Chef} = require('../api/DB/Models');
 
 const initiateDBSeeding = async dbConnectCallback => {
   // Insert the Users in the DB
   const Users_DB_Result = await User.insertMany(UserData);
 
-  // Get list of Chef Users
-  const filteredChefs = Users_DB_Result.filter(user => user.isChef === true);
+ // Use half of existing users and make them chefs
+ const ChefsPayload = generateMockChefs(Users_DB_Result);
 
-  // Get list of Regular Users
-  const filteredUsers = Users_DB_Result.filter(user => user.isChef === false);
+ const Chefs_DB_Result = await Chef.insertMany(ChefsPayload);
+
+ // Create a set of all the chefs in mock data
+ const filteredChefs = new Set()
+ Chefs_DB_Result.forEach(chef => filteredChefs.add(chef.userProfile));
+
+ // Create a filtered array of Users that are not chefs
+ const filteredUsers = Users_DB_Result.filter(user => !filteredChefs.has(user._id));
+
 
   // Create New Dishes and attach Chef IDs to Dishes
-  const DishPayload = generateMockDishes(50, filteredChefs);
+  const DishPayload = generateMockDishes(50, Chefs_DB_Result);
 
   // Insert Dishes in the DB
   const Dishes_DB_Result = await Dish.insertMany(DishPayload);
@@ -56,13 +64,17 @@ const initiateDBSeeding = async dbConnectCallback => {
   // Gather all the reviews and chef dishes for updating chefs in DB
   const allReviews = [...PastReviews_DB_Result, ...CurrReviews_DB_Result];
 
+
+  const convertedChefsSet = Array.from(filteredChefs.values());
+
   const updatesPayload = generateChefUpdates(
     allReviews,
     Dishes_DB_Result,
-    filteredChefs,
+    convertedChefsSet,
   );
 
   updateChefs(updatesPayload, dbConnectCallback);
+
 };
 
 clearDatabase(initiateDBSeeding);

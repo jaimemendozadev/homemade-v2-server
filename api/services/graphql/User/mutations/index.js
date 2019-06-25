@@ -6,8 +6,6 @@ const updateUser = () => {};
 
 const addSignature = () => {};
 
-
-
 module.exports = {
   createUser,
   updateUser,

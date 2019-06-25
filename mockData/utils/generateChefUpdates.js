@@ -48,10 +48,8 @@ const _organizeData = dataArray => {
   return payload;
 };
 
-const generateChefUpdates = (reviews, dishes, chefs) => {
+const generateChefUpdates = (reviews, dishes, chefArray) => {
   const results = [];
-
-  const chefArray = chefs.map(chef => chef._id);
 
   const organizedReviews = _organizeData(reviews);
   const organizedDishes = _organizeData(dishes);

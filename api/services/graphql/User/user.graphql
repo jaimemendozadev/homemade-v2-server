@@ -30,7 +30,7 @@ type Query {
 
 type Mutation {
   createUser(body: UserPayload!): User!
-  updateUser(authID: String!): [User]!
+  updateUser(userID: ID!, body: UserPayload!): User!
   addSignature(authID: String!): String!
 }
 

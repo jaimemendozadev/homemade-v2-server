@@ -12,7 +12,6 @@ const generateMockChefs = users => {
   }
 
   return chefsArray;
-}
-
+};
 
 module.exports = generateMockChefs;

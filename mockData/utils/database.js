@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const {Dish, Order, User} = require('../../api/DB/Models');
-
+const {User, Dish, Order, Review, Chef} = require('../../api/DB/Models');
 mongoose.Promise = global.Promise;
 const {DB_URL} = process.env;
 
@@ -25,6 +24,8 @@ const clearDatabase = callback => {
     await Dish.deleteMany();
     await Order.deleteMany();
     await User.deleteMany();
+    await Review.deleteMany();
+    await Chef.deleteMany();
 
     await callback(closeDB);
   });

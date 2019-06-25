@@ -37,35 +37,31 @@ const _generateGeoCoords = () => {
   return {geo_lat: latitude, geo_lng: longitude};
 };
 
-
-
 const generateSingleChef = user => {
-    const newChef = {};
-    
-    const rating = Math.floor(Math.random() * 100);
+  const newChef = {};
 
-    const address = {
-      streetNumber: faker.address.streetAddress(),
-      city: faker.address.city(),
-      state: faker.address.state(),
-      postalCode: faker.address.zipCode(),
-    };
-  
+  const rating = Math.floor(Math.random() * 100);
+
+  const address = {
+    streetNumber: faker.address.streetAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    postalCode: faker.address.zipCode(),
+  };
+
   newChef.userProfile = user._id;
-  
+
   newChef.likes = [];
-    newChef.chefReviews = [];
-  
-    newChef.chefDishes = [];
-    newChef.location = _generateGeoCoords();
-    newChef.address = address;
-    newChef.rating = rating;
+  newChef.chefReviews = [];
 
-    return newChef;
+  newChef.chefDishes = [];
+  newChef.location = _generateGeoCoords();
+  newChef.address = address;
+  newChef.rating = rating;
 
-}
-
+  return newChef;
+};
 
 module.exports = {
-    generateSingleChef
-}
+  generateSingleChef,
+};

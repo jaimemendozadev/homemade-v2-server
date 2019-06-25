@@ -29,7 +29,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(input: UserPayload!): User!
+  createUser(body: UserPayload!): User!
   updateUser(authID: String!): [User]!
   addSignature(authID: String!): String!
 }

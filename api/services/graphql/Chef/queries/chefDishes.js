@@ -1,15 +1,16 @@
 const chefDishes = async (parent, _args, {models}) => {
-  const {User} = models;
+  const {Chef} = models;
   const userID = parent._id;
+  const errorMsg = "There was a problem getting the chef's dishes.";
+
 
   try {
-    const result = await User.findOne(userID).populate('chefDishes');
-
-    console.log('chef dishes are ', result);
+    const result = await Chef.findOne(userID).populate('chefDishes');
 
     return result.chefDishes;
   } catch (error) {
-    throw new Error("There was a problem getting the chef's dishes.");
+    console.log(`${errorMsg} `, error);
+    throw new Error(errorMsg);
   }
 };
 

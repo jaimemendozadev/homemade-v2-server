@@ -11,5 +11,5 @@ module.exports = {
   findChefsByStyle,
   chefDishes,
   chefReviews,
-  userProfile
+  userProfile,
 };

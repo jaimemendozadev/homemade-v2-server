@@ -1,22 +1,17 @@
-const userProfile = async (parent, args, {User}) => {
+const userProfile = async (parent, args, {models}) => {
+  const {User} = models;
   const UserID = parent.userProfile;
-
-  console.log('parent is ', parent)
-  console.log('UserID is ', UserID)
 
   const errorMsg = "There was a problem resolving the Chef's User profile.";
 
   try {
-    const foundProfile = await User.findOne({_id: UserID});
-
-    console.log('foundProfile is ', foundProfile);
+    const foundProfile = await User.findById({_id: UserID});
 
     return foundProfile;
-  
-  } catch(error) {
+  } catch (error) {
     console.log(`${errorMsg} `, error);
     throw new Error(errorMsg);
   }
-}
+};
 
 module.exports = userProfile;

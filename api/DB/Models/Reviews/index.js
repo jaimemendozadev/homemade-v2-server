@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 const ReviewSchema = new Schema({
   reviewText: String,
   rating: Number,
-  chefId: {type: Schema.Types.ObjectId, ref: 'user'},
+  chefId: {type: Schema.Types.ObjectId, ref: 'chef'},
   orderId: {type: Schema.Types.ObjectId, ref: 'order'},
   date: {type: Date, default: Date.now},
 });

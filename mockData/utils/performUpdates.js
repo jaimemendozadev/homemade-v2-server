@@ -4,7 +4,7 @@ const {Chef, User} = require('../../api/DB/Models');
 const _performUpdate = async updatedInfo => {
   const {_id, payload, type} = updatedInfo;
 
-  if(type === "Chef") {
+  if (type === 'Chef') {
     await Chef.updateOne({_id}, payload);
   } else {
     await User.updateOne({_id}, payload);

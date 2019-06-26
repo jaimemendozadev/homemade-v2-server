@@ -1,16 +1,17 @@
 const generateUserUpdates = chefs => {
+  const UserUpdatesArray = [];
 
-    const UserUpdatesArray = [];
+  for (let i = 0; i < chefs.length; i++) {
+    const currentChef = chefs[i];
 
-    for (let i = 0; i < chefs.length; i++) {
-      const currentChef = chefs[i];
+    const updateObj = {
+      _id: currentChef.userProfile,
+      payload: {chefProfile: currentChef._id, type: 'User'},
+    };
+    UserUpdatesArray.push(updateObj);
+  }
 
-      const updateObj = {_id: currentChef.userProfile, payload: {chefProfile: currentChef._id, type: "User" }};
-      UserUpdatesArray.push(updateObj);
-    }
-
-    return UserUpdatesArray;
-}
-
+  return UserUpdatesArray;
+};
 
 module.exports = generateUserUpdates;

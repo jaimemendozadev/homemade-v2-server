@@ -39,7 +39,7 @@ input AddressInput {
 
 extend type Query {
   getChefReviews(chefID: String!): [Review]!
-  findChefsInRange(geoCoords: LocationInput): [User]!
+  findChefsInRange(geoCoords: LocationInput!): [Chef]!
   findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [User]!
 }
 

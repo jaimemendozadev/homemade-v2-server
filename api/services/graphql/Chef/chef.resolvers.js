@@ -1,6 +1,7 @@
 const {postChefReview} = require('./mutations');
 
 const {
+  userProfile,
   chefDishes,
   chefReviews,
   findChefsByStyle,
@@ -19,6 +20,7 @@ module.exports = {
   },
 
   Chef: {
+    userProfile,
     chefDishes,
     chefReviews,
   },

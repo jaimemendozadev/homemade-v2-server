@@ -30,7 +30,7 @@ const generateChefUpdates = (reviews, dishes, chefArray) => {
     if (!haveReviews && !haveDishes) {
       continue;
     } else {
-      const updateObj = {_id: currentID, payload: {}, type: "Chef"};
+      const updateObj = {_id: currentID, payload: {}, type: 'Chef'};
 
       if (haveDishes) {
         updateObj['payload']['chefDishes'] = haveDishes;

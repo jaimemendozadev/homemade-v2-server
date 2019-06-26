@@ -8,6 +8,8 @@ const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
   try {
     const foundChefs = await Chef.find({});
 
+    console.log('foundChefs is ', foundChefs)
+
     if (foundChefs.length) {
       const inBoundChefs = foundChefs.filter(chef =>
         isChefInBounds(chef, boundingBox),

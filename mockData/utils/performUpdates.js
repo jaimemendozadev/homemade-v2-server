@@ -1,13 +1,17 @@
 const async = require('async');
-const {Chef} = require('../../api/DB/Models');
+const {Chef, User} = require('../../api/DB/Models');
 
 const _performUpdate = async updatedInfo => {
-  const {_id, payload} = updatedInfo;
+  const {_id, payload, type} = updatedInfo;
 
-  await Chef.updateOne({_id}, payload);
+  if(type === "Chef") {
+    await Chef.updateOne({_id}, payload);
+  } else {
+    await User.updateOne({_id}, payload);
+  }
 };
 
-const updateChefs = (updatesPayload, callback) => {
+const performUpdates = (updatesPayload, callback) => {
   async.mapSeries(updatesPayload, _performUpdate, err => {
     let callbackMSG = 'DB successfully finished seeding!';
 
@@ -24,4 +28,4 @@ const updateChefs = (updatesPayload, callback) => {
   });
 };
 
-module.exports = updateChefs;
+module.exports = performUpdates;

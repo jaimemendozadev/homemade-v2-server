@@ -5,8 +5,9 @@ const generateMockDishes = require('./utils/generateMockDishes');
 const generateMockOrders = require('./utils/generateMockOrders');
 const generateMockReviews = require('./utils/generateMockReviews');
 const generateChefUpdates = require('./utils/generateChefUpdates');
+const generateUserUpdates = require('./utils/generateUserUpdates');
 const generateMockChefs = require('./utils/generateMockChefs');
-const updateChefs = require('./utils/updateChefs');
+const performUpdates = require('./utils/performUpdates');
 const {User, Dish, Order, Review, Chef} = require('../api/DB/Models');
 
 const initiateDBSeeding = async dbConnectCallback => {
@@ -67,13 +68,15 @@ const initiateDBSeeding = async dbConnectCallback => {
 
   const convertedChefsSet = Array.from(filteredChefs);
 
-  const updatesPayload = generateChefUpdates(
+  const ChefUpdates = generateChefUpdates(
     allReviews,
     Dishes_DB_Result,
     convertedChefsSet,
   );
 
-  updateChefs(updatesPayload, dbConnectCallback);
+  const UserUpdates = generateUserUpdates(Chefs_DB_Result);
+
+  performUpdates([...ChefUpdates, ...UserUpdates], dbConnectCallback);
 };
 
 clearDatabase(initiateDBSeeding);

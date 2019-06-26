@@ -18,10 +18,9 @@ const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
       }
 
       return inBoundChefs;
-    } 
-    
+    }
+
     throw new Error(errorMsg);
-    
   } catch (error) {
     throw new Error('There was a problem finding the chefs in range.');
   }

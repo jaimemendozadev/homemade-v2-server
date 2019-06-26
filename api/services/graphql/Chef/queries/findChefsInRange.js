@@ -1,12 +1,12 @@
 const {createBoundingBox, isChefInBounds} = require('./utils');
 
 const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
-  const {User} = models;
+  const {Chef} = models;
   const boundingBox = createBoundingBox(geoCoords);
   const errorMsg = 'There are currently no chefs within your location.';
 
   try {
-    const foundChefs = await User.find({isChef: true});
+    const foundChefs = await Chef.find({});
 
     if (foundChefs.length) {
       const inBoundChefs = foundChefs.filter(chef =>
@@ -18,9 +18,10 @@ const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
       }
 
       return inBoundChefs;
-    } else {
-      throw new Error(errorMsg);
-    }
+    } 
+    
+    throw new Error(errorMsg);
+    
   } catch (error) {
     throw new Error('There was a problem finding the chefs in range.');
   }

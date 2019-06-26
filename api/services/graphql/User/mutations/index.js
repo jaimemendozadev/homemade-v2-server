@@ -32,7 +32,6 @@ const updateUser = async (_parent, {userID, body}, {models}) => {
   }
 };
 
-
 // ToDo: Figure out what addSignature does
 // in original app
 const addSignature = () => {};

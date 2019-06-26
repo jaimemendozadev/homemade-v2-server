@@ -2,7 +2,7 @@ const getChefReviews = async (_parent, {chefID}, {models}) => {
   const {Chef} = models;
   const errorMsg = "There was a problem getting the chef's reviews.";
 
-  console.log('chefID is ', chefID)
+  console.log('chefID is ', chefID);
 
   try {
     const result = await Chef.findOne({_id: chefID}).populate('chefReviews');

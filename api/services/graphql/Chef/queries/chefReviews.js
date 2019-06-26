@@ -7,7 +7,6 @@ const chefReviews = async (parent, _args, {models}) => {
     const result = await Chef.findOne({_id: userID}).populate('chefReviews');
 
     return result.chefReviews;
-    
   } catch (error) {
     console.log(`${errorMsg} `, error);
     throw new Error(errorMsg);

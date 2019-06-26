@@ -41,6 +41,7 @@ extend type Query {
   getChefReviews(chefID: String!): [Review]!
   findChefsInRange(geoCoords: LocationInput!): [Chef]!
   findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [User]!
+  testGetAllChefs: [Chef]!
 }
 
 

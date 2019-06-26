@@ -20,7 +20,7 @@ const initiateDBSeeding = async dbConnectCallback => {
 
   // Create a set of all the chefs in mock data
   const filteredChefs = new Set();
-  Chefs_DB_Result.forEach(chef => filteredChefs.add(chef.userProfile));
+  Chefs_DB_Result.forEach(chef => filteredChefs.add(chef._id));
 
   // Create a filtered array of Users that are not chefs
   const filteredUsers = Users_DB_Result.filter(
@@ -65,7 +65,7 @@ const initiateDBSeeding = async dbConnectCallback => {
   // Gather all the reviews and chef dishes for updating chefs in DB
   const allReviews = [...PastReviews_DB_Result, ...CurrReviews_DB_Result];
 
-  const convertedChefsSet = Array.from(filteredChefs.values());
+  const convertedChefsSet = Array.from(filteredChefs);
 
   const updatesPayload = generateChefUpdates(
     allReviews,

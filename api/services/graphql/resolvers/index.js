@@ -4,6 +4,12 @@ const OrderResolvers = require('../Order/order.resolvers');
 const UserResolvers = require('../User/user.resolvers');
 const ChefResolvers = require('../Chef/chef.resolvers');
 
-const resolvers = merge({}, UserResolvers, OrderResolvers, DishResolvers, ChefResolvers);
+const resolvers = merge(
+  {},
+  UserResolvers,
+  OrderResolvers,
+  DishResolvers,
+  ChefResolvers,
+);
 
 module.exports = resolvers;

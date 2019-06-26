@@ -1,10 +1,10 @@
 const async = require('async');
-const {User} = require('../../api/DB/Models');
+const {Chef} = require('../../api/DB/Models');
 
 const _performUpdate = async updatedInfo => {
   const {_id, payload} = updatedInfo;
 
-  await User.updateOne({_id}, payload);
+  await Chef.updateOne({_id}, payload);
 };
 
 const updateChefs = (updatesPayload, callback) => {

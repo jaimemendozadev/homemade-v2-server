@@ -1,12 +1,12 @@
 const getChefReviews = async (_parent, {chefID}, {models}) => {
-  const {User} = models;
+  const {Chef} = models;
 
-  console.log('chef id is ', chefID)
+  console.log('chef id is ', chefID);
 
   try {
-    const result = await User.findOne({_id: chefID}).populate('chefReviews');
+    const result = await Chef.findOne({_id: chefID}).populate('chefReviews');
 
-    console.log('result is ', result)
+    console.log('result is ', result);
 
     return result.chefReviews;
   } catch (error) {

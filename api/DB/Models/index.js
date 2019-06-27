@@ -4,6 +4,7 @@ const Phone = require('./Phones');
 const User = require('./Users');
 const Review = require('./Reviews');
 const Chef = require('./Chefs');
+const City = require('./City');
 
 module.exports = {
   Dish,
@@ -12,4 +13,5 @@ module.exports = {
   User,
   Review,
   Chef,
+  City
 };

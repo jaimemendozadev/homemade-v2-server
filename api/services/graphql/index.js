@@ -1,14 +1,22 @@
 const {ApolloServer} = require('apollo-server-express');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
-const {User, Order, Dish, Review, Chef, City} = require('../../DB/Models');
+const {
+  User,
+  Order,
+  Dish,
+  Review,
+  Chef,
+  City,
+  State,
+} = require('../../DB/Models');
 
 const server = new ApolloServer({
   typeDefs: typeDefs.join(' '),
   resolvers,
   context: ({req}) => ({
     req,
-    models: {User, Order, Dish, Review, Chef, City},
+    models: {User, Order, Dish, Review, Chef, City, State},
   }),
 });
 

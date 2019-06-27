@@ -21,7 +21,7 @@ const typeDefs = [
   readFileSync(UserSchema, 'utf-8'),
   readFileSync(ReviewSchema, 'utf-8'),
   readFileSync(ChefSchema, 'utf-8'),
-  readFileSync(CitySchema, 'utf-8')
+  readFileSync(CitySchema, 'utf-8'),
 ];
 
 module.exports = typeDefs;

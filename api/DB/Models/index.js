@@ -5,6 +5,7 @@ const User = require('./Users');
 const Review = require('./Reviews');
 const Chef = require('./Chefs');
 const City = require('./City');
+const State = require('./State');
 
 module.exports = {
   Dish,
@@ -14,4 +15,5 @@ module.exports = {
   Review,
   Chef,
   City,
+  State,
 };

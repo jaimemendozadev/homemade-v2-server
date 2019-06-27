@@ -17,5 +17,5 @@ module.exports = {
   Chef,
   City,
   State,
-  Country
+  Country,
 };

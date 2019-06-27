@@ -1,0 +1,5 @@
+type Country {
+  name: String
+  states: [State]
+  cities: [City]
+}

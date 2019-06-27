@@ -9,7 +9,7 @@ const {
   Chef,
   City,
   State,
-  Country
+  Country,
 } = require('../../DB/Models');
 
 const server = new ApolloServer({

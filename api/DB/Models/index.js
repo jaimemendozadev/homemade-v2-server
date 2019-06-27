@@ -13,5 +13,5 @@ module.exports = {
   User,
   Review,
   Chef,
-  City
+  City,
 };

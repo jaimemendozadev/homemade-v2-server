@@ -1,25 +1,6 @@
 const faker = require('faker');
 const randomLocation = require('random-location');
-
-/*
-
-const ChefSchema = new Schema({
-  userProfile: {type: Schema.Types.ObjectId, ref: 'user'},
-  likes: [Number],
-  chefReviews: [{type: Schema.Types.ObjectId, ref: 'review'}],
-  chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],
-  location: {geo_lat: Number, geo_lng: Number},
-  address: {
-    streetNumber: String,
-    city: String,
-    state: String,
-    postalCode: String,
-  },
-  rating: Number,
-});
-
-
-*/
+const {Chef} = require('../../api/DB/Models');
 
 const _generateGeoCoords = () => {
   //Coordinates for Koreatown, Los Angeles
@@ -37,7 +18,7 @@ const _generateGeoCoords = () => {
   return {geo_lat: latitude, geo_lng: longitude};
 };
 
-const generateSingleChef = user => {
+const _generateSingleChef = user => {
   const newChef = {};
 
   const rating = Math.floor(Math.random() * 100);
@@ -62,6 +43,29 @@ const generateSingleChef = user => {
   return newChef;
 };
 
+const _generateMockChefs = users => {
+  const numOfChefs = Math.floor(users.length / 2);
+
+  const chefsArray = [];
+
+  for (let i = 0; i < numOfChefs; i++) {
+    const currentUser = users[i];
+
+    chefsArray.push(_generateSingleChef(currentUser));
+  }
+
+  return chefsArray;
+};
+
+const createSaveChefsInDB = async generatedUsers => {
+  // Use half of existing users and make them chefs
+  const ChefsPayload = _generateMockChefs(generatedUsers);
+
+  const Chefs_DB_Result = await Chef.insertMany(ChefsPayload);
+
+  return Chefs_DB_Result;
+};
+
 module.exports = {
-  generateSingleChef,
+  createSaveChefsInDB,
 };

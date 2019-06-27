@@ -1,7 +1,7 @@
-const cities = () => {}
-const countries = () => {}
+const cities = () => {};
+const countries = () => {};
 
 module.exports = {
-    cities,
-    countries
-}
+  cities,
+  countries,
+};

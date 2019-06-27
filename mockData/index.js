@@ -1,23 +1,24 @@
 require('dotenv').load();
 const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
-const generateMockDishes = require('./utils/generateMockDishes');
+
+const {createSaveChefsInDB} = require('./Chefs');
+const {createSaveDishesInDB} = require('./Dishes');
+
 const generateMockOrders = require('./utils/generateMockOrders');
 const generateMockReviews = require('./utils/generateMockReviews');
 const generateChefUpdates = require('./utils/generateChefUpdates');
 const generateUserUpdates = require('./utils/generateUserUpdates');
-const generateMockChefs = require('./utils/generateMockChefs');
+
 const performUpdates = require('./utils/performUpdates');
-const {User, Dish, Order, Review, Chef} = require('../api/DB/Models');
+const {User, Order, Review} = require('../api/DB/Models');
 
 const initiateDBSeeding = async dbConnectCallback => {
   // Insert the Users in the DB
   const Users_DB_Result = await User.insertMany(UserData);
 
-  // Use half of existing users and make them chefs
-  const ChefsPayload = generateMockChefs(Users_DB_Result);
-
-  const Chefs_DB_Result = await Chef.insertMany(ChefsPayload);
+  // Get an array of Chefs half the size of created Users
+  const Chefs_DB_Result = await createSaveChefsInDB(Users_DB_Result);
 
   // Create a set of all the chefs in mock data
   const filteredChefs = new Set();
@@ -28,11 +29,8 @@ const initiateDBSeeding = async dbConnectCallback => {
     user => !filteredChefs.has(user._id),
   );
 
-  // Create New Dishes and attach Chef IDs to Dishes
-  const DishPayload = generateMockDishes(50, Chefs_DB_Result);
-
-  // Insert Dishes in the DB
-  const Dishes_DB_Result = await Dish.insertMany(DishPayload);
+  // Get an array of saved dishes from the DB
+  const Dishes_DB_Result = await createSaveDishesInDB(Chefs_DB_Result);
 
   // Create Payload of Orders with linked chef/user info and tabulated totals
   const PastOrders = generateMockOrders(

@@ -9,6 +9,7 @@ const {
   Chef,
   City,
   State,
+  Country
 } = require('../../DB/Models');
 
 const server = new ApolloServer({
@@ -16,7 +17,7 @@ const server = new ApolloServer({
   resolvers,
   context: ({req}) => ({
     req,
-    models: {User, Order, Dish, Review, Chef, City, State},
+    models: {User, Order, Dish, Review, Chef, City, State, Country},
   }),
 });
 

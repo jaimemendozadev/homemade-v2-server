@@ -1,4 +1,4 @@
-const generateSingleOrder = require('../Orders');
+const generateSingleOrder = require('./generateSingleOrder');
 
 const _generateChefMenu = dishes => {
   const menu = {};

@@ -1,6 +1,6 @@
 const path = require('path');
 const writeFileToDisk = require('./writeFileToDisk.js');
-const {generateSingleUser} = require('../Users');
+const generateSingleUser = require('./generateSingleUser');
 
 const basePath = '../../mockJSON/';
 const usersPath = path.join(__dirname, `${basePath}Users.json`);

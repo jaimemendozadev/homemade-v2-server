@@ -1,5 +1,7 @@
 const faker = require('faker');
 const randomLocation = require('random-location');
+const generateChefUpdates = require('./generateChefUpdates');
+
 const {Chef} = require('../../api/DB/Models');
 
 const _generateGeoCoords = () => {
@@ -68,4 +70,5 @@ const createSaveChefsInDB = async generatedUsers => {
 
 module.exports = {
   createSaveChefsInDB,
+  generateChefUpdates,
 };

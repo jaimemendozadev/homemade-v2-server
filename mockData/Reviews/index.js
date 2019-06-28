@@ -1,20 +1,12 @@
-const faker = require('faker');
+const generateMockReviews = require('./generateMockReviews');
+const {Review} = require('../../api/DB/Models');
 
-const generateSingleReview = order => {
-  const reviewText = faker.lorem.sentence();
-  let rating = Math.floor(Math.random() * 6);
-  rating = rating > 5 ? 5 : rating;
+const createSaveReviewsInDB = async savedReviewsInDB => {
+  const ReviwesPayload = generateMockReviews(savedReviewsInDB);
 
-  const {chefId, _id, date} = order;
-  const orderId = _id;
+  const Reviews_DB_Result = await Review.insertMany(ReviwesPayload);
 
-  return {
-    reviewText,
-    rating,
-    chefId,
-    orderId,
-    date,
-  };
+  return Reviews_DB_Result;
 };
 
-module.exports = generateSingleReview;
+module.exports = {createSaveReviewsInDB};

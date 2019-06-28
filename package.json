@@ -9,7 +9,7 @@
     "lint": "eslint --fix api && eslint --fix mockData",
     "nu:clear": "rm -rfv node_modules && rm -rfv package-lock.json && rm -rfv yarn.lock && rm -rfv yarn-error.log",
     "prettier": "prettier \"api/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\" && prettier \"mockData/**/*.+(js|jsx|json|yml|yaml|ts|tsx|md)\"",
-    "seed:db": "rm -rfv mockJSON/** && node mockData/utils/generateMockUsers.js && node mockData/index.js",
+    "seed:db": "rm -rfv mockJSON/** && node mockData/Users/generateMockUsers.js && node mockData/index.js",
     "validate": "yarn run lint && yarn run prettier --list-different"
   },
   "lint-staged": {

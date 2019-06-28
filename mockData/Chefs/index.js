@@ -1,19 +1,19 @@
 const faker = require('faker');
 const randomLocation = require('random-location');
 const generateChefUpdates = require('./generateChefUpdates');
+const geoCoords = require('./geoCoords');
 
 const {Chef} = require('../../api/DB/Models');
 
 const _generateGeoCoords = () => {
-  //Coordinates for Koreatown, Los Angeles
-  const P = {
-    latitude: 34.06508,
-    longitude: -118.33531,
-  };
+  const randomIdx = Math.floor(Math.random() * geoCoords.length); 
+  const chosenCoords = geoCoords[randomIdx]; 
+
+  const{coords} = chosenCoords;
 
   const R = 500; // meters
 
-  const randomPoint = randomLocation.randomCirclePoint(P, R);
+  const randomPoint = randomLocation.randomCirclePoint(coords, R);
 
   const {latitude, longitude} = randomPoint;
 

@@ -22,7 +22,7 @@ const _generateChefMenu = dishes => {
 
 const _generateRandomIdx = len => Math.floor(Math.random() * len);
 
-const generateMockOrders = (
+const _generateMockOrders = (
   dishes,
   users,
   numOfOrders = 30,
@@ -56,4 +56,4 @@ const generateMockOrders = (
   return OrdersPayload;
 };
 
-module.exports = generateMockOrders;
+module.exports = _generateMockOrders;

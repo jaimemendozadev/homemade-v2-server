@@ -1,4 +1,4 @@
-const generateMockOrders = require('./generateMockOrders');
+const _generateMockOrders = require('./generateMockOrders');
 const {Order} = require('../../api/DB/Models');
 
 const createSaveOrdersInDB = async (
@@ -8,7 +8,7 @@ const createSaveOrdersInDB = async (
   currentOrder = false,
 ) => {
   // Create Payload of Orders with linked chef/user info and tabulated totals
-  const OrdersPayload = generateMockOrders(
+  const OrdersPayload = _generateMockOrders(
     dishes,
     users,
     numOfOrders,

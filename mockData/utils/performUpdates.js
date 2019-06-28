@@ -1,4 +1,6 @@
 const async = require('async');
+const {generateChefUpdates} = require('../Chefs');
+const {generateUserUpdates} = require('../Users');
 const {Chef, User} = require('../../api/DB/Models');
 
 const _performUpdate = async updatedInfo => {
@@ -11,7 +13,7 @@ const _performUpdate = async updatedInfo => {
   }
 };
 
-const performUpdates = (updatesPayload, callback) => {
+const _saveUpdatesInDB = (updatesPayload, callback) => {
   async.mapSeries(updatesPayload, _performUpdate, err => {
     let callbackMSG = 'DB successfully finished seeding!';
 
@@ -26,6 +28,27 @@ const performUpdates = (updatesPayload, callback) => {
 
     callback(callbackMSG);
   });
+};
+
+const performUpdates = (
+  allReviews,
+  dishesInDB,
+  chefsInDB,
+  filteredChefs,
+  dbConnectCallback,
+) => {
+  const convertedChefsSet = Array.from(filteredChefs);
+
+  const ChefUpdates = generateChefUpdates(
+    allReviews,
+    dishesInDB,
+    convertedChefsSet,
+  );
+
+  const UserUpdates = generateUserUpdates(chefsInDB);
+  const UpdatesPayload = [...ChefUpdates, ...UserUpdates];
+
+  _saveUpdatesInDB(UpdatesPayload, dbConnectCallback);
 };
 
 module.exports = performUpdates;

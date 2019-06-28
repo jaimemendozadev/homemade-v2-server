@@ -2,13 +2,11 @@ require('dotenv').load();
 const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
 
-const {createSaveChefsInDB, generateChefUpdates} = require('./Chefs');
+const {createSaveChefsInDB} = require('./Chefs');
 const {createSaveDishesInDB} = require('./Dishes');
 const {createSaveOrdersInDB} = require('./Orders');
 const {createSaveReviewsInDB} = require('./Reviews');
-const {generateUserUpdates} = require('./Users');
 const filterChefsUsers = require('./utils/filterChefsUsers');
-
 const performUpdates = require('./utils/performUpdates');
 const {User} = require('../api/DB/Models');
 
@@ -53,20 +51,16 @@ const initiateDBSeeding = async dbConnectCallback => {
     CurrOrders_DB_Result,
   );
 
-  // Gather all the reviews and chef dishes for updating chefs in DB
   const allReviews = [...PastReviews_DB_Result, ...CurrReviews_DB_Result];
 
-  const convertedChefsSet = Array.from(filteredChefs);
-
-  const ChefUpdates = generateChefUpdates(
+  // Gather all the reviews and chef dishes for updating chefs in DB
+  performUpdates(
     allReviews,
     Dishes_DB_Result,
-    convertedChefsSet,
+    Chefs_DB_Result,
+    filteredChefs,
+    dbConnectCallback,
   );
-
-  const UserUpdates = generateUserUpdates(Chefs_DB_Result);
-
-  performUpdates([...ChefUpdates, ...UserUpdates], dbConnectCallback);
 };
 
 clearDatabase(initiateDBSeeding);

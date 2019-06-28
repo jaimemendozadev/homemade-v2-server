@@ -5,6 +5,7 @@ const UserData = require('../mockJSON/Users.json');
 const {createSaveChefsInDB} = require('./Chefs');
 const {createSaveDishesInDB} = require('./Dishes');
 const {createSaveOrdersInDB} = require('./Orders');
+const filterChefsUsers = require('./utils/filterChefsUsers');
 
 const generateMockReviews = require('./utils/generateMockReviews');
 const generateChefUpdates = require('./utils/generateChefUpdates');
@@ -20,14 +21,8 @@ const initiateDBSeeding = async dbConnectCallback => {
   // Get an array of Chefs half the size of created Users
   const Chefs_DB_Result = await createSaveChefsInDB(Users_DB_Result);
 
-  // Create a set of all the chefs in mock data
-  const filteredChefs = new Set();
-  Chefs_DB_Result.forEach(chef => filteredChefs.add(chef._id));
-
-  // Create a filtered array of Users that are not chefs
-  const filteredUsers = Users_DB_Result.filter(
-    user => !filteredChefs.has(user._id),
-  );
+  // Get a filtered set of Chefs, a filtered array of Users
+  const [filteredChefs, filteredUsers] = filterChefsUsers(Chefs_DB_Result, Users_DB_Result);
 
   // Get an array of saved dishes from the DB
   const Dishes_DB_Result = await createSaveDishesInDB(Chefs_DB_Result);

@@ -8,6 +8,8 @@ const createSaveChefsInDB = async generatedUsers => {
 
   const Chefs_DB_Result = await Chef.insertMany(ChefsPayload);
 
+  // Perform updates here
+
   return Chefs_DB_Result;
 };
 

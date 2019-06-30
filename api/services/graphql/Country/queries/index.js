@@ -1,7 +1,5 @@
-const cities = () => {};
-const countries = () => {};
+const metroAreas = () => {};
 
 module.exports = {
-  cities,
-  countries,
+  metroAreas,
 };

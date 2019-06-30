@@ -7,6 +7,6 @@ const MetroAreaSchema = new Schema({
   neighborhoods: [{type: Schema.Types.ObjectId, ref: 'neighborhood'}],
 });
 
-const MetroAreaModel = mongoose.model('city', MetroAreaSchema);
+const MetroAreaModel = mongoose.model('metro_area', MetroAreaSchema);
 
 module.exports = MetroAreaModel;

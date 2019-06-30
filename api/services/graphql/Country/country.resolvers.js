@@ -1,8 +1,7 @@
-const {states, cities} = require('./queries');
+const {metroAreas} = require('./queries');
 
 module.exports = {
   Country: {
-    states,
-    cities,
+    metroAreas,
   },
 };

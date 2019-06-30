@@ -1,0 +1,4 @@
+type Neighborhood {
+    name: String
+    chefs: [Chef]
+}

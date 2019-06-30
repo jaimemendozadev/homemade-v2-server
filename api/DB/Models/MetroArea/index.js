@@ -5,6 +5,7 @@ const {Schema} = mongoose;
 const MetroAreaSchema = new Schema({
   name: String,
   neighborhoods: [{type: Schema.Types.ObjectId, ref: 'neighborhood'}],
+  chefs: [{type: Schema.Types.ObjectId, ref: 'chef'}],
 });
 
 const MetroAreaModel = mongoose.model('metro_area', MetroAreaSchema);

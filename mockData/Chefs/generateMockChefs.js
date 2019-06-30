@@ -22,13 +22,6 @@ const _generateSingleChef = user => {
 
   const rating = Math.floor(Math.random() * 100);
 
-  // const address = {
-  //   streetNumber: faker.address.streetAddress(),
-  //   city: faker.address.city(),
-  //   state: faker.address.state(),
-  //   postalCode: faker.address.zipCode(),
-  // };
-
   newChef.userProfile = user._id;
 
   newChef.likes = [];
@@ -36,7 +29,6 @@ const _generateSingleChef = user => {
 
   newChef.chefDishes = [];
   newChef.location = _generateGeoCoords();
-  //newChef.address = address;
   newChef.rating = rating;
 
   return newChef;

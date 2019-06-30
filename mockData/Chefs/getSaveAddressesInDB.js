@@ -1,11 +1,10 @@
-// const async = require('async');
-// const fetch = require('node-fetch');
+const async = require('async');
+const fetch = require('node-fetch');
 // const parseAddress = require('./parseAddress');
-// const {GOOGLE_GEOCODE_URL, GOOGLE_MAPS_APIKEY} = process.env;
+const {GOOGLE_GEOCODE_URL, GOOGLE_MAPS_APIKEY} = process.env;
 
 // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
 
-/*
 const _fetchSaveAddress = async chef => {
   const {
     _id,
@@ -38,4 +37,4 @@ const getSaveAddressesInDB = async chefPayload => {
   });
 };
 
-*/
+module.exports = getSaveAddressesInDB;

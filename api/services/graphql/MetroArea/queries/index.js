@@ -1,6 +1,6 @@
 // parent, args, context, info
-const chefs = () => {};
+const neighborhoods = () => {};
 
 module.exports = {
-  chefs,
+  neighborhoods,
 };

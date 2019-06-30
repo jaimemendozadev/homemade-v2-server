@@ -4,7 +4,7 @@ const Phone = require('./Phones');
 const User = require('./Users');
 const Review = require('./Reviews');
 const Chef = require('./Chefs');
-const City = require('./City');
+const MetroArea = require('./MetroArea');
 const State = require('./State');
 const Country = require('./Country');
 
@@ -15,7 +15,7 @@ module.exports = {
   User,
   Review,
   Chef,
-  City,
+  MetroArea,
   State,
   Country,
 };

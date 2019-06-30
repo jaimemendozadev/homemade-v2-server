@@ -1,4 +1,0 @@
-type City {
-  name: String!
-  chefs: [Chef]!    
-}

@@ -1,0 +1,4 @@
+type MetroArea {
+  name: String!
+  neighborhoods: [Neighborhood]!    
+}

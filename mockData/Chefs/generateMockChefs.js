@@ -7,9 +7,12 @@ const _generateGeoCoords = () => {
 
   const {coords} = chosenCoords;
 
-  const R = 500; // meters
 
-  const randomPoint = randomLocation.randomCirclePoint(coords, R);
+  const lessThan5Miles = Math.floor(Math.random() * 6) <= 4 ? true : false;
+
+  const Radius = lessThan5Miles ? 8046 : 16093; // meters, 1 meter = 0.000621371 miles
+
+  const randomPoint = randomLocation.randomCirclePoint(coords, Radius);
 
   const {latitude, longitude} = randomPoint;
 

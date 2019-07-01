@@ -3,7 +3,8 @@ type Review {
   reviewText: String
   rating: Int
   chefId: ID
-  orderId: ID
+  # should orderId resolve to Order?
+  orderId: ID 
   date: String
 }
 

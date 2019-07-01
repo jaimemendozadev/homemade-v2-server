@@ -1,33 +1,34 @@
-// const {GOOGLE_GEOCODE_URL, GOOGLE_MAPS_APIKEY} = process.env;
-// const CREDS = `&key=${GOOGLE_MAPS_APIKEY}`;
-
-// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
-
-const {createBoundingBox, isChefInBounds} = require('./utils');
+const {
+  createBoundingBox,
+  isChefInBounds,
+  getCoordsInfo,
+  parseGoogleResponse,
+} = require('./utils');
 
 const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
-  const {Chef} = models;
-  const boundingBox = createBoundingBox(geoCoords);
+  const {Neighborhood} = models;
   const errorMsg = 'There are currently no chefs within your location.';
 
   try {
-    const foundChefs = await Chef.find({});
+    const googleResponse = await getCoordsInfo(geoCoords);
 
-    if (foundChefs.length) {
-      const inBoundChefs = foundChefs.filter(chef =>
-        isChefInBounds(chef, boundingBox),
-      );
+    // {Locality, MetroArea, Country}
+    const {Locality} = parseGoogleResponse(googleResponse);
 
-      if (!inBoundChefs.length) {
-        throw new Error(errorMsg);
-      }
+    const DB_Response = await Neighborhood.findOne({name: Locality}).populate(
+      'chefs',
+    );
 
-      return inBoundChefs;
-    }
+    const foundLocalChefs = DB_Response.chefs;
+    const boundingBox = createBoundingBox(geoCoords);
 
-    throw new Error(errorMsg);
+    const filteredChefs = foundLocalChefs.filter(chef =>
+      isChefInBounds(chef, boundingBox),
+    );
+
+    return filteredChefs;
   } catch (error) {
-    throw new Error('There was a problem finding the chefs in range.');
+    throw new Error(errorMsg);
   }
 };
 

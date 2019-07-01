@@ -1,4 +1,3 @@
-//const faker = require('faker');
 const randomLocation = require('random-location');
 const geoCoords = require('./geoCoords');
 

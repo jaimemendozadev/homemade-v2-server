@@ -6,7 +6,7 @@ const chefReviews = async (parent, _args, {models}) => {
   try {
     const result = await Chef.findOne({_id: userID}).populate('chefReviews');
 
-    return result.chefReviews;
+    return result.chefReviews; // Can return empty array
   } catch (error) {
     console.log(`${errorMsg} `, error);
     throw new Error(errorMsg);

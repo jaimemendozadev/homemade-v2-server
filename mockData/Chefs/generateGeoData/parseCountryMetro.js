@@ -1,4 +1,4 @@
-const parseCountryMetroInfo = serverResponse => {
+const parseCountryMetro = serverResponse => {
   const payload = {};
 
   serverResponse.forEach(obj => {
@@ -24,4 +24,4 @@ const parseCountryMetroInfo = serverResponse => {
   return payload;
 };
 
-module.exports = parseCountryMetroInfo;
+module.exports = parseCountryMetro;

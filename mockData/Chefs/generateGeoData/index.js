@@ -3,7 +3,8 @@ const performGeoUpdates = require('./performGeoUpdates');
 
 const generateGeoData = async (chefIDsArray, doneCallback) => {
   async.mapSeries(chefIDsArray, performGeoUpdates, err => {
-    let callbackMSG = 'Successfully updated DB with GeoData. DB successfully finished seeding!';
+    let callbackMSG =
+      'Successfully updated DB with GeoData. DB successfully finished seeding!';
 
     if (err) {
       callbackMSG =

@@ -1,6 +1,6 @@
-const userProfile = async (parent, args, {models}) => {
+const userProfile = async ({userProfile}, _args, {models}) => {
   const {User} = models;
-  const UserID = parent.userProfile;
+  const UserID = userProfile;
 
   const errorMsg = "There was a problem resolving the Chef's User profile.";
 

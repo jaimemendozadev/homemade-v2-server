@@ -7,6 +7,7 @@ const {
   findChefsByStyle,
   findChefsInRange,
   getChefReviews,
+  getSingleChef,
   testGetAllChefs,
 } = require('./queries');
 
@@ -15,6 +16,7 @@ module.exports = {
     getChefReviews,
     findChefsInRange,
     findChefsByStyle,
+    getSingleChef,
     testGetAllChefs,
   },
   Mutation: {

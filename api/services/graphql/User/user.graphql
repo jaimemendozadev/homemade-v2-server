@@ -14,14 +14,15 @@ type User {
 
 
 input UserPayload {
-  firstName: String!
-  lastName: String!
+  _id: ID!
+  firstName: String
+  lastName: String
   bio: String
   status: String
-  phoneNumber: String!
+  phoneNumber: String
   profileUrl: String
   signatureURL: String
-  email: String!
+  email: String
 }
 
 type Query {

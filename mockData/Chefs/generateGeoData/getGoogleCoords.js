@@ -1,10 +1,14 @@
 const fetch = require('node-fetch');
+const {Chef} = require('../../../api/DB/Models');
 const {GOOGLE_GEOCODE_URL, GOOGLE_MAPS_APIKEY} = process.env;
 
-const getGoogleCoords = async chef => {
+const getGoogleCoords = async chefID => {
+  const foundDBResult = await Chef.find({_id: chefID});
+  const foundChef = foundDBResult.pop();
+
   const {
     location: {geo_lat, geo_lng},
-  } = chef;
+  } = foundChef;
 
   const reqURL = `${GOOGLE_GEOCODE_URL}${geo_lat},${geo_lng}&key=${GOOGLE_MAPS_APIKEY}`;
 

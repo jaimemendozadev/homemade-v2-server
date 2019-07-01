@@ -24,7 +24,7 @@ const parseAddress = serverResponse => {
         }
 
         // Similar to a U.S. State
-        if (types.incldues('administrative_area_level_1')) {
+        if (types.includes('administrative_area_level_1')) {
           addressInfo['administrative_area_level_1'] = addressObj.long_name;
         }
 

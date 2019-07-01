@@ -6,6 +6,8 @@ const {
   Review,
   Chef,
   Neighborhood,
+  Country,
+  MetroArea,
 } = require('../../api/DB/Models');
 mongoose.Promise = global.Promise;
 const {DB_URL} = process.env;
@@ -34,6 +36,8 @@ const clearDatabase = callback => {
     await Review.deleteMany();
     await Chef.deleteMany();
     await Neighborhood.deleteMany();
+    await Country.deleteMany();
+    await MetroArea.deleteMany();
     await callback(closeDB);
   });
 };

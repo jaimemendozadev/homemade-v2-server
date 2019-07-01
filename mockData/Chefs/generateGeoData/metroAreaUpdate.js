@@ -1,10 +1,9 @@
 const {MetroArea} = require('../../../api/DB/Models');
 
-// name, neighborhoods, chefs
 const metroAreaUpdate = async (chefMetroArea, neighborhoodID, chefID) => {
   let metroAreaID = null;
 
-  const haveMetroArea = MetroArea.exists({name: chefMetroArea});
+  const haveMetroArea = await MetroArea.exists({name: chefMetroArea});
 
   if (!haveMetroArea) {
     const payload = {

@@ -1,5 +1,6 @@
 const generateChefUpdates = require('./generateChefUpdates');
 const generateMockChefs = require('./generateMockChefs');
+const generateGeoData = require('./generateGeoData');
 const {Chef} = require('../../api/DB/Models');
 
 const createSaveChefsInDB = async generatedUsers => {
@@ -10,7 +11,11 @@ const createSaveChefsInDB = async generatedUsers => {
 
   // Perform Updates Here
 
-  return Chefs_DB_Result;
+  const updatedChefs = await generateGeoData(Chefs_DB_Result);
+
+  return updatedChefs;
+
+  // return Chefs_DB_Result;
 };
 
 module.exports = {

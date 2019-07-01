@@ -3,7 +3,8 @@ const parseAddress = require('./parseAddress');
 const parseCountryMetro = require('./parseCountryMetro');
 const neighborhoodUpdate = require('./neighborhoodUpdate');
 const metroAreaUpdate = require('./metroAreaUpdate');
-
+const countryUpdate = require('./countryUpdate');
+const {Chef} = require('../../../api/DB/Models');
 const performGeoUpdates = async chef => {
   const {_id} = chef;
 
@@ -15,10 +16,6 @@ const performGeoUpdates = async chef => {
   // Parse the Chef's Metro/Country Info
   const {Country, MetroArea} = parseCountryMetro(googleResults);
 
-  console.log(Country);
-  console.log(parsedChefAddres);
-  console.log(_id);
-
   // Use Chef Address Info to Create/Save Neighborhood and add Chef ID
   const chefNeighborhood = parsedChefAddres.city;
 
@@ -27,11 +24,17 @@ const performGeoUpdates = async chef => {
   // Use new Neighborhood ID and Chef ID to create/update Metro Area
   const metroAreaID = await metroAreaUpdate(MetroArea, neighborhoodID, _id);
 
-  console.log(metroAreaID);
-
   // Use new Metro Area ID to create/update Country
+  await countryUpdate(Country, metroAreaID);
 
-  // Last, Update Chef with Address Info
+  // Finally, Update Chef with Address Info
+  const updatedChef = await Chef.findByIdAndUpdate(
+    _id,
+    {address: parsedChefAddres},
+    {new: true},
+  );
+
+  return updatedChef;
 };
 
 module.exports = performGeoUpdates;

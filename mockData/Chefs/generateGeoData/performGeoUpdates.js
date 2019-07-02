@@ -29,7 +29,7 @@ const performGeoUpdates = async chefID => {
   // Finally, Update Chef with Address Info
   await Chef.findByIdAndUpdate(
     chefID,
-    {address: parsedChefAddres},
+    {address: parsedChefAddres, neighborhood: neighborhoodID},
     {new: true},
   );
 };

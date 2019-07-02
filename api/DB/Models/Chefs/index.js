@@ -7,6 +7,7 @@ const ChefSchema = new Schema({
   chefReviews: [{type: Schema.Types.ObjectId, ref: 'review'}],
   chefDishes: [{type: Schema.Types.ObjectId, ref: 'dish'}],
   location: {geo_lat: Number, geo_lng: Number},
+  neighborhood: {type: Schema.Types.ObjectId, ref: 'neighborhood'},
   address: {
     streetNumber: String,
     city: String,

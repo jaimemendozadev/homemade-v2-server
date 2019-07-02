@@ -7,6 +7,7 @@ type Chef {
   chefReviews: [Review]
   chefDishes: [Dish]
   location: Location
+  neighborhood: ID!
   address: Address!
   rating: Int
 }

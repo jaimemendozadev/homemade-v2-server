@@ -1,48 +1,28 @@
 const {
-  createBoundingBox,
-  isChefInBounds,
-  filterChefByCuisine,
+  getCoordsInfo,
+  parseGoogleResponse,
+  populateNeighborhoodDishes,
 } = require('./utils');
 
-const findChefsByStyle = async (
-  _parent,
-  {geoCoords, cuisineType},
-  {models},
-) => {
-  const {User} = models;
-  const boundingBox = createBoundingBox(geoCoords);
+const findChefsByStyle = async (_parent, {geoCoords, cuisineType}) => {
   const errorMsg = 'There are currently no chefs within your location.';
 
   try {
-    const foundChefs = await User.find({isChef: true}).populate('chefDishes');
+    const googleResponse = await getCoordsInfo(geoCoords);
 
-    if (foundChefs.length) {
-      const inBoundChefs = foundChefs.filter(chef =>
-        isChefInBounds(chef, boundingBox),
-      );
+    // {Locality, MetroArea, Country}
+    const {Locality} = parseGoogleResponse(googleResponse);
 
-      if (!inBoundChefs.length) {
-        throw new Error(errorMsg);
-      }
+    const populatedChefDishes = await populateNeighborhoodDishes(
+      Locality,
+      geoCoords,
+    );
 
-      const filteredByCuisine = inBoundChefs.filter(chef =>
-        filterChefByCuisine(chef, cuisineType),
-      );
+    console.log('cuisineType ', cuisineType);
 
-      console.log('filteredByCuisine is ', filteredByCuisine);
-
-      if (!filteredByCuisine.length) {
-        throw new Error(
-          'There were no chefs with that cuisine type in your area.',
-        );
-      }
-
-      return filteredByCuisine;
-    } else {
-      throw new Error(errorMsg);
-    }
+    return populatedChefDishes;
   } catch (error) {
-    throw new Error('There was a problem finding the chefs in range.');
+    throw new Error(errorMsg);
   }
 };
 

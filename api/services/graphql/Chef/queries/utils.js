@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const geoPoint = require('geopoint');
+const {Neighborhood, Chef} = require('../../../../DB/Models');
 const {GOOGLE_GEOCODE_URL, GOOGLE_MAPS_APIKEY} = process.env;
 
 const getCoordsInfo = async geoCoords => {
@@ -86,10 +87,42 @@ const filterChefByCuisine = (chef, targetCuisine) => {
   return false;
 };
 
+const populateNeighborhoodDishes = async (locality, geoCoords) => {
+  const DB_Response = await Neighborhood.findOne({name: locality}).populate(
+    'chefs',
+  );
+
+  // If a neighborhood has no chefs
+  if (DB_Response === null) {
+    return [];
+  }
+
+  // Filter chefs according to geoCoords
+  const foundLocalChefs = DB_Response.chefs;
+  const boundingBox = createBoundingBox(geoCoords);
+
+  const filteredChefs = foundLocalChefs.filter(chef =>
+    isChefInBounds(chef, boundingBox),
+  );
+
+  const reqArray = [];
+
+  // For each filtered chef, re-get Chef and populate chefDishes
+  filteredChefs.forEach(chef => {
+    console.log('chefID ', chef._id);
+    const req = Chef.findById(chef._id).populate('chefDishes');
+
+    reqArray.push(req);
+  });
+
+  return Promise.all(reqArray);
+};
+
 module.exports = {
   createBoundingBox,
   isChefInBounds,
   filterChefByCuisine,
   getCoordsInfo,
   parseGoogleResponse,
+  populateNeighborhoodDishes,
 };

@@ -7,7 +7,6 @@ const _generateGeoCoords = () => {
 
   const {coords} = chosenCoords;
 
-
   const lessThan5Miles = Math.floor(Math.random() * 6) <= 4 ? true : false;
 
   const Radius = lessThan5Miles ? 8046 : 16093; // meters, 1 meter = 0.000621371 miles

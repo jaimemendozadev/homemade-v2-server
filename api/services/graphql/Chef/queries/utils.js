@@ -71,57 +71,45 @@ const isChefInBounds = (user, boundingBox) => {
   );
 };
 
-const filterChefByCuisine = (chef, targetCuisine) => {
-  const {chefDishes} = chef;
-
-  for (let i = 0; i < chefDishes.length; i++) {
-    const currentDish = chefDishes[i];
-
-    const {cuisineType} = currentDish;
-
-    if (cuisineType === targetCuisine) {
-      return true;
-    }
-  }
-
-  return false;
-};
-
-const populateNeighborhoodDishes = async (locality, geoCoords) => {
-  const DB_Response = await Neighborhood.findOne({name: locality}).populate(
-    'chefs',
-  );
-
-  // If a neighborhood has no chefs
-  if (DB_Response === null) {
-    return [];
-  }
-
-  // Filter chefs according to geoCoords
-  const foundLocalChefs = DB_Response.chefs;
+const filterByGeoCoords = (geoCoords, unfilteredChefs) => {
   const boundingBox = createBoundingBox(geoCoords);
 
-  const filteredChefs = foundLocalChefs.filter(chef =>
+  const filteredChefs = unfilteredChefs.filter(chef =>
     isChefInBounds(chef, boundingBox),
   );
 
-  const reqArray = [];
+  return filteredChefs;
+};
 
-  // For each filtered chef, re-get Chef and populate chefDishes
-  filteredChefs.forEach(chef => {
-    console.log('chefID ', chef._id);
-    const req = Chef.findById(chef._id).populate('chefDishes');
+const populateNeighborhoodDishes = async (locality, cuisineType, geoCoords) => {
+  const FoundNeighborhood = await Neighborhood.findOne({name: locality});
 
-    reqArray.push(req);
+  const neighborhood = FoundNeighborhood._id;
+
+  // Filter chefs according to Neighborhood
+  const foundLocalChefs = await Chef.find({neighborhood}).populate(
+    'chefDishes',
+  );
+
+  // Next, filter chefs by cuisine type
+  const filteredByCuisine = foundLocalChefs.filter(chef => {
+    const dishTypes = chef.chefDishes.map(dish => dish.cuisineType);
+
+    if (dishTypes.includes(cuisineType)) {
+      return chef;
+    }
   });
 
-  return Promise.all(reqArray);
+  // Finally, filter by nearest User geoCoords
+  const filteredByLocation = filterByGeoCoords(geoCoords, filteredByCuisine);
+
+  return filteredByLocation;
 };
 
 module.exports = {
   createBoundingBox,
+  filterByGeoCoords,
   isChefInBounds,
-  filterChefByCuisine,
   getCoordsInfo,
   parseGoogleResponse,
   populateNeighborhoodDishes,

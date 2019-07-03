@@ -10,15 +10,13 @@ const findChefsByStyle = async (_parent, {geoCoords, cuisineType}) => {
   try {
     const googleResponse = await getCoordsInfo(geoCoords);
 
-    // {Locality, MetroArea, Country}
     const {Locality} = parseGoogleResponse(googleResponse);
 
     const populatedChefDishes = await populateNeighborhoodDishes(
       Locality,
+      cuisineType,
       geoCoords,
     );
-
-    console.log('cuisineType ', cuisineType);
 
     return populatedChefDishes;
   } catch (error) {

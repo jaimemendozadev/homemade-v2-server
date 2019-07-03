@@ -1,22 +1,10 @@
-// parent, args, context, info
+const {findPendingOrders} = require('./utils');
 
-const getPendingOrders = async (_parent, {chefID}, {models}) => {
-  const {Order} = models;
-  const errorMsg = "The Chef has no current pending orders.";
-
-  console.log('inside pending orders')
+const getPendingOrders = async (_parent, {chefID}) => {
+  const errorMsg = 'The Chef has no current pending orders.';
 
   try {
-    const foundOrders = await Order.find({chefId: chefID});
-
-    const pendingOrders = foundOrders.filter(order => {
-      const {status: {statusCode}} = order;
-      if(statusCode === 0) {
-        return order;
-      }
-    });
-
-    console.log('pendingOrders ', pendingOrders)
+    const pendingOrders = await findPendingOrders("Chef", chefID);
 
     return pendingOrders;
   } catch (error) {
@@ -24,7 +12,23 @@ const getPendingOrders = async (_parent, {chefID}, {models}) => {
   }
 };
 
-const getUserCurrentOrder = () => {};
+const getUserCurrentOrder = async (_parent, {userID}) => {
+  const errorMsg = 'The User has no current pending orders.';
+
+  console.log('inside getUserCurrentOrder')
+  try {
+    const pendingOrders = await findPendingOrders("User", userID);
+
+    console.log('pendingOrders ', pendingOrders)
+
+    return pendingOrders;
+  } catch (error) {
+    console.log(`${errorMsg} `, error);
+  }
+
+};
+
+
 const getCustomerOrders = () => {};
 const getAcceptedOrders = () => {};
 const getCompletedOrders = () => {};

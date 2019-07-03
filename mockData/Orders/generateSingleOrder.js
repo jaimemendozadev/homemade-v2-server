@@ -13,21 +13,21 @@ const generateSingleOrder = (
   currentOrder = false,
 ) => {
   const Order = {};
-  
+
   const statusCodeList = {
-    0: "Pending",
-    1: "Accepted",
-    2: "Completed",
-    3: "Canceled",
-    4: "Reviewed"
+    0: 'Pending',
+    1: 'Accepted',
+    2: 'Completed',
+    3: 'Canceled',
+    4: 'Reviewed',
   };
 
   const statusCode = Math.floor(Math.random() * 5);
 
   const status = {
     statusCode,
-    statusMessage:  statusCodeList[statusCode]
-  }
+    statusMessage: statusCodeList[statusCode],
+  };
 
   const menuItemKeys = Object.keys(menuOptions);
 

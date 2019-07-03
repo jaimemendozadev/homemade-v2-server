@@ -13,7 +13,22 @@ const generateSingleOrder = (
   currentOrder = false,
 ) => {
   const Order = {};
-  const orderStatus = Math.floor(Math.random() * 5);
+  
+  const statusCodeList = {
+    0: "Pending",
+    1: "Accepted",
+    2: "Completed",
+    3: "Canceled",
+    4: "Reviewed"
+  };
+
+  const statusCode = Math.floor(Math.random() * 5);
+
+  const status = {
+    statusCode,
+    statusMessage:  statusCodeList[statusCode]
+  }
+
   const menuItemKeys = Object.keys(menuOptions);
 
   const cart = menuItemKeys;
@@ -27,10 +42,10 @@ const generateSingleOrder = (
   Order.chefId = chefId;
   Order.customerId = customerId;
   Order.cart = cart;
-  Order.status = orderStatus;
+  Order.status = status;
   Order.date = date;
   Order.cashTotal = cashTotal;
-  Order.Instructions = faker.lorem.sentence();
+  Order.orderInstructions = faker.lorem.sentence();
 
   return Order;
 };

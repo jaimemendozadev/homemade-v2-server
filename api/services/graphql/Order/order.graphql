@@ -1,24 +1,24 @@
 type Order {
-  chefId: String!
-  customerId: String!
-  
-  # Note: cart was originally an {} object 
+  chefId: ID!
+  customerId: ID!
   cart: [Dish!]!
-  status: Int!
+  status: OrderStatus!
   date: String!
   cashTotal: Int!
-  
-  # orderInstructions Status Codes
-  # 0: pending
-  # 1: accepted
-  # 2: completed
-  # 3: canceled
-  # 4: reviewed
-
   orderInstructions: String!
 }
 
+ # OrderStatus
+  # 0: "Pending"
+  # 1: "Accepted"
+  # 2: "Completed"
+  # 3: "Canceled"
+  # 4: "Reviewed"
 
+type OrderStatus {
+  statusCode: Int!
+  statusMessage: String!
+}
 
 input CookingChef {
   firstName: String!

@@ -1,6 +1,6 @@
 const {findOrdersByStatus} = require('./utils');
 
-const getPendingOrders = async (
+const getOrdersByStatus = async (
   _parent,
   {callerID, callerType, statusCode},
 ) => {
@@ -19,25 +19,6 @@ const getPendingOrders = async (
   }
 };
 
-const getAcceptedOrders = async (_parent, {callerID, callerType, statusCode}) => {
-  const errorMsg = `The ${callerType} has no accepted orders.`;
-
-  try {
-    const pendingOrders = await findOrdersByStatus(
-      callerType,
-      callerID,
-      statusCode,
-    );
-
-    return pendingOrders;
-  } catch (error) {
-    console.log(`${errorMsg} `, error);
-  }
-
-
-};
-const getCompletedOrders = () => {};
-const getCancelledOrders = () => {};
 
 const cart = async ({_id}, _args, {models}) => {
   const {Order} = models;
@@ -55,11 +36,8 @@ const cart = async ({_id}, _args, {models}) => {
 };
 
 module.exports = {
-  getPendingOrders,
-  getAcceptedOrders,
-  getCompletedOrders,
-  getCancelledOrders,
-  cart,
+  getOrdersByStatus, 
+  cart
 };
 
 /*

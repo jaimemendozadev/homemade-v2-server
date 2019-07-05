@@ -52,11 +52,7 @@ input IncomingOrder {
 
 extend type Query {
   # callerType of 'Customer' or 'Chef' determines whether to use callerID to query chefId or customerId in DB schema
-  getPendingOrders(callerID: ID!, callerType: String!, statusCode: Int!): [Order]!
-  getAcceptedOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
-  getCompletedOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
-  getCancelledOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
-  
+  getOrdersByStatus(callerID: ID!, callerType: String!, statusCode: Int!): [Order]! 
 }
 
 extend type Mutation {

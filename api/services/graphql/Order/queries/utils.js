@@ -1,14 +1,16 @@
 const {Order} = require('../../../../DB/Models');
 
-const findPendingOrders = async (userType, ID) => {
+const findOrdersByStatus = async (userType, ID, statusCode) => {
   const condition = userType === 'Chef' ? {chefId: ID} : {customerId: ID};
   const foundOrders = await Order.find(condition);
 
-  const pendingOrders = foundOrders.filter(order => order.status.statusCode === 0);
+  const filteredOrders = foundOrders.filter(
+    order => order.status.statusCode === statusCode,
+  );
 
-  return pendingOrders;
+  return filteredOrders;
 };
 
 module.exports = {
-  findPendingOrders,
+  findOrdersByStatus,
 };

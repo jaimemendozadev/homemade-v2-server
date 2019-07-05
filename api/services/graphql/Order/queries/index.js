@@ -1,18 +1,23 @@
-const {findPendingOrders} = require('./utils');
+const {findOrdersByStatus} = require('./utils');
 
-const getPendingOrders = async (_parent, {callerID, callerType}) => {
+const getPendingOrders = async (
+  _parent,
+  {callerID, callerType, statusCode},
+) => {
   const errorMsg = `The ${callerType} has no current pending orders.`;
 
   try {
-    const pendingOrders = await findPendingOrders(callerType, callerID);
+    const pendingOrders = await findOrdersByStatus(
+      callerType,
+      callerID,
+      statusCode,
+    );
 
     return pendingOrders;
   } catch (error) {
     console.log(`${errorMsg} `, error);
   }
 };
-
-
 
 const getAcceptedOrders = () => {};
 const getCompletedOrders = () => {};

@@ -52,10 +52,10 @@ input IncomingOrder {
 
 extend type Query {
   # callerType of 'Customer' or 'Chef' determines whether to use callerID to query chefId or customerId in DB schema
-  getPendingOrders(callerID: ID!, callerType: String!): [Order]!
-  getAcceptedOrders(callerID: ID, callerType: String!):[Order]!
-  getCompletedOrders(callerID: ID, callerType: String!):[Order]!
-  getCancelledOrders(callerID: ID, callerType: String!):[Order]!
+  getPendingOrders(callerID: ID!, callerType: String!, statusCode: Int!): [Order]!
+  getAcceptedOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
+  getCompletedOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
+  getCancelledOrders(callerID: ID, callerType: String!, statusCode: Int!):[Order]!
   
 }
 
@@ -65,6 +65,13 @@ extend type Mutation {
   postNewOrder(input: IncomingOrder!): [Order]!
 }
 
+
+ # OrderStatus codes/messages
+  # 0: "Pending"
+  # 1: "Accepted"
+  # 2: "Completed"
+  # 3: "Canceled"
+  # 4: "Reviewed"
 
 # Todo: Implement Socket.io
 # socket.io: alertChef

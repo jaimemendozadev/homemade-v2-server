@@ -20,6 +20,7 @@ type ServerResponse {
 extend type Query {
   getActiveDishes(chefID: String!): [Dish]!
   getInactiveDishes(chefID: String!): [Dish]!
+  getAllChefDishes(chefID: ID!): [Dish]!
 }
 
 extend type Mutation {

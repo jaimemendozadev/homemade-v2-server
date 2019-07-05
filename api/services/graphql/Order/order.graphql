@@ -57,8 +57,8 @@ extend type Query {
 
 extend type Mutation {
   # status corresponds to orderInstructions in DB schema
-  updateOrder(orderID: String!, status: String!): Order!
   postNewOrder(input: IncomingOrder!): [Order]!
+  updateOrder(orderID: String!, status: String!): Order!
 }
 
 

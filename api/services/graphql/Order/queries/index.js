@@ -12,12 +12,14 @@ const {findOrdersByStatus, generateErrorMsg} = require('./utils');
 
 */
 
-
 const getOrdersByStatus = async (
   _parent,
   {callerID, callerType, statusCode},
 ) => {
   const errorMsg = generateErrorMsg(callerType, statusCode);
+
+  console.log('callerType ', callerType)
+  console.log('statusCode ', statusCode)
 
   try {
     const pendingOrders = await findOrdersByStatus(
@@ -51,5 +53,3 @@ module.exports = {
   getOrdersByStatus,
   cart,
 };
-
-

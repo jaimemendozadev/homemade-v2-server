@@ -7,7 +7,7 @@ type Dish {
   allergies: [String]
   cashDonation: Int!
   isActive: Boolean!
-  # quantity is remaining number of a dish a chef has in their inventory
+  # Quantity refers to remaining number of a dish a chef has in their inventory.
   quantity: Int!
 }
 

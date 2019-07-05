@@ -1,10 +1,23 @@
-const {findOrdersByStatus} = require('./utils');
+const {findOrdersByStatus, generateErrorMsg} = require('./utils');
+
+/*
+
+# OrderStatus codes/messages
+# 0: "Pending"
+# 1: "Accepted"
+# 2: "Completed"
+# 3: "Canceled"
+# 4: "Reviewed"
+
+
+*/
+
 
 const getOrdersByStatus = async (
   _parent,
   {callerID, callerType, statusCode},
 ) => {
-  const errorMsg = `The ${callerType} has no current pending orders.`;
+  const errorMsg = generateErrorMsg(callerType, statusCode);
 
   try {
     const pendingOrders = await findOrdersByStatus(
@@ -18,7 +31,6 @@ const getOrdersByStatus = async (
     console.log(`${errorMsg} `, error);
   }
 };
-
 
 const cart = async ({_id}, _args, {models}) => {
   const {Order} = models;
@@ -36,18 +48,8 @@ const cart = async ({_id}, _args, {models}) => {
 };
 
 module.exports = {
-  getOrdersByStatus, 
-  cart
+  getOrdersByStatus,
+  cart,
 };
 
-/*
 
-# OrderStatus codes/messages
-# 0: "Pending"
-# 1: "Accepted"
-# 2: "Completed"
-# 3: "Canceled"
-# 4: "Reviewed"
-
-
-*/

@@ -1,13 +1,10 @@
-const {
-  getOrdersByStatus, 
-  cart
-} = require('./queries');
+const {getOrdersByStatus, cart} = require('./queries');
 
 const {updateOrder, postNewOrder} = require('./mutations');
 
 module.exports = {
   Query: {
-    getOrdersByStatus 
+    getOrdersByStatus,
   },
   Mutation: {
     updateOrder,

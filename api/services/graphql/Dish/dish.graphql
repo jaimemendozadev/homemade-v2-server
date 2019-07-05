@@ -1,4 +1,5 @@
 type Dish {
+  _id: ID!
   cuisineType: String!
   name: String!
   description: String!
@@ -21,6 +22,7 @@ extend type Query {
   getActiveDishes(chefID: String!): [Dish]!
   getInactiveDishes(chefID: String!): [Dish]!
   getAllChefDishes(chefID: ID!): [Dish]!
+  getSingleDish(dishID: ID!): [Dish]!
 }
 
 extend type Mutation {

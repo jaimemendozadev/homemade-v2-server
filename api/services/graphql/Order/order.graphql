@@ -43,7 +43,7 @@ input OrderStatusInput {
 input IncomingOrder {
   chefId: ID!
   customerId: ID!
-  cart: [OrderedDish!]!
+  cart: [ID!]!
   status: OrderStatusInput!
   date: String!
   cashTotal: Int!  

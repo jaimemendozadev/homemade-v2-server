@@ -1,4 +1,5 @@
 type Order {
+  # Decided chefId and customerId won't resolve to user info
   chefId: ID!
   customerId: ID!
   cart: [Dish!]!

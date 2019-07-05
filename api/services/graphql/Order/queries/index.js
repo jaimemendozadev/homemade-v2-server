@@ -4,7 +4,7 @@ const getPendingOrders = async (_parent, {chefID}) => {
   const errorMsg = 'The Chef has no current pending orders.';
 
   try {
-    const pendingOrders = await findPendingOrders("Chef", chefID);
+    const pendingOrders = await findPendingOrders('Chef', chefID);
 
     return pendingOrders;
   } catch (error) {
@@ -15,26 +15,22 @@ const getPendingOrders = async (_parent, {chefID}) => {
 const getUserCurrentOrder = async (_parent, {userID}) => {
   const errorMsg = 'The User has no current pending orders.';
 
-  console.log('inside getUserCurrentOrder')
+  console.log('inside getUserCurrentOrder');
   try {
-    const pendingOrders = await findPendingOrders("User", userID);
-
-    console.log('pendingOrders ', pendingOrders)
+    const pendingOrders = await findPendingOrders('User', userID);
 
     return pendingOrders;
   } catch (error) {
     console.log(`${errorMsg} `, error);
+
+    throw new Error(errorMsg);
   }
-
 };
-
 
 const getCustomerOrders = () => {};
 const getAcceptedOrders = () => {};
 const getCompletedOrders = () => {};
 const getCancelledOrders = () => {};
-const chefId = () => {};
-const customerId = () => {};
 const cart = () => {};
 
 module.exports = {
@@ -44,7 +40,5 @@ module.exports = {
   getAcceptedOrders,
   getCompletedOrders,
   getCancelledOrders,
-  chefId,
-  customerId,
   cart,
 };

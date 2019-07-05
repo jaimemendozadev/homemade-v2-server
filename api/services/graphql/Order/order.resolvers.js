@@ -5,8 +5,6 @@ const {
   getAcceptedOrders,
   getCompletedOrders,
   getCancelledOrders,
-  chefId,
-  customerId,
   cart,
 } = require('./queries');
 
@@ -26,8 +24,6 @@ module.exports = {
     postNewOrder,
   },
   Order: {
-    chefId,
-    customerId,
     cart,
   },
 };

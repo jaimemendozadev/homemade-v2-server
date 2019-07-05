@@ -4,14 +4,7 @@ const findPendingOrders = async (userType, ID) => {
   const condition = userType === 'Chef' ? {chefId: ID} : {customerId: ID};
   const foundOrders = await Order.find(condition);
 
-  const pendingOrders = foundOrders.filter(order => {
-    const {
-      status: {statusCode},
-    } = order;
-    if (statusCode === 0) {
-      return order;
-    }
-  });
+  const pendingOrders = foundOrders.filter(order => order.status.statusCode === 0);
 
   return pendingOrders;
 };

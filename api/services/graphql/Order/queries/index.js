@@ -1,10 +1,10 @@
 const {findPendingOrders} = require('./utils');
 
-const getPendingOrders = async (_parent, {chefID}) => {
-  const errorMsg = 'The Chef has no current pending orders.';
+const getPendingOrders = async (_parent, {callerID, callerType}) => {
+  const errorMsg = `The ${callerType} has no current pending orders.`;
 
   try {
-    const pendingOrders = await findPendingOrders('Chef', chefID);
+    const pendingOrders = await findPendingOrders(callerType, callerID);
 
     return pendingOrders;
   } catch (error) {
@@ -12,21 +12,8 @@ const getPendingOrders = async (_parent, {chefID}) => {
   }
 };
 
-const getUserCurrentOrder = async (_parent, {userID}) => {
-  const errorMsg = 'The User has no current pending orders.';
 
-  try {
-    const pendingOrders = await findPendingOrders('User', userID);
 
-    return pendingOrders;
-  } catch (error) {
-    console.log(`${errorMsg} `, error);
-
-    throw new Error(errorMsg);
-  }
-};
-
-const getCustomerOrders = () => {};
 const getAcceptedOrders = () => {};
 const getCompletedOrders = () => {};
 const getCancelledOrders = () => {};
@@ -37,11 +24,10 @@ const cart = async ({_id}, _args, {models}) => {
 
   try {
     const foundOrder = await Order.findById(_id).populate('cart');
-    const {cart}= foundOrder;
+    const {cart} = foundOrder;
 
     return cart;
-    
-  } catch(error) {
+  } catch (error) {
     console.log(`${errorMsg} `, error);
     throw new Error(errorMsg);
   }
@@ -49,10 +35,20 @@ const cart = async ({_id}, _args, {models}) => {
 
 module.exports = {
   getPendingOrders,
-  getUserCurrentOrder,
-  getCustomerOrders,
   getAcceptedOrders,
   getCompletedOrders,
   getCancelledOrders,
   cart,
 };
+
+/*
+
+# OrderStatus codes/messages
+# 0: "Pending"
+# 1: "Accepted"
+# 2: "Completed"
+# 3: "Canceled"
+# 4: "Reviewed"
+
+
+*/

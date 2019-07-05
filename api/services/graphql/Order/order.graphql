@@ -51,15 +51,11 @@ input IncomingOrder {
 }
 
 extend type Query {
-  getPendingOrders(chefID: String!): [Order]!
-  getUserCurrentOrder(userID: String!): [Order]!
-  
-  # callerType determines whether to use callerID to query chefId or customerId in DB schema
-  
-  getCustomerOrders(callerID: String, callerType: String!):[Order]!
-  getAcceptedOrders(callerID: String, callerType: String!):[Order]!
-  getCompletedOrders(callerID: String, callerType: String!):[Order]!
-  getCancelledOrders(callerID: String, callerType: String!):[Order]!
+  # callerType of 'Customer' or 'Chef' determines whether to use callerID to query chefId or customerId in DB schema
+  getPendingOrders(callerID: ID!, callerType: String!): [Order]!
+  getAcceptedOrders(callerID: ID, callerType: String!):[Order]!
+  getCompletedOrders(callerID: ID, callerType: String!):[Order]!
+  getCancelledOrders(callerID: ID, callerType: String!):[Order]!
   
 }
 

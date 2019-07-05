@@ -19,7 +19,23 @@ const getPendingOrders = async (
   }
 };
 
-const getAcceptedOrders = () => {};
+const getAcceptedOrders = async (_parent, {callerID, callerType, statusCode}) => {
+  const errorMsg = `The ${callerType} has no accepted orders.`;
+
+  try {
+    const pendingOrders = await findOrdersByStatus(
+      callerType,
+      callerID,
+      statusCode,
+    );
+
+    return pendingOrders;
+  } catch (error) {
+    console.log(`${errorMsg} `, error);
+  }
+
+
+};
 const getCompletedOrders = () => {};
 const getCancelledOrders = () => {};
 

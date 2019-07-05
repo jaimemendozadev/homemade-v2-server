@@ -1,6 +1,6 @@
 const {
   getCoordsInfo,
-  filterByGeoCoords,
+  filterByBoundingBox,
   parseGoogleResponse,
 } = require('./utils');
 
@@ -21,8 +21,8 @@ const findChefsInRange = async (_parent, {geoCoords}, {models}) => {
 
     const foundLocalChefs = DB_Response.chefs;
 
-    // Filter chefs by geoCoords
-    const filteredChefs = filterByGeoCoords(geoCoords, foundLocalChefs);
+    // Filter chefs by bounding box
+    const filteredChefs = filterByBoundingBox(geoCoords, foundLocalChefs);
 
     return filteredChefs;
   } catch (error) {

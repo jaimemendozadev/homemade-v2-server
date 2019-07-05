@@ -41,7 +41,9 @@ input AddressInput {
 extend type Query {
   getSingleChef(chefID: ID!): Chef!
   getChefReviews(chefID: ID!): [Review]!
+  # Finds Chefs in a Neighborhood and filters by bounding box.
   findChefsInRange(geoCoords: LocationInput!): [Chef]!
+  # Finds Chefs by Style then filters results by geoCoords.
   findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [Chef]!
   testGetAllChefs: [Chef]!
 }

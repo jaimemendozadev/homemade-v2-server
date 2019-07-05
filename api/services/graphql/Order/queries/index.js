@@ -1,25 +1,10 @@
 const {findOrdersByStatus, generateErrorMsg} = require('./utils');
 
-/*
-
-# OrderStatus codes/messages
-# 0: "Pending"
-# 1: "Accepted"
-# 2: "Completed"
-# 3: "Canceled"
-# 4: "Reviewed"
-
-
-*/
-
 const getOrdersByStatus = async (
   _parent,
   {callerID, callerType, statusCode},
 ) => {
   const errorMsg = generateErrorMsg(callerType, statusCode);
-
-  console.log('callerType ', callerType)
-  console.log('statusCode ', statusCode)
 
   try {
     const pendingOrders = await findOrdersByStatus(

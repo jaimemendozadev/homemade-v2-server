@@ -71,7 +71,7 @@ const isChefInBounds = (user, boundingBox) => {
   );
 };
 
-const filterByGeoCoords = (geoCoords, unfilteredChefs) => {
+const filterByBoundingBox = (geoCoords, unfilteredChefs) => {
   const boundingBox = createBoundingBox(geoCoords);
 
   const filteredChefs = unfilteredChefs.filter(chef =>
@@ -101,14 +101,14 @@ const populateNeighborhoodDishes = async (locality, cuisineType, geoCoords) => {
   });
 
   // Finally, filter by nearest User geoCoords
-  const filteredByLocation = filterByGeoCoords(geoCoords, filteredByCuisine);
+  const filteredByLocation = filterByBoundingBox(geoCoords, filteredByCuisine);
 
   return filteredByLocation;
 };
 
 module.exports = {
   createBoundingBox,
-  filterByGeoCoords,
+  filterByBoundingBox,
   isChefInBounds,
   getCoordsInfo,
   parseGoogleResponse,

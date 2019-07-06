@@ -45,8 +45,13 @@ extend type Query {
 }
 
 extend type Mutation {
-  # status corresponds to orderInstructions in DB schema
+  """
+  Server takes incoming dishIDs from cart and tabulates cashTotal in postNewOrder.
+  Frontend is responsible for ensuring never to send Dishes whose quantity is 0 for new orders.
+  """
   postNewOrder(incomingOrder: IncomingOrder!): [Order]!
+
+  
   updateOrder(orderID: ID!, statusCode: Int!): [Order]!
 }
 

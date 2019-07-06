@@ -14,6 +14,7 @@ const OrderSchema = path.resolve(__dirname, '../Order/order.graphql');
 const ReviewSchema = path.resolve(__dirname, '../Review/review.graphql');
 const UserSchema = path.resolve(__dirname, '../User/user.graphql');
 const CountrySchema = path.resolve(__dirname, '../Country/country.graphql');
+const UtilSchema = path.resolve(__dirname, '../Util/util.graphql');
 
 const baseSchema = `
 schema {
@@ -32,6 +33,7 @@ const typeDefs = [
   readFileSync(ReviewSchema, 'utf-8'),
   readFileSync(UserSchema, 'utf-8'),
   readFileSync(CountrySchema, 'utf-8'),
+  readFileSync(UtilSchema, 'utf-8'),
 ];
 
 module.exports = typeDefs;

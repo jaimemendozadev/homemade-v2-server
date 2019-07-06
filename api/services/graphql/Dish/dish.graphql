@@ -12,12 +12,6 @@ type Dish {
   quantity: Int!
 }
 
-type ServerResponse {
-  hasError: Boolean
-  message: String
-}
-
-
 extend type Query {
   getActiveDishes(chefID: String!): [Dish]!
   getInactiveDishes(chefID: String!): [Dish]!

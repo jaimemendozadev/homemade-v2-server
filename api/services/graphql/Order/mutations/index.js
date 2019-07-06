@@ -10,7 +10,6 @@ const {generateErrorMsg} = require('./utils');
 
 */
 
-
 const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
   const errorMsg = "Couldn't save the incoming order in the database.";
   const {Order} = models;
@@ -24,8 +23,6 @@ const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
     throw new Error(errorMsg);
   }
 };
-
-
 
 const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
   const errorMsg = generateErrorMsg(statusCode);
@@ -53,5 +50,5 @@ const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
 
 module.exports = {
   postNewOrder,
-  updateOrder
+  updateOrder,
 };

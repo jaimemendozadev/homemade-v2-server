@@ -1,0 +1,4 @@
+type ServerResponse {
+  hasError: Boolean
+  message: String
+}

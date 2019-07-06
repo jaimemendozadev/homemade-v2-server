@@ -9,6 +9,24 @@ const {generateErrorMsg} = require('./utils');
 # 4: "Reviewed"
 
 */
+
+
+const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
+  const errorMsg = "Couldn't save the incoming order in the database.";
+  const {Order} = models;
+
+  try {
+    const newOrder = await Order.create(incomingOrder);
+
+    return [newOrder];
+  } catch (error) {
+    console.log(`${errorMsg} ${error}`);
+    throw new Error(errorMsg);
+  }
+};
+
+
+
 const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
   const errorMsg = generateErrorMsg(statusCode);
   const {Order} = models;
@@ -33,21 +51,7 @@ const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
   }
 };
 
-const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
-  const errorMsg = "Couldn't save the incoming order in the database.";
-  const {Order} = models;
-
-  try {
-    const newOrder = await Order.create(incomingOrder);
-
-    return [newOrder];
-  } catch (error) {
-    console.log(`${errorMsg} ${error}`);
-    throw new Error(errorMsg);
-  }
-};
-
 module.exports = {
-  updateOrder,
   postNewOrder,
+  updateOrder
 };

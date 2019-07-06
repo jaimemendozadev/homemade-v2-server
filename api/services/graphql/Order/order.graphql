@@ -27,15 +27,19 @@ input OrderStatusInput {
   statusMessage: String!
 }
 
-# New incoming order should have cart array of dishIDs and tabulated cash order
+input DishInput {
+  dishId: ID!
+  orderCount: Int!
+}
+
+# New incoming order should have cart array of dishIDs.
 input IncomingOrder {
   chefId: ID!
   customerId: ID!
-  cart: [ID!]!
+  cart: [DishInput!]!
   status: OrderStatusInput!
   # date on IncomingOrder is optional, default set by Database.
   date: String
-  cashTotal: Int!  
   orderInstructions: String!
 }
 
@@ -47,7 +51,12 @@ extend type Query {
 extend type Mutation {
   """
   Server takes incoming dishIDs from cart and tabulates cashTotal in postNewOrder.
+
+  For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
+
   Frontend is responsible for ensuring never to send Dishes whose quantity is 0 for new orders.
+
+  
   """
   postNewOrder(incomingOrder: IncomingOrder!): [Order]!
 

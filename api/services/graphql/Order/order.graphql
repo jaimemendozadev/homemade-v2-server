@@ -1,5 +1,6 @@
 type Order {
   # Decided chefId and customerId won't resolve to user info
+  _id: ID!
   chefId: ID!
   customerId: ID!
   cart: [Dish!]!
@@ -21,25 +22,12 @@ type OrderStatus {
   statusMessage: String!
 }
 
-input OrderedDish {
-  cuisineType: String!
-  name: String!
-  description: String!
-  dishImages: [String]
-  # chefId in OrderedDish doesn't resolve to Chef Profile
-  chefId: ID!
-  allergies: [String]
-  cashDonation: Int!
-  isActive: Boolean!
-  # quantity is remaining number of a dish a chef has in their inventory
-  quantity: Int!
-}
-
 input OrderStatusInput {
   statusCode: Int!
   statusMessage: String!
 }
 
+# New incoming order should have cart array of dishIDs and tabulated cash order
 input IncomingOrder {
   chefId: ID!
   customerId: ID!
@@ -59,7 +47,7 @@ extend type Query {
 extend type Mutation {
   # status corresponds to orderInstructions in DB schema
   postNewOrder(incomingOrder: IncomingOrder!): [Order]!
-  updateOrder(orderID: String!, status: String!): Order!
+  updateOrder(orderID: ID!, statusCode: Int!): [Order]!
 }
 
 

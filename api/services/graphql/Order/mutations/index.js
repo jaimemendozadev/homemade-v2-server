@@ -1,27 +1,13 @@
-// parent, args, context, info
-
-/*
-
-input IncomingOrder {
-  chefId: ID!
-  customerId: ID!
-  cart: [ID!]!
-  status: OrderStatusInput!
-  date: String!
-  cashTotal: Int!  
-  orderInstructions: String!
-}
-
-
-*/
 const updateOrder = () => {};
-const postNewOrder = (_parent, {input}, {models}) => {
-  const errorMsg = "Couldn't save the incoming order in the database.";
 
+const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
+  const errorMsg = "Couldn't save the incoming order in the database.";
+  const {Order} = models;
 
   try {
-    console.log('input ', input);
-    console.log('models ', models);
+    const newOrder = await Order.create(incomingOrder);
+
+    return [newOrder];
 
   } catch (error) {
     console.log(`${errorMsg} ${error}`);

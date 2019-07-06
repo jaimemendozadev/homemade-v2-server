@@ -45,7 +45,8 @@ input IncomingOrder {
   customerId: ID!
   cart: [ID!]!
   status: OrderStatusInput!
-  date: String!
+  # date on IncomingOrder is optional, default set by Database.
+  date: String
   cashTotal: Int!  
   orderInstructions: String!
 }
@@ -57,7 +58,7 @@ extend type Query {
 
 extend type Mutation {
   # status corresponds to orderInstructions in DB schema
-  postNewOrder(input: IncomingOrder!): [Order]!
+  postNewOrder(incomingOrder: IncomingOrder!): [Order]!
   updateOrder(orderID: String!, status: String!): Order!
 }
 

@@ -12,18 +12,18 @@ const {generateErrorMsg, processOrder} = require('./utils');
 
 const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
   const errorMsg = "Couldn't save the incoming order in the database.";
-  
+
   try {
     const newOrder = await processOrder(incomingOrder, models);
-    
+
     return {
       status: {
         hasError: false,
-        message: "Your order was successfully processed! Waiting for the Chef's approval!"
+        message:
+          "Your order was successfully processed! Waiting for the Chef's approval!",
       },
-      payload: newOrder 
-    }
-
+      payload: newOrder,
+    };
   } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);

@@ -9,7 +9,6 @@ const generateErrorMsg = statusCode => {
   return `Could not update the order ${errorMessages[statusCode]} with status code ${statusCode}.`;
 };
 
-
 /*
 
 # New incoming order should have cart array of dishIDs.
@@ -33,21 +32,35 @@ const formatNewDocument = incomingOrder => {
   const payload = Object.assign(incomingOrder, {cart: cartOfIDs});
 
   return payload;
-}
+};
 
+const performDishUpdates = async (incomingOrder, Dish) => {
+  const {cart} = incomingOrder;
+  const cartOfIDs = cart.map(DishInput => DishInput.dishId);
 
-const processOrder = async(incomingOrder, {Order}) => {
+  const promiseArr = [];
+
+  cartOfIDs.forEach(id => promiseArr.push(Dish.findById(id)));
+
+  console.log('promiseArr ', promiseArr);
+
+  return await Promise.all(promiseArr).then(values =>
+    console.log('values ', values),
+  );
+};
+
+const processOrder = async (incomingOrder, {Order, Dish}) => {
   // Format/Create Order in DB
   const payload = formatNewDocument(incomingOrder);
 
   const newOrder = await Order.create(payload);
 
-  const populatedOrder = await newOrder.populate('cart');
+  // Get the Dish info from DB
+  const dishes = await performDishUpdates(incomingOrder, Dish);
 
-  console.log('populatedOrder ', populatedOrder);
+  console.log(dishes);
 
   return [newOrder];
-
 };
 
 module.exports = {

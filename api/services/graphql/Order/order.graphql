@@ -7,7 +7,7 @@ type Order {
   status: OrderStatus!
   date: String!
   cashTotal: Int!
-  orderInstructions: String!
+  orderInstructions: String
 }
 
  # OrderStatus codes/messages
@@ -20,6 +20,11 @@ type Order {
 type OrderStatus {
   statusCode: Int!
   statusMessage: String!
+}
+
+type OrderResponsePayload {
+  status: ServerResponse,
+  payload: [Order!]!
 }
 
 input OrderStatusInput {
@@ -43,6 +48,8 @@ input IncomingOrder {
   orderInstructions: String!
 }
 
+
+
 extend type Query {
   # callerType of 'Customer' or 'Chef' determines whether to use callerID to query chefId or customerId in DB schema
   getOrdersByStatus(callerID: ID!, callerType: String!, statusCode: Int!): [Order]! 
@@ -50,17 +57,17 @@ extend type Query {
 
 extend type Mutation {
   """
-  Server takes incoming dishIDs from cart and tabulates cashTotal in postNewOrder.
+  Order Workflow
 
-  For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
-
-  Frontend is responsible for ensuring never to send Dishes whose quantity is 0 for new orders.
-
+  1) Post a New Order
   
+    Server takes incoming DishInput objects from cart, decrements each dish quantity, and tabulates cashTotal in postNewOrder. Essentially, the Server is the single source of truth, processing incoming requests and updating dish availability in the database. Response is a ServerResponse to the Customer informing their order is waiting approval.
+
+    For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
+
   """
-  postNewOrder(incomingOrder: IncomingOrder!): [Order]!
+  postNewOrder(incomingOrder: IncomingOrder!): OrderResponsePayload!
 
-  
   updateOrder(orderID: ID!, statusCode: Int!): [Order]!
 }
 

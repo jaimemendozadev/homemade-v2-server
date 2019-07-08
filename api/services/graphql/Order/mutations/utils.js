@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const generateErrorMsg = statusCode => {
   const errorMessages = {
     1: 'to be accepted',
@@ -35,18 +37,15 @@ const formatNewDocument = incomingOrder => {
 };
 
 const performDishUpdates = async (incomingOrder, Dish) => {
+
   const {cart} = incomingOrder;
-  const cartOfIDs = cart.map(DishInput => DishInput.dishId);
 
-  const promiseArr = [];
+  const findPayload = cart.map(id => mongoose.Types.ObjectId(id));
 
-  cartOfIDs.forEach(id => promiseArr.push(Dish.findById(id)));
+  const filteredDishes = await Dish.find({_id: {$in: findPayload}});
 
-  console.log('promiseArr ', promiseArr);
+  return filteredDishes;
 
-  return await Promise.all(promiseArr).then(values =>
-    console.log('values ', values),
-  );
 };
 
 const processOrder = async (incomingOrder, {Order, Dish}) => {
@@ -56,9 +55,7 @@ const processOrder = async (incomingOrder, {Order, Dish}) => {
   const newOrder = await Order.create(payload);
 
   // Get the Dish info from DB
-  const dishes = await performDishUpdates(incomingOrder, Dish);
-
-  console.log(dishes);
+  await performDishUpdates(incomingOrder, Dish);
 
   return [newOrder];
 };

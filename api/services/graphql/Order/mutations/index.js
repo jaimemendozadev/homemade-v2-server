@@ -1,4 +1,5 @@
-const {generateErrorMsg, processOrder} = require('./utils');
+const processOrder = require('./processOrder');
+const {generateErrorMsg} = require('./utils');
 
 /*
 # OrderStatus codes/messages
@@ -7,6 +8,7 @@ const {generateErrorMsg, processOrder} = require('./utils');
 # 2: "Completed"
 # 3: "Canceled"
 # 4: "Reviewed"
+
 
 */
 

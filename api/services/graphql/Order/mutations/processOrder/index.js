@@ -33,7 +33,8 @@ const processOrder = async (incomingOrder, {Order, Dish}) => {
   // Start formatting the order for saving in DB
   const payload = formatNewDocument(incomingOrder);
 
-  // Get the Dish info from DB
+  // Calculate the cashTotal amount and
+  // update quantity count for each dish
   await calcCashAmtQty(incomingOrder, Dish);
 
   // Save the Order in the DB

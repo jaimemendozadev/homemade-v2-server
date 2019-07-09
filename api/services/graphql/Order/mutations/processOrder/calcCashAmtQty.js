@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const updateDishQuantities = require('./updateDishQuantities');
+const calcCashTotal = require('./calcCashTotal');
 
 const calcCashAmtQty = async (incomingOrder, Dish) => {
   const {cart} = incomingOrder;
@@ -9,8 +10,13 @@ const calcCashAmtQty = async (incomingOrder, Dish) => {
 
   const queriedDishes = await Dish.find({_id: {$in: findPayload}});
 
+  // Update the quantity for each Dish with incoming Order quantities
   const updatedDishQuantities = updateDishQuantities(queriedDishes, cart);
 
+  // Calculate cashTotal from incoming order quantities
+  const cashTotal = calcCashTotal(queriedDishes, cart);
+
+  console.log(cashTotal);
   console.log(updatedDishQuantities);
 
   //   const updatePayload = cart.map(obj => {

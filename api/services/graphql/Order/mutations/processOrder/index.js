@@ -1,4 +1,4 @@
-const formatNewDocument = require('./formatNewDocument');
+const formatNewOrder = require('./formatNewOrder');
 const calcCashAmtQty = require('./calcCashAmtQty');
 
 /*
@@ -31,7 +31,7 @@ type Order {
 
 const processOrder = async (incomingOrder, {Order, Dish}) => {
   // Start formatting the order for saving in DB
-  const payload = formatNewDocument(incomingOrder);
+  const payload = formatNewOrder(incomingOrder);
 
   // Calculate the cashTotal amount and
   // update quantity count for each dish

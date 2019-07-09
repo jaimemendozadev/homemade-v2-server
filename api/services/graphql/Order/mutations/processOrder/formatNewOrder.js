@@ -1,4 +1,4 @@
-const formatNewDocument = incomingOrder => {
+const formatNewOrder = incomingOrder => {
   const {cart} = incomingOrder;
 
   const cartOfIDs = cart.map(DishInput => DishInput.dishId);
@@ -8,4 +8,4 @@ const formatNewDocument = incomingOrder => {
   return payload;
 };
 
-module.exports = formatNewDocument;
+module.exports = formatNewOrder;

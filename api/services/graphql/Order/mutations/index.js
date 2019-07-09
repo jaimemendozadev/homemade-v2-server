@@ -26,6 +26,7 @@ const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
       },
       payload: newOrder,
     };
+
   } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);

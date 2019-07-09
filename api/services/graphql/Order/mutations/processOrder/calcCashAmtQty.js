@@ -11,26 +11,27 @@ const calcCashAmtQty = async (incomingOrder, Dish) => {
   const queriedDishes = await Dish.find({_id: {$in: findPayload}});
 
   // Update the quantity for each Dish with incoming Order quantities
-  const updatedDishQuantities = updateDishQuantities(queriedDishes, cart);
+  const updatedDishQty = updateDishQuantities(queriedDishes, cart);
 
   // Calculate cashTotal from incoming order quantities
   const cashTotal = calcCashTotal(queriedDishes, cart);
 
-  console.log(cashTotal);
-  console.log(updatedDishQuantities);
 
-  //   const updatePayload = cart.map(obj => {
-  //     return {
-  //       updateOne: {
-  //         filter: {_id: obj.dishId},
-  //         update: {}
-  //       }
-  //     }
-  //   })
+  // Update each Dish with new quantity in DB
+  const updatePayload = cart.map(obj => {
+    const {dishId} = obj;
+    return {
+      updateOne: {
+        filter: {_id: dishId},
+        update: {quantity: updatedDishQty[dishId]}
+      }
+    }
+  });
 
-  // const bulkResult = await Dish.bulkWrite();
+  
+  await Dish.bulkWrite(updatePayload);
 
-  // return filteredDishes;
+  return cashTotal;
 };
 
 module.exports = calcCashAmtQty;

@@ -16,19 +16,17 @@ const calcCashAmtQty = async (incomingOrder, Dish) => {
   // Calculate cashTotal from incoming order quantities
   const cashTotal = calcCashTotal(queriedDishes, cart);
 
-
   // Update each Dish with new quantity in DB
   const updatePayload = cart.map(obj => {
     const {dishId} = obj;
     return {
       updateOne: {
         filter: {_id: dishId},
-        update: {quantity: updatedDishQty[dishId]}
-      }
-    }
+        update: {quantity: updatedDishQty[dishId]},
+      },
+    };
   });
 
-  
   await Dish.bulkWrite(updatePayload);
 
   return cashTotal;

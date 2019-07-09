@@ -1,7 +1,6 @@
 const formatNewOrder = require('./formatNewOrder');
 const calcCashAmtQty = require('./calcCashAmtQty');
 
-
 const processOrder = async (incomingOrder, {Order, Dish}) => {
   // Start formatting the order for saving in DB
   const payload = formatNewOrder(incomingOrder);
@@ -9,7 +8,7 @@ const processOrder = async (incomingOrder, {Order, Dish}) => {
   // Calculate the cashTotal amount and
   // update quantity count for each dish
   const cashTotal = await calcCashAmtQty(incomingOrder, Dish);
-  
+
   payload.cashTotal = cashTotal;
 
   // Save the Order in the DB

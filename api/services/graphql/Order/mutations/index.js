@@ -9,7 +9,6 @@ const {generateErrorMsg} = require('./utils');
 # 3: "Canceled"
 # 4: "Reviewed"
 
-
 */
 
 const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
@@ -26,7 +25,6 @@ const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
       },
       payload: newOrder,
     };
-
   } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);

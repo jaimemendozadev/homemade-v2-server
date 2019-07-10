@@ -6,7 +6,6 @@ const findChefsByStyle = require('./findChefsByStyle');
 const userProfile = require('./userProfile');
 const getSingleChef = require('./getSingleChef');
 
-
 module.exports = {
   getChefReviews,
   findChefsInRange,

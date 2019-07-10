@@ -9,6 +9,19 @@ const generateErrorMsg = statusCode => {
   return `Could not update the order ${errorMessages[statusCode]} with status code ${statusCode}.`;
 };
 
+
+const generateStatusMsg = statusCode => {
+  const statusMsgs = {
+    0: "Pending",
+    1: "Accepted",
+    2: "Completed",
+    3: "Canceled",
+    4: "Reviewed"
+  }
+
+  return statusMsgs[statusCode];
+}
 module.exports = {
   generateErrorMsg,
+  generateStatusMsg
 };

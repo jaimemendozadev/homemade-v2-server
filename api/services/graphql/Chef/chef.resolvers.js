@@ -8,7 +8,6 @@ const {
   findChefsByStyle,
   getChefReviews,
   getSingleChef,
-  
 } = require('./queries');
 
 module.exports = {

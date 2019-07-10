@@ -1,5 +1,5 @@
 const processOrder = require('./processOrder');
-const {generateErrorMsg} = require('./utils');
+const {generateErrorMsg, generateStatusMsg} = require('./utils');
 
 /*
 # OrderStatus codes/messages
@@ -35,20 +35,19 @@ const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
   const errorMsg = generateErrorMsg(statusCode);
   const {Order} = models;
 
-  console.log('statusCode ', statusCode);
-  console.log('orderID ', orderID);
   try {
-    const foundOrder = await Order.findById(orderID).populate('cart');
+    const options = {new: true};
+    const statusMessage = generateStatusMsg(statusCode);
+    const status = {
+      statusCode,
+      statusMessage
+    };
+    const update = {status}; 
 
-    console.log('foundOrder is ', foundOrder);
+    const updatedOrder = await Order.findOneAndUpdate({_id: orderID}, update, options).populate('cart');
 
-    return [
-      {
-        _id: '0989',
-        chefId: '7589',
-        customerId: '58890',
-      },
-    ];
+    return [updatedOrder];
+
   } catch (error) {
     console.log(`${errorMsg} ${errorMsg}`);
     throw new Error(errorMsg);

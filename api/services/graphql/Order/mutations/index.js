@@ -34,10 +34,9 @@ const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
 
 const updateOrder = async (_parent, {orderID, statusCode}, {models}) => {
   const errorMsg = generateErrorMsg(statusCode);
-  const {Order} = models;
 
   try {
-    const updatedOrder = await processOrderUpdate(orderID, statusCode, Order);
+    const updatedOrder = await processOrderUpdate(orderID, statusCode, models);
 
     return [updatedOrder];
   } catch (error) {

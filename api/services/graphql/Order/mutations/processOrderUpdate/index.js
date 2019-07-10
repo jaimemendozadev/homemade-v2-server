@@ -1,6 +1,7 @@
 const {generateStatusMsg} = require('../utils');
+const resetDishQuantities = require('./resetDishQuantities');
 
-const processOrderUpdate = async (orderID, statusCode, Order) => {
+const processOrderUpdate = async (orderID, statusCode, {Order, Dish}) => {
   // Update Order in DB with new statusCode
   const options = {new: true};
   const statusMessage = generateStatusMsg(statusCode);
@@ -20,8 +21,7 @@ const processOrderUpdate = async (orderID, statusCode, Order) => {
   // update each Dish count in DB
 
   if (statusCode === 3) {
-    const dishIDs = updatedOrder.cart.map(dish => dish._id);
-    console.log(dishIDs);
+    await resetDishQuantities(updatedOrder, Dish);
   }
 
   return updatedOrder;

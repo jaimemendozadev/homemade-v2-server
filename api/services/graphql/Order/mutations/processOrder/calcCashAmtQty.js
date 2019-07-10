@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
 const updateDishQuantities = require('./updateDishQuantities');
 const calcCashTotal = require('./calcCashTotal');
+const {bulkDBQuery} = require('../utils');
 
 const calcCashAmtQty = async (incomingOrder, Dish) => {
   const {cart} = incomingOrder;
 
-  // Query Each Dish from the DB
-  const findPayload = cart.map(obj => mongoose.Types.ObjectId(obj.dishId));
+  const dishIDsArray = cart.map(obj => obj.dishId);
 
-  const queriedDishes = await Dish.find({_id: {$in: findPayload}});
+  // Query Each Dish from the DB
+  const queriedDishes = bulkDBQuery(dishIDsArray, Dish);
 
   // Update the quantity for each Dish with incoming Order quantities
   const updatedDishQty = updateDishQuantities(queriedDishes, cart);

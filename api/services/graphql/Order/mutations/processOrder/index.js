@@ -6,7 +6,7 @@ const processOrder = async (incomingOrder, {Order, Dish}) => {
   const cashTotal = await calcCashAmtQty(incomingOrder, Dish);
 
   // Prep OrderPayload and save in DB
-  const OrderPayload = Object.assign({}, incomingOrder, {cashTotal})
+  const OrderPayload = Object.assign({}, incomingOrder, {cashTotal});
 
   const newOrder = await Order.create(OrderPayload);
 

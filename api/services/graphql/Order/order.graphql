@@ -1,8 +1,10 @@
 type Order {
-  # Decided chefId and customerId won't resolve to user info
+  # Decided chefId and customerId won't resolve to user info.
   _id: ID!
   chefId: ID!
   customerId: ID!
+  # Decided cart does not resolve to individual 
+  # dish info, only OrderedDish type
   cart: [OrderedDish!]!
   status: OrderStatus!
   date: String!

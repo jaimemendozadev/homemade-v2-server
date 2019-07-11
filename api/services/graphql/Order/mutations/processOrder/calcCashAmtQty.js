@@ -1,24 +1,22 @@
-const updateDishQuantities = require('./updateDishQuantities');
 const calcCashTotal = require('./calcCashTotal');
-const {bulkDBQuery} = require('../utils');
+const {bulkDBQuery, updateDishQuantities} = require('../utils');
 
 const calcCashAmtQty = async (incomingOrder, Dish) => {
   const {cart} = incomingOrder;
 
-  const dishIDsArray = cart.map(obj => obj.dishId);
+  const dishIDsArray = cart.map(({dishId}) => dishId);
 
   // Query Each Dish from the DB
   const queriedDishes = bulkDBQuery(dishIDsArray, Dish);
 
   // Update the quantity for each Dish with incoming Order quantities
-  const updatedDishQty = updateDishQuantities(queriedDishes, cart);
+  const updatedDishQty = updateDishQuantities(queriedDishes, cart, true);
 
   // Calculate cashTotal from incoming order quantities
   const cashTotal = calcCashTotal(queriedDishes, cart);
 
   // Update each Dish with new quantity in DB
-  const updatePayload = cart.map(obj => {
-    const {dishId} = obj;
+  const updatePayload = cart.map(({dishId}) => {
     return {
       updateOne: {
         filter: {_id: dishId},

@@ -39,8 +39,8 @@ const generateSingleOrder = (
   const cart = menuItemKeys.map(dishId => {
     return {
       dishId,
-      orderCount: Math.floor(Math.random() * 5)
-    }
+      orderCount: Math.floor(Math.random() * 5),
+    };
   });
 
   const date =

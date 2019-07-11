@@ -1,4 +1,4 @@
-const updateDishQuantities = (dishesInDB, incomingOrderCart) => {
+const updateDishQuantities = (dishesInDB, cartWithOrders) => {
   const updatedQuantities = {};
 
   // Create updatedQuantities obj with each dish's
@@ -9,8 +9,8 @@ const updateDishQuantities = (dishesInDB, incomingOrderCart) => {
   });
 
   // Decrement dish quantity with incoming orderCount
-  incomingOrderCart.forEach(dish => {
-    const {dishId, orderCount} = dish;
+  cartWithOrders.forEach(orderedDish => {
+    const {dishId, orderCount} = orderedDish;
     const countInDB = updatedQuantities[dishId];
     updatedQuantities[dishId] = countInDB - orderCount;
   });

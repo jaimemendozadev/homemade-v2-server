@@ -31,11 +31,7 @@ const bulkDBQuery = async (arrayOfIDs, Model) => {
   return queriedDishes;
 };
 
-const updateDishQuantities = (
-  dishesInDB,
-  incomingOrderCart,
-  decrement = true,
-) => {
+const updateDishQuantities = (dishesInDB, cartWithOrders, decrement = true) => {
   const updatedQuantities = {};
 
   // Create updatedQuantities obj with each dish's
@@ -48,8 +44,8 @@ const updateDishQuantities = (
   // Depending on decrement flag, decrement or increment
   // dish quantity with incoming orderCount
 
-  incomingOrderCart.forEach(dish => {
-    const {dishId, orderCount} = dish;
+  cartWithOrders.forEach(orderedDish => {
+    const {dishId, orderCount} = orderedDish;
     const countInDB = updatedQuantities[dishId];
     const updatedCount =
       decrement === true ? countInDB - orderCount : countInDB + orderCount;

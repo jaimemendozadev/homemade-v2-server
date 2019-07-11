@@ -9,7 +9,7 @@ const resetDishQuantities = async (updatedOrder, DishModel) => {
   console.log(dishIDs);
   console.log(foundDishes);
   console.log(updateDishQuantities);
-  
+
   // Update each Dish with new quantity in DB
 
   /*

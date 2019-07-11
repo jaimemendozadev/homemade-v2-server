@@ -3,12 +3,19 @@ type Order {
   _id: ID!
   chefId: ID!
   customerId: ID!
-  cart: [Dish!]!
+  cart: [OrderedDish!]!
   status: OrderStatus!
   date: String!
   cashTotal: Int!
   orderInstructions: String
 }
+
+type OrderedDish {
+  dishId: ID!
+  orderCount: Int!
+}
+
+
 
  # OrderStatus codes/messages
   # 0: "Pending"
@@ -32,7 +39,7 @@ input OrderStatusInput {
   statusMessage: String!
 }
 
-input DishInput {
+input OrderedDishInput {
   dishId: ID!
   orderCount: Int!
 }
@@ -41,7 +48,7 @@ input DishInput {
 input IncomingOrder {
   chefId: ID!
   customerId: ID!
-  cart: [DishInput!]!
+  cart: [OrderedDishInput!]!
   status: OrderStatusInput!
   # date on IncomingOrder is optional, default set by Database.
   date: String
@@ -61,7 +68,7 @@ extend type Mutation {
 
   1) Post a New Order
   
-    Server takes incoming DishInput objects from cart, decrements each dish quantity, and tabulates cashTotal in postNewOrder. Essentially, the Server is the single source of truth, processing incoming requests and updating dish availability in the database. Response is a ServerResponse to the Customer informing their order is waiting approval.
+    Server takes incoming OrderedDishInput objects from cart, decrements each dish quantity, and tabulates cashTotal in postNewOrder. Essentially, the Server is the single source of truth, processing incoming requests and updating dish availability in the database. Response is a ServerResponse to the Customer informing their order is waiting approval.
 
     For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
 

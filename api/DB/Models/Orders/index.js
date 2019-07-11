@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 const OrderSchema = new Schema({
   chefId: {type: Schema.Types.ObjectId, ref: 'chef'},
   customerId: {type: Schema.Types.ObjectId, ref: 'user'},
-  cart: [{type: Schema.Types.ObjectId, ref: 'dish'}],
+  cart: [],
   status: {},
   date: {type: Date, default: Date.now},
   cashTotal: Number,

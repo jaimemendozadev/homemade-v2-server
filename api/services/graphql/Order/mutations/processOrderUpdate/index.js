@@ -15,7 +15,7 @@ const processOrderUpdate = async (orderID, statusCode, {Order, Dish}) => {
     {_id: orderID},
     update,
     options,
-  ).populate('cart');
+  );
 
   // If the order get canceled,
   // update each Dish count in DB

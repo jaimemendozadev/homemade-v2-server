@@ -1,23 +1,21 @@
 const {findOrdersByStatus, generateErrorMsg} = require('./utils');
 
-const getSingleOrder = async(_parent, {orderID}, {models}) => {
-  const errorMsg = "Could not find the requested order in the database.";
+const getSingleOrder = async (_parent, {orderID}, {models}) => {
+  const errorMsg = 'Could not find the requested order in the database.';
   const {Order} = models;
 
   try {
     const foundOrder = await Order.findById(orderID);
-    
+
     console.log('foundOrder is ', foundOrder);
 
     return [foundOrder];
-
-  } catch(error) {
+  } catch (error) {
     console.log(`${errorMsg} `, error);
 
     throw new Error(errorMsg);
   }
-}
-
+};
 
 const getOrdersByStatus = async (
   _parent,
@@ -42,5 +40,5 @@ const getOrdersByStatus = async (
 
 module.exports = {
   getOrdersByStatus,
-  getSingleOrder
+  getSingleOrder,
 };

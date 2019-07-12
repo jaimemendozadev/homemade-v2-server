@@ -2,10 +2,19 @@ type Review {
   _id: ID
   reviewText: String
   rating: Int
+  # chefId resolves to Chef info.
   chefId: ID
-  # should orderId resolve to Order?
+  # orderId resolves to the Order.
   orderId: ID 
   date: String
 }
 
+
+input ReviewInput {
+  reviewText: String!
+  rating: Int!
+  chefId: ID!
+  orderId: ID! 
+  date: String  
+}
 

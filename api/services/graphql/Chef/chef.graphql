@@ -49,5 +49,21 @@ extend type Query {
 
 #ToDo: Work on Chef Review after fixing Order Schema
 extend type Mutation {
-  postChefReview(authID: String!): [String]!
+  postChefReview(chefID: ID!): [Review]!
 }
+
+
+
+
+
+
+# type Review {
+#   _id: ID
+#   reviewText: String
+#   rating: Int
+#   chefId: ID
+#   # should orderId resolve to Order?
+#   orderId: ID 
+#   date: String
+# }
+

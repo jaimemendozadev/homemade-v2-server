@@ -7,7 +7,7 @@ const calcCashAmtQty = async (incomingOrder, Dish) => {
   const dishIDsArray = cart.map(({dishId}) => dishId);
 
   // Query Each Dish from the DB
-  const queriedDishes = bulkDBQuery(dishIDsArray, Dish);
+  const queriedDishes = await bulkDBQuery(dishIDsArray, Dish);
 
   // Update the quantity for each Dish with incoming Order quantities
   const updatedDishQty = updateDishQuantities(queriedDishes, cart, true);

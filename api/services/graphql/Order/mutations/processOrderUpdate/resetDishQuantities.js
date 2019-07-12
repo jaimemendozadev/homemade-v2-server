@@ -3,7 +3,7 @@ const {bulkDBQuery, updateDishQuantities} = require('../utils');
 const resetDishQuantities = async (updatedOrder, DishModel) => {
   // Find all the dishes in the DB
   const {cart} = updatedOrder;
-  const dishIDsArray = cart.map(({dishId})=> dishId);
+  const dishIDsArray = cart.map(({dishId}) => dishId);
 
   const foundDishes = await bulkDBQuery(dishIDsArray, DishModel);
 
@@ -21,7 +21,6 @@ const resetDishQuantities = async (updatedOrder, DishModel) => {
   });
 
   await DishModel.bulkWrite(updatePayload);
-
 };
 
 module.exports = resetDishQuantities;

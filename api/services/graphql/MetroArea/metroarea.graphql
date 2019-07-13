@@ -1,4 +1,5 @@
 type MetroArea {
   name: String!
-  neighborhoods: [Neighborhood]!    
+  neighborhoods: [Neighborhood]!
+  chefs: [Chef]!
 }

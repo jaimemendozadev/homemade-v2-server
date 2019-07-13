@@ -1,4 +1,5 @@
 type Neighborhood {
-    name: String
+    _id: ID!
+    name: String!
     chefs: [Chef]
 }

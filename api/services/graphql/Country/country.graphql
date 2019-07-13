@@ -1,4 +1,5 @@
 type Country {
+  _id: ID!
   long_name: String!
   short_name: String!
   metroAreas: [Neighborhood]

@@ -18,7 +18,7 @@ const performGeoUpdates = async chefID => {
   // Use Chef Address Info to Create/Save Neighborhood and add Chef ID
   const chefNeighborhood = parsedChefAddres.city;
 
-  console.log('chefNeighborhood is ', chefNeighborhood)
+  console.log('chefNeighborhood is ', chefNeighborhood);
 
   const neighborhoodID = await neighborhoodUpdate(chefNeighborhood, chefID);
 

@@ -25,6 +25,21 @@ const orderId = async ({orderId}, _args, {models}) => {
   }
 };
 
+const customerId = async ({customerId}, _args, {models}) => {
+  const errorMsg = `Could not find the User in the Database.`;
+  const {User} = models;
+
+  try {
+    const foundUser = await User.findById(customerId);
+
+    return foundUser;
+  } catch (error) {
+    console.log(`${errorMsg} ${error}`);
+    throw new Error(errorMsg);
+  }
+
+}
+
 const getChefReviews = async (_parent, {chefID}, {models}) => {
   const {Chef} = models;
   const errorMsg = "There was a problem getting the chef's reviews.";
@@ -42,5 +57,6 @@ const getChefReviews = async (_parent, {chefID}, {models}) => {
 module.exports = {
   chefId,
   orderId,
+  customerId,
   getChefReviews,
 };

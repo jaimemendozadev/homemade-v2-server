@@ -75,6 +75,9 @@ extend type Mutation {
 
     For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
 
+    Frontend will be responsible for making sure a User never submits an order for an unavailable dish. May end logic in backend to send 
+    an error response is requested dish is unavailable.
+
   """
   postNewOrder(incomingOrder: IncomingOrder!): OrderResponsePayload!
 

@@ -1,7 +1,7 @@
 const randomLocation = require('random-location');
 const geoCoords = require('./geoCoords');
 
-const _generateGeoCoords = () => {
+const generateGeoCoords = () => {
   const randomIdx = Math.floor(Math.random() * geoCoords.length);
   const chosenCoords = geoCoords[randomIdx];
 
@@ -18,7 +18,7 @@ const _generateGeoCoords = () => {
   return {geo_lat: latitude, geo_lng: longitude};
 };
 
-const _generateSingleChef = user => {
+const generateSingleChef = user => {
   const newChef = {};
 
   const rating = Math.floor(Math.random() * 100);
@@ -29,7 +29,7 @@ const _generateSingleChef = user => {
   newChef.chefReviews = [];
 
   newChef.chefDishes = [];
-  newChef.location = _generateGeoCoords();
+  newChef.location = generateGeoCoords();
   newChef.rating = rating;
 
   return newChef;
@@ -43,7 +43,7 @@ const generateMockChefs = users => {
   for (let i = 0; i < numOfChefs; i++) {
     const currentUser = users[i];
 
-    chefsArray.push(_generateSingleChef(currentUser));
+    chefsArray.push(generateSingleChef(currentUser));
   }
 
   return chefsArray;

@@ -1,4 +1,10 @@
 type Country {
-  name: String
+  long_name: String!
+  short_name: String!
   metroAreas: [Neighborhood]
+}
+
+
+extend type Query {
+  findCountry(countryName: String!): [Country]! 
 }

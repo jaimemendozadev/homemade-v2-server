@@ -1,11 +1,14 @@
 const {Country} = require('../../../api/DB/Models');
 
 const countryUpdate = async (chefCountry, metroAreaID) => {
-  const haveCountry = await Country.exists({name: chefCountry});
+  const {short_name, long_name} = chefCountry;
+  
+  const haveCountry = await Country.exists({long_name});
 
   if (!haveCountry) {
     const payload = {
-      name: chefCountry,
+      short_name,
+      long_name,
       metroAreas: [metroAreaID],
     };
 

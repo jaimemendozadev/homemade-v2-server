@@ -11,7 +11,11 @@ const parseCountryMetro = serverResponse => {
         const {types} = addressObj;
 
         if (types.includes('country')) {
-          payload['Country'] = addressObj.long_name;
+          // payload['Country'] = addressObj.long_name;
+          const {short_name, long_name} = addressObj;
+          payload['Country'] = {};
+          payload['Country']['short_name'] = short_name;
+          payload['Country']['long_name'] = long_name;
         }
 
         if (types.includes('administrative_area_level_2')) {

@@ -12,6 +12,6 @@ module.exports = {
   Review: {
     chefId,
     orderId,
-    customerId
+    customerId,
   },
 };

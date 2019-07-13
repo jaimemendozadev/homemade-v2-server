@@ -37,8 +37,7 @@ const customerId = async ({customerId}, _args, {models}) => {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);
   }
-
-}
+};
 
 const getChefReviews = async (_parent, {chefID}, {models}) => {
   const {Chef} = models;

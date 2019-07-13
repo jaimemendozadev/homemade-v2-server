@@ -7,7 +7,6 @@ const generateSingleReview = order => {
 
   const {chefId, customerId, _id, date} = order;
   const orderId = _id;
-  
 
   return {
     reviewText,

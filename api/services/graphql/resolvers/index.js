@@ -6,6 +6,7 @@ const CountryResolvers = require('../Country/country.resolvers');
 const DishResolvers = require('../Dish/dish.resolvers');
 const OrderResolvers = require('../Order/order.resolvers');
 const UserResolvers = require('../User/user.resolvers');
+const ReviewResolvers = require('../Review/review.resolvers');
 
 const resolvers = merge(
   {},
@@ -16,6 +17,7 @@ const resolvers = merge(
   DishResolvers,
   OrderResolvers,
   UserResolvers,
+  ReviewResolvers
 );
 
 module.exports = resolvers;

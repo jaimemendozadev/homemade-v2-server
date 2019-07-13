@@ -3,9 +3,9 @@ type Review {
   reviewText: String
   rating: Int
   # chefId resolves to Chef info.
-  chefId: ID
-  # orderId resolves to the Order.
-  orderId: ID 
+  chefId: Chef!
+  # orderId resolves to the Order attached to the Review.
+  orderId: Order!
   date: String
 }
 
@@ -18,3 +18,14 @@ input ReviewInput {
   date: String  
 }
 
+
+
+extend type Query {
+  getChefReviews(chefID: ID!): [Review]!
+}
+
+
+#ToDo: Work on Chef Review after fixing Order Schema
+extend type Mutation {
+  postChefReview(chefID: ID!): [Review]!
+}

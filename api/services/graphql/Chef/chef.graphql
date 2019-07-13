@@ -40,30 +40,13 @@ input AddressInput {
 
 extend type Query {
   getSingleChef(chefID: ID!): Chef!
-  getChefReviews(chefID: ID!): [Review]!
-  # Finds Chefs in a Neighborhood and filters by bounding box.
+  # Finds Chefs in a Neighborhood and filtrs by bounding box.
   findChefsInRange(geoCoords: LocationInput!): [Chef]!
   # Finds Chefs by Style then filters results by geoCoords.
   findChefsByStyle(geoCoords: LocationInput!, cuisineType: String!): [Chef]!
 }
 
-#ToDo: Work on Chef Review after fixing Order Schema
-extend type Mutation {
-  postChefReview(chefID: ID!): [Review]!
-}
 
 
 
-
-
-
-# type Review {
-#   _id: ID
-#   reviewText: String
-#   rating: Int
-#   chefId: ID
-#   # should orderId resolve to Order?
-#   orderId: ID 
-#   date: String
-# }
 

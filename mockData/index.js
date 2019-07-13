@@ -1,4 +1,4 @@
-require('dotenv').load();
+require('dotenv').config();
 const {clearDatabase} = require('./utils/database');
 const UserData = require('../mockJSON/Users.json');
 

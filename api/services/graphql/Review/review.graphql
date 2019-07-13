@@ -1,6 +1,7 @@
-#ToDo: Optimize chefId and OrderId resolvers to prevent over-resolving
-#and killing the DB
-
+"""
+ToDo: Optimize chefId, OrderId, & resolvers 
+to prevent over-resolving and killing the Database.
+"""
 type Review {
   _id: ID
   reviewText: String
@@ -9,6 +10,8 @@ type Review {
   chefId: Chef!
   # orderId resolves to the Order attached to the Review.
   orderId: Order!
+
+  customerId: User!
   date: String
 }
 

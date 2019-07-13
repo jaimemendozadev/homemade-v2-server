@@ -17,10 +17,15 @@ const countryUpdate = async (chefCountry, metroAreaID) => {
     const foundResult = await Country.find({long_name});
 
     const foundCountry = foundResult.pop();
+    const {metroAreas} = foundCountry;
 
-    foundCountry.metroAreas.push(metroAreaID);
+    const foundMetroIdx = metroAreas.includes(metroAreaID);
 
-    await foundCountry.save();
+    if(foundMetroIdx < 0) {
+      foundCountry.metroAreas.push(metroAreaID);
+
+      await foundCountry.save();
+    }
   }
 };
 

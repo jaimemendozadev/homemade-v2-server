@@ -7,9 +7,9 @@ type Country {
 
 
 input NewCountryInput {
-  long_name: String,
-  short_name: String,
-  metroAreas: [ID],
+  long_name: String
+  short_name: String
+  metroAreas: [ID]
 }
 
 extend type Query {
@@ -17,5 +17,5 @@ extend type Query {
 }
 
 extend type Mutation {
-  createCountry(newCountry: NewCountryInput!) [Country!]!
+  createCountry(newCountry: NewCountryInput!): [Country!]!
 }

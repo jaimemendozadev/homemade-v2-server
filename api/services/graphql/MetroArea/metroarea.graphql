@@ -1,5 +1,20 @@
 type MetroArea {
+  _id: ID!
   name: String!
   neighborhoods: [Neighborhood]!
   chefs: [Chef]!
+}
+
+input NewMetroInput {
+  name: String
+  neighborhoods: [ID]
+  chefs: [ID]
+}
+
+extend type Query {
+  findMetroArea(metroAreaName: String!): [MetroArea]!
+}
+
+extend type Mutation {
+  createMetroArea(incomingMetro: NewMetroInput): [MetroArea!]!
 }

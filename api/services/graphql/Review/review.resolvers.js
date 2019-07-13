@@ -1,7 +1,5 @@
 const {postChefReview} = require('./mutations');
-const {
-  getChefReviews
-} = require('./queries');
+const {getChefReviews, chefId, orderId} = require('./queries');
 
 module.exports = {
   Query: {
@@ -12,6 +10,7 @@ module.exports = {
   },
 
   Review: {
-
+    chefId,
+    orderId
   },
 };

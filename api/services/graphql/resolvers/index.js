@@ -17,7 +17,7 @@ const resolvers = merge(
   DishResolvers,
   OrderResolvers,
   UserResolvers,
-  ReviewResolvers
+  ReviewResolvers,
 );
 
 module.exports = resolvers;

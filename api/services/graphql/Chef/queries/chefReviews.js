@@ -1,12 +1,13 @@
-const chefReviews = async (parent, _args, {models}) => {
+const chefReviews = async ({_id}, _args, {models}) => {
   const {Chef} = models;
-  const userID = parent._id;
+ 
   const errorMsg = "There was a problem getting the chef's reviews.";
 
   try {
-    const result = await Chef.findOne({_id: userID}).populate('chefReviews');
+    const result = await Chef.findOne({_id}).populate('chefReviews');
 
     return result.chefReviews; // Can return empty array
+    
   } catch (error) {
     console.log(`${errorMsg} `, error);
     throw new Error(errorMsg);

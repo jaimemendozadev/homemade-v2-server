@@ -1,5 +1,5 @@
-const postChefReview = () => {}
+const postChefReview = () => {};
 
 module.exports = {
-    postChefReview
-}
+  postChefReview,
+};

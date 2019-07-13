@@ -1,3 +1,6 @@
+#ToDo: Optimize chefId and OrderId resolvers to prevent over-resolving
+#and killing the DB
+
 type Review {
   _id: ID
   reviewText: String

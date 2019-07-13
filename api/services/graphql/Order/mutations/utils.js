@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const generateErrorMsg = statusCode => {
   const errorMessages = {
     1: 'to be accepted',
@@ -21,14 +19,6 @@ const generateStatusMsg = statusCode => {
   };
 
   return statusMsgs[statusCode];
-};
-
-const bulkDBQuery = async (arrayOfIDs, Model) => {
-  const findPayload = arrayOfIDs.map(_id => mongoose.Types.ObjectId(_id));
-
-  const queriedDishes = await Model.find({_id: {$in: findPayload}});
-
-  return queriedDishes;
 };
 
 const updateDishQuantities = (dishesInDB, cartWithOrders, decrement = true) => {
@@ -58,6 +48,5 @@ const updateDishQuantities = (dishesInDB, cartWithOrders, decrement = true) => {
 module.exports = {
   generateErrorMsg,
   generateStatusMsg,
-  bulkDBQuery,
   updateDishQuantities,
 };

@@ -1,5 +1,5 @@
 const calcCashTotal = require('./calcCashTotal');
-const {bulkDBQuery, updateDishQuantities} = require('../utils');
+const {bulkDBQuery, updateDishQuantities} = require('../../../utils');
 
 const calcCashAmtQty = async (incomingOrder, Dish) => {
   const {cart} = incomingOrder;

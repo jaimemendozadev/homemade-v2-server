@@ -31,7 +31,6 @@ const parseAddress = serverResponse => {
         if (types.includes('postal_code')) {
           addressInfo['postal_code'] = addressObj.postal_code;
         }
-
       });
     }
   });

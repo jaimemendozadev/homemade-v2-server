@@ -1,4 +1,4 @@
-const {bulkDBQuery, updateDishQuantities} = require('../utils');
+const {bulkDBQuery, updateDishQuantities} = require('../../../utils');
 
 const resetDishQuantities = async (updatedOrder, DishModel) => {
   // Find all the dishes in the DB

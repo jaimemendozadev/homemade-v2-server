@@ -2,16 +2,12 @@ const findCountry = async (_parent, {countryName}, {models}) => {
   const errorMsg = "Can't find the Country in the Database.";
   const {Country} = models;
   try {
-    const byShortName = await Country.find({short_name: countryName}).populate(
-      'metroAreas',
-    );
+    const byShortName = await Country.find({short_name: countryName});
 
     if (byShortName.length) {
       return byShortName;
     } else {
-      const byLongName = await Country.find({long_name: countryName}).populate(
-        'metroAreas',
-      );
+      const byLongName = await Country.find({long_name: countryName});
 
       if (byLongName.length) {
         return byLongName;
@@ -25,14 +21,17 @@ const findCountry = async (_parent, {countryName}, {models}) => {
   }
 };
 
-const metroAreas = async ({metroAreas}) => {
+const metroAreas = async ({_id}, _args, {models}) => {
   const errorMsg = "Can't find Metro Areas in the Database.";
+  const {Country} = models;
 
-  console.log('metroAreas ', metroAreas);
-  if (!metroAreas) {
-    throw new Error(errorMsg);
-  } else {
+  try {
+    const {metroAreas} = await Country.findById(_id).populate('metroAreas');
+
     return metroAreas;
+  } catch (error) {
+    console.log(`${errorMsg} ${error}`);
+    throw new Error(errorMsg);
   }
 };
 

@@ -5,11 +5,6 @@ module.exports = [
   },
 
   {
-    neighborhood: 'Marina del Rey',
-    coords: {latitude: 33.980289, longitude: -118.451745},
-  },
-
-  {
     neighborhood: 'Downtown Los Angeles',
     coords: {latitude: 34.040713, longitude: -118.246769},
   },

@@ -18,6 +18,8 @@ const performGeoUpdates = async chefID => {
   // Use Chef Address Info to Create/Save Neighborhood and add Chef ID
   const chefNeighborhood = parsedChefAddres.city;
 
+  console.log('chefNeighborhood is ', chefNeighborhood)
+
   const neighborhoodID = await neighborhoodUpdate(chefNeighborhood, chefID);
 
   // Use new Neighborhood ID and Chef ID to create/update Metro Area

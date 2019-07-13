@@ -1,10 +1,13 @@
 // parent, args, context, info
-const neighborhoods = async (parent, args, {models}) => {
+const neighborhoods = async ({_id}, _args, {models}) => {
   const errorMsg = "Couldn't find the Neighborhoods in the Database.";
-  const {Neighborhood} = models;
+  const {MetroArea} = models;
   try {
+    const {neighborhoods} = await MetroArea.findById(_id).populate(
+      'neighborhoods',
+    );
 
-    console.log(Neighborhood)
+    return neighborhoods;
   } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);

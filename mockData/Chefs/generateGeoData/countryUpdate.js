@@ -21,7 +21,7 @@ const countryUpdate = async (chefCountry, metroAreaID) => {
 
     const foundMetroIdx = metroAreas.includes(metroAreaID);
 
-    if(foundMetroIdx < 0) {
+    if (foundMetroIdx < 0) {
       foundCountry.metroAreas.push(metroAreaID);
 
       await foundCountry.save();

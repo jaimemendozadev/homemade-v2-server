@@ -14,20 +14,17 @@ const neighborhoods = async ({_id}, _args, {models}) => {
   }
 };
 
-const chefs = async({_id}, _args, {models}) => {
+const chefs = async ({_id}, _args, {models}) => {
   const errorMsg = "Couldn't find the Chefs in the Database.";
   const {MetroArea} = models;
   try {
-    const {chefs}= await MetroArea.findById(_id).populate(
-      'chefs',
-    );
+    const {chefs} = await MetroArea.findById(_id).populate('chefs');
 
     return chefs;
   } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);
   }
-  
 };
 module.exports = {
   neighborhoods,

@@ -27,22 +27,17 @@ const chefs = async ({_id}, _args, {models}) => {
   }
 };
 
-
-const findMetroArea = async(_parent, {metroAreaName}, {models}) => {
+const findMetroArea = async (_parent, {metroAreaName}, {models}) => {
   const errorMsg = "Couldn't find the Metro Area in the Database";
   const {MetroArea} = models;
 
-  console.log('metroAreaName ', metroAreaName)
-
   try {
-    const regex = new RegExp(metroAreaName, "i");
-    console.log('regex ', regex)
+    const regex = new RegExp(metroAreaName, 'i');
 
     const newMetro = await MetroArea.find({name: regex});
-    console.log('newMetro ', newMetro)
-    return newMetro;
 
-  } catch(error) {
+    return newMetro;
+  } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);
   }
@@ -51,5 +46,5 @@ const findMetroArea = async(_parent, {metroAreaName}, {models}) => {
 module.exports = {
   neighborhoods,
   chefs,
-  findMetroArea
+  findMetroArea,
 };

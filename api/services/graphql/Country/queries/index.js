@@ -2,12 +2,14 @@ const findCountry = async (_parent, {countryName}, {models}) => {
   const errorMsg = "Can't find the Country in the Database.";
   const {Country} = models;
   try {
-    const byShortName = await Country.find({short_name: countryName});
+    const regex = new RegExp(countryName, "i");
+
+    const byShortName = await Country.find({short_name: regex});
 
     if (byShortName.length) {
       return byShortName;
     } else {
-      const byLongName = await Country.find({long_name: countryName});
+      const byLongName = await Country.find({long_name: regex});
 
       if (byLongName.length) {
         return byLongName;

@@ -2,7 +2,7 @@ const {neighborhoods, chefs, findMetroArea} = require('./queries');
 
 module.exports = {
   Query: {
-    findMetroArea
+    findMetroArea,
   },
   MetroArea: {
     neighborhoods,

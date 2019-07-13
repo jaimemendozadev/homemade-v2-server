@@ -4,7 +4,7 @@ const {generateUserUpdates} = require('../Users');
 const generateGeoData = require('../Chefs/generateGeoData');
 const {Chef, User} = require('../../api/DB/Models');
 
-const _performUpdate = async updatedInfo => {
+const performUpdate = async updatedInfo => {
   const {_id, payload, type} = updatedInfo;
 
   if (type === 'Chef') {
@@ -16,8 +16,8 @@ const _performUpdate = async updatedInfo => {
   }
 };
 
-const _saveUpdatesInDB = (updatesPayload, callback) => {
-  async.mapSeries(updatesPayload, _performUpdate, async (err, results) => {
+const saveUpdatesInDB = (updatesPayload, callback) => {
+  async.mapSeries(updatesPayload, performUpdate, async (err, results) => {
     let callbackMSG = 'Chefs updated in DB with reviews and dishes.';
 
     if (err) {
@@ -53,7 +53,7 @@ const performUpdates = (
   const UserUpdates = generateUserUpdates(chefsInDB);
   const UpdatesPayload = [...ChefUpdates, ...UserUpdates];
 
-  _saveUpdatesInDB(UpdatesPayload, dbConnectCallback);
+  saveUpdatesInDB(UpdatesPayload, dbConnectCallback);
 };
 
 module.exports = performUpdates;

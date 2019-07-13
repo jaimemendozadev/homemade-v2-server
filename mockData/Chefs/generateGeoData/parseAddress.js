@@ -32,9 +32,6 @@ const parseAddress = serverResponse => {
           addressInfo['postal_code'] = addressObj.postal_code;
         }
 
-        if (types.includes('country')) {
-          addressInfo['country'] = addressObj.long_name;
-        }
       });
     }
   });

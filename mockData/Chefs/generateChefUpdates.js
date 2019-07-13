@@ -1,4 +1,4 @@
-const _organizeData = dataArray => {
+const organizeData = dataArray => {
   const payload = {};
 
   dataArray.forEach(obj => {
@@ -18,8 +18,8 @@ const _organizeData = dataArray => {
 const generateChefUpdates = (reviews, dishes, chefArray) => {
   const results = [];
 
-  const organizedReviews = _organizeData(reviews);
-  const organizedDishes = _organizeData(dishes);
+  const organizedReviews = organizeData(reviews);
+  const organizedDishes = organizeData(dishes);
 
   for (let i = 0; i < chefArray.length; i++) {
     const currentID = chefArray[i];

@@ -18,7 +18,7 @@ const getAllChefDishes = async (_parent, {chefID}, {models}) => {
 };
 
 const getSingleDish = async (_parent, {dishID}, {models}) => {
-  const errorMsg = "Couldn't find the specified dish in the database.";
+  const errorMsg = "Couldn't find the specified dish in the Database.";
   const {Dish} = models;
   try {
     const foundDishes = await Dish.findById(dishID);

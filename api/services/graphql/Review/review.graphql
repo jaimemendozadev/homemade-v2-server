@@ -30,5 +30,5 @@ extend type Query {
 
 #ToDo: Work on Chef Review after fixing Order Schema
 extend type Mutation {
-  postChefReview(chefID: ID!): [Review]!
+  postChefReview(incomingReview: ReviewInput!): [Review!]!
 }

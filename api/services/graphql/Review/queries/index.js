@@ -1,29 +1,29 @@
 const chefId = async ({chefId}, _args, {models}) => {
-  const errorMsg = `Could not find the chef in the database.`;
+  const errorMsg = `Could not find the chef in the Database.`;
   const {Chef} = models;
 
   try {
     const foundChef = await Chef.findById(chefId);
 
     return foundChef;
-  } catch(error) {
+  } catch (error) {
     console.log(`${errorMsg} ${error}`);
     throw new Error(errorMsg);
   }
 };
 const orderId = async ({orderId}, _args, {models}) => {
-    const errorMsg = `Could not find the Order in the database.`;
-    const {Order} = models;
-  
-    try {
-      const foundOrder = await Order.findById(orderId);
-  
-      return foundOrder;
-    } catch(error) {
-      console.log(`${errorMsg} ${error}`);
-      throw new Error(errorMsg);
-    }
-  };
+  const errorMsg = `Could not find the Order in the Database.`;
+  const {Order} = models;
+
+  try {
+    const foundOrder = await Order.findById(orderId);
+
+    return foundOrder;
+  } catch (error) {
+    console.log(`${errorMsg} ${error}`);
+    throw new Error(errorMsg);
+  }
+};
 
 const getChefReviews = async (_parent, {chefID}, {models}) => {
   const {Chef} = models;

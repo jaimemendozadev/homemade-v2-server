@@ -71,7 +71,7 @@ extend type Mutation {
 
   1) Post a New Order
   
-    Server takes incoming OrderedDishInput objects from cart, decrements each dish quantity, and tabulates cashTotal in postNewOrder. Essentially, the Server is the single source of truth, processing incoming requests and updating dish availability in the database. Response is a ServerResponse to the Customer informing their order is waiting approval.
+    Server takes incoming OrderedDishInput objects from cart, decrements each dish quantity, and tabulates cashTotal in postNewOrder. Essentially, the Server is the single source of truth, processing incoming requests and updating dish availability in the Database. Response is a ServerResponse to the Customer informing their order is waiting approval.
 
     For Orders, there is a one to one mapping between a User and a Chef. A User's Order will never have dishes from other local Chefs in the neighborhood. 
 

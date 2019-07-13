@@ -13,7 +13,7 @@ const {generateErrorMsg} = require('./utils');
 */
 
 const postNewOrder = async (_parent, {incomingOrder}, {models}) => {
-  const errorMsg = "Couldn't save the incoming order in the database.";
+  const errorMsg = "Couldn't save the incoming order in the Database.";
 
   try {
     const newOrder = await processOrder(incomingOrder, models);

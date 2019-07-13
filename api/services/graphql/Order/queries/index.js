@@ -1,7 +1,7 @@
 const {findOrdersByStatus, generateErrorMsg} = require('./utils');
 
 const getSingleOrder = async (_parent, {orderID}, {models}) => {
-  const errorMsg = 'Could not find the requested order in the database.';
+  const errorMsg = 'Could not find the requested order in the Database.';
   const {Order} = models;
 
   try {

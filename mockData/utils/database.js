@@ -18,7 +18,7 @@ const db = mongoose.connection;
 const closeDB = (msg = '') => {
   db.close(() => {
     console.log(msg);
-    console.log('The connection to the database has been terminated.');
+    console.log('The connection to the Database has been terminated.');
   });
 };
 

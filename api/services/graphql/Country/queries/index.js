@@ -2,7 +2,7 @@ const findCountry = async (_parent, {countryName}, {models}) => {
   const errorMsg = "Can't find the Country in the Database.";
   const {Country} = models;
   try {
-    const regex = new RegExp(countryName, "i");
+    const regex = new RegExp(countryName, 'i');
 
     const byShortName = await Country.find({short_name: regex});
 

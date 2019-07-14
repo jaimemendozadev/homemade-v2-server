@@ -3,3 +3,8 @@ type Neighborhood {
     name: String!
     chefs: [Chef]
 }
+
+
+extend type Query {
+  findNeighborhood(neighborhoodName: String!): [Neighborhood]!
+}

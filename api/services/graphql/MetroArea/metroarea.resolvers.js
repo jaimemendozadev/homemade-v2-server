@@ -5,7 +5,7 @@ module.exports = {
     findMetroArea,
   },
   Mutation: {
-    createMetroArea
+    createMetroArea,
   },
   MetroArea: {
     neighborhoods,
